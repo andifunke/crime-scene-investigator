@@ -1,5 +1,4 @@
-
-# Created by https://www.gitignore.io/api/windows,linux,intellij
+# Created by https://www.gitignore.io/api/windows,linux,java,intellij
 
 ### Windows ###
 # Windows image file caches
@@ -33,6 +32,21 @@ $RECYCLE.BIN/
 
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
+
+
+### Java ###
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
 
 
 ### Intellij ###
