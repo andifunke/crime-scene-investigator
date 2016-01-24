@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <SplitPane dividerPositions="0.25" layoutX="108.0" layoutY="127.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.25" layoutX="108.0" layoutY="64.0" prefHeight="536.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="-Infinity" prefHeight="160.0" prefWidth="200.0" SplitPane.resizableWithParent="false">
                <children>
@@ -52,5 +52,22 @@
             </AnchorPane>
         </items>
       </SplitPane>
+      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="65.0" prefWidth="800.0" AnchorPane.bottomAnchor="535.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label id="header" layoutX="18.0" layoutY="15.0" text="Crime Scene Ivenstigation">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+            </Label>
+            <HBox alignment="BASELINE_CENTER" layoutX="512.0" layoutY="20.0" prefHeight="25.0" prefWidth="188.0" spacing="15.0" AnchorPane.rightAnchor="18.0">
+               <children>
+                  <Button id="button_neu" layoutX="539.0" layoutY="19.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#new_tuplet" prefWidth="80.0" text="Neu..." />
+                  <Button id="button_save" layoutX="602.0" layoutY="19.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#update_tuplet" prefWidth="80.0" text="Speichern..." />
+                  <Button id="button_delete" layoutX="668.0" layoutY="19.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#delete_tuplet" prefWidth="80.0" text="Löschen..." />
+               </children>
+            </HBox>
+            <Label id="messageBar" layoutX="332.0" layoutY="24.0" prefHeight="17.0" prefWidth="159.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
