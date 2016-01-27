@@ -30,7 +30,7 @@
 										<Button id="ButtonLoeschenFaelle" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Löschen..." textAlignment="CENTER" />
 									</items>
 								</ToolBar>
-								<ScrollPane id="ScrollPaneFaelle" fitToWidth="true" maxHeight="1.7976931348623157E308" prefViewportHeight="660.0" prefViewportWidth="799.0" VBox.vgrow="ALWAYS">
+								<ScrollPane id="ScrollPaneFaelle" fitToWidth="true" maxHeight="1.7976931348623157E308" prefViewportHeight="660.0" prefViewportWidth="799.0" VBox.vgrow="ALWAYS" vbarPolicy="ALWAYS">
 									<content>
 										<GridPane id="MainGridFaelle" alignment="CENTER" minWidth="400.0" prefWidth="795.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0">
 											<columnConstraints>
@@ -69,7 +69,7 @@
 													</GridPane.margin>
 												</TextField>
 												<TextField id="FilterFaelleFallID" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-<!-- Zeile 2 -->
+												<!-- Zeile 2 -->
 												<Label id="LabelFaelleName" text="Name" GridPane.rowIndex="2">
 													<font>
 														<Font name="System Bold" size="12.0" />
@@ -116,15 +116,8 @@
 												</Label>
 												<VBox nodeOrientation="RIGHT_TO_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="5">
 													<children>
-														<ListView id="ListViewFaelleVerbrechen" minHeight="20.0" prefHeight="90.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-															<GridPane.margin>
-																<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-															</GridPane.margin>
-														</ListView>
+														<ListView id="ListViewFaelleVerbrechen" minHeight="20.0" prefHeight="90.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 														<Button id="ButtonFaelleVerbrechenHinzufuegen" mnemonicParsing="false" text="hinzufügen" GridPane.columnIndex="1" GridPane.rowIndex="5" VBox.vgrow="NEVER">
-															<GridPane.margin>
-																<Insets top="50.0" />
-															</GridPane.margin>
 															<font>
 																<Font size="10.0" />
 															</font>
@@ -137,7 +130,11 @@
 														<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
 													</padding>
 												</VBox>
-												<TextField id="FilterFaelleVerbrechen" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+												<TextField id="FilterFaelleVerbrechen" GridPane.columnIndex="2" GridPane.rowIndex="5">
+													<GridPane.margin>
+														<Insets top="10.0" />
+													</GridPane.margin>
+												</TextField>
 <!-- Zeile 6 -->
 												<Label id="LabelFaelleNotizen" text="Notizen" GridPane.rowIndex="6">
 													<font>
@@ -149,15 +146,8 @@
 												</Label>
 												<VBox nodeOrientation="RIGHT_TO_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="6">
 													<children>
-														<ListView id="ListViewFaelleNotizen" minHeight="20.0" prefHeight="90.0">
-															<GridPane.margin>
-																<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-															</GridPane.margin>
-														</ListView>
+														<ListView id="ListViewFaelleNotizen" minHeight="20.0" prefHeight="90.0" />
 														<Button id="ButtonFaelleNotizenHinzufuegen" mnemonicParsing="false" text="hinzufügen" VBox.vgrow="NEVER">
-															<GridPane.margin>
-																<Insets top="50.0" />
-															</GridPane.margin>
 															<font>
 																<Font size="10.0" />
 															</font>
@@ -170,7 +160,11 @@
 														<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
 													</padding>
 												</VBox>
-												<TextField id="FilterFaelleNotizen" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+												<TextField id="FilterFaelleNotizen" GridPane.columnIndex="2" GridPane.rowIndex="6">
+													<GridPane.margin>
+														<Insets top="10.0" />
+													</GridPane.margin>
+												</TextField>
 <!-- Zeile 7 -->
 												<Label id="LabelFaelleIndizien" text="Indizien" GridPane.rowIndex="7">
 													<font>
@@ -182,15 +176,8 @@
 												</Label>
 												<VBox nodeOrientation="RIGHT_TO_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="7">
 													<children>
-														<ListView id="ListViewFaelleIndizien" minHeight="20.0" prefHeight="90.0">
-															<GridPane.margin>
-																<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-															</GridPane.margin>
-														</ListView>
+														<ListView id="ListViewFaelleIndizien" minHeight="20.0" prefHeight="90.0" />
 														<Button id="ButtonFaelleIndizienHinzufuegen" mnemonicParsing="false" text="hinzufügen" VBox.vgrow="NEVER">
-															<GridPane.margin>
-																<Insets top="50.0" />
-															</GridPane.margin>
 															<font>
 																<Font size="10.0" />
 															</font>
@@ -203,7 +190,11 @@
 														<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
 													</padding>
 												</VBox>
-												<TextField id="FilterFaelleIndizien" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+												<TextField id="FilterFaelleIndizien" GridPane.columnIndex="2" GridPane.rowIndex="7">
+													<GridPane.margin>
+														<Insets top="10.0" />
+													</GridPane.margin>
+												</TextField>
 <!-- Zeile 8 -->
 												<Label id="LabelFaellePolizisten" text="Polizisten" GridPane.rowIndex="8">
 													<font>
@@ -215,15 +206,8 @@
 												</Label>
 												<VBox nodeOrientation="RIGHT_TO_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="8">
 													<children>
-														<ListView id="ListViewFaellePolizisten" minHeight="20.0" prefHeight="90.0">
-															<GridPane.margin>
-																<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-															</GridPane.margin>
-														</ListView>
+														<ListView id="ListViewFaellePolizisten" minHeight="20.0" prefHeight="90.0" />
 														<Button id="ButtonFaellePolizistenHinzufuegen" mnemonicParsing="false" text="hinzufügen" VBox.vgrow="NEVER">
-															<GridPane.margin>
-																<Insets top="50.0" />
-															</GridPane.margin>
 															<font>
 																<Font size="10.0" />
 															</font>
@@ -236,7 +220,11 @@
 														<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
 													</padding>
 												</VBox>
-												<TextField id="FilterFaellePolizisten" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+												<TextField id="FilterFaellePolizisten" GridPane.columnIndex="2" GridPane.rowIndex="8">
+													<GridPane.margin>
+														<Insets top="10.0" />
+													</GridPane.margin>
+												</TextField>
 <!-- Zeile 9 -->
 												<Button id="ButtonFaelleFallSchliessen" mnemonicParsing="false" text="Fall schließen" GridPane.columnIndex="2" GridPane.rowIndex="9">
 													<GridPane.margin>
