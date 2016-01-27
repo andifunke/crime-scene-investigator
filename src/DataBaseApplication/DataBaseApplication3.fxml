@@ -47,31 +47,65 @@
 												<RowConstraints valignment="TOP" vgrow="SOMETIMES" />
 												<RowConstraints valignment="TOP" vgrow="SOMETIMES" />
 												<RowConstraints valignment="TOP" vgrow="SOMETIMES" />
-												<RowConstraints minHeight="-Infinity" valignment="TOP" vgrow="SOMETIMES" />
-												<RowConstraints minHeight="-Infinity" valignment="TOP" vgrow="SOMETIMES" />
+												<RowConstraints valignment="TOP" vgrow="SOMETIMES" />
 												<RowConstraints minHeight="10.0" prefHeight="40.0" valignment="BOTTOM" vgrow="NEVER" />
 											</rowConstraints>
 											<children>
+<!-- Zeile 0 -->
+												<Label id="LabelFaelleFilter" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="92.0" text="Filter" textAlignment="CENTER" GridPane.columnIndex="2">
+													<font>
+														<Font name="System Bold" size="12.0" />
+													</font>
+												</Label>
+<!-- Zeile 1 -->
 												<Label id="LabelFaelleFallID" text="Fall ID" GridPane.rowIndex="1">
 													<font>
 														<Font name="System Bold" size="12.0" />
 													</font>
 												</Label>
+												<TextField id="TextFieldFaelleFallID" GridPane.columnIndex="1" GridPane.rowIndex="1">
+													<GridPane.margin>
+														<Insets left="10.0" right="10.0" />
+													</GridPane.margin>
+												</TextField>
+												<TextField id="FilterFaelleFallID" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+<!-- Zeile 2 -->
 												<Label id="LabelFaelleName" text="Name" GridPane.rowIndex="2">
 													<font>
 														<Font name="System Bold" size="12.0" />
 													</font>
 												</Label>
+												<TextField id="TextFieldFaelleName" GridPane.columnIndex="1" GridPane.rowIndex="2">
+													<GridPane.margin>
+														<Insets left="10.0" right="10.0" />
+													</GridPane.margin>
+												</TextField>
+												<TextField id="FilterFaelleName" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+<!-- Zeile 3 -->
 												<Label id="LabelFaelleEroeffnungsdatum" text="eröffnet" GridPane.rowIndex="3">
 													<font>
 														<Font name="System Bold" size="12.0" />
 													</font>
 												</Label>
+												<DatePicker id="DatePickerFaelleEroeffnungsdatum" GridPane.columnIndex="1" GridPane.rowIndex="3">
+													<GridPane.margin>
+														<Insets left="10.0" />
+													</GridPane.margin>
+												</DatePicker>
+												<TextField id="FilterFaelleEroeffnungsdatum" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+<!-- Zeile 4 -->
 												<Label id="LabelFaelleEnddatum" text="geschlossen" GridPane.rowIndex="4">
 													<font>
 														<Font name="System Bold" size="12.0" />
 													</font>
 												</Label>
+												<DatePicker id="DatePickerFaelleEnddatum" GridPane.columnIndex="1" GridPane.rowIndex="4">
+													<GridPane.margin>
+														<Insets left="10.0" />
+													</GridPane.margin>
+												</DatePicker>
+												<TextField id="FilterFaelleEnddatum" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+<!-- Zeile 5 -->
 												<Label id="LabelFaelleVerbrechen" text="Verbrechen" GridPane.rowIndex="5">
 													<font>
 														<Font name="System Bold" size="12.0" />
@@ -80,11 +114,6 @@
 														<Insets top="15.0" />
 													</padding>
 												</Label>
-												<TextField id="TextFieldFaelleName" GridPane.columnIndex="1" GridPane.rowIndex="2">
-													<GridPane.margin>
-														<Insets left="10.0" right="10.0" />
-													</GridPane.margin>
-												</TextField>
 												<VBox nodeOrientation="RIGHT_TO_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="5">
 													<children>
 														<ListView id="ListViewFaelleVerbrechen" minHeight="20.0" prefHeight="90.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -108,109 +137,112 @@
 														<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
 													</padding>
 												</VBox>
-												<Label id="LabelFaelleNotizen" text="Notizen" GridPane.rowIndex="7">
+												<TextField id="FilterFaelleVerbrechen" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+<!-- Zeile 6 -->
+												<Label id="LabelFaelleNotizen" text="Notizen" GridPane.rowIndex="6">
 													<font>
 														<Font name="System Bold" size="12.0" />
 													</font>
 													<padding>
-														<Insets top="20.0" />
+														<Insets top="15.0" />
 													</padding>
 												</Label>
-												<ListView id="ListViewFaelleNotizen" minHeight="20.0" prefHeight="90.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
-													<GridPane.margin>
+												<VBox nodeOrientation="RIGHT_TO_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="6">
+													<children>
+														<ListView id="ListViewFaelleNotizen" minHeight="20.0" prefHeight="90.0">
+															<GridPane.margin>
+																<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+															</GridPane.margin>
+														</ListView>
+														<Button id="ButtonFaelleNotizenHinzufuegen" mnemonicParsing="false" text="hinzufügen" VBox.vgrow="NEVER">
+															<GridPane.margin>
+																<Insets top="50.0" />
+															</GridPane.margin>
+															<font>
+																<Font size="10.0" />
+															</font>
+															<VBox.margin>
+																<Insets top="5.0" />
+															</VBox.margin>
+														</Button>
+													</children>
+													<padding>
 														<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-													</GridPane.margin>
-												</ListView>
+													</padding>
+												</VBox>
+												<TextField id="FilterFaelleNotizen" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+<!-- Zeile 7 -->
 												<Label id="LabelFaelleIndizien" text="Indizien" GridPane.rowIndex="7">
 													<font>
 														<Font name="System Bold" size="12.0" />
 													</font>
 													<padding>
-														<Insets top="20.0" />
+														<Insets top="15.0" />
 													</padding>
 												</Label>
-												<VBox GridPane.columnIndex="2" GridPane.rowIndex="5">
+												<VBox nodeOrientation="RIGHT_TO_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="7">
 													<children>
-														<TextField prefWidth="92.0" AnchorPane.topAnchor="10.0" />
+														<ListView id="ListViewFaelleIndizien" minHeight="20.0" prefHeight="90.0">
+															<GridPane.margin>
+																<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+															</GridPane.margin>
+														</ListView>
+														<Button id="ButtonFaelleIndizienHinzufuegen" mnemonicParsing="false" text="hinzufügen" VBox.vgrow="NEVER">
+															<GridPane.margin>
+																<Insets top="50.0" />
+															</GridPane.margin>
+															<font>
+																<Font size="10.0" />
+															</font>
+															<VBox.margin>
+																<Insets top="5.0" />
+															</VBox.margin>
+														</Button>
 													</children>
 													<padding>
-														<Insets bottom="10.0" top="10.0" />
-													</padding>
-												</VBox>
-												<VBox alignment="BOTTOM_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="7">
-													<children>
-														<TextField />
-														<Button id="ButtonFaelleNotizenHinzufuegen" mnemonicParsing="false" text="hinzufügen" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-													</children>
-													<padding>
-														<Insets bottom="10.0" />
-													</padding>
-												</VBox>
-												<ListView id="ListViewFaelleIndizien" minHeight="20.0" prefHeight="90.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
-													<GridPane.margin>
 														<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-													</GridPane.margin>
-												</ListView>
-												<VBox alignment="BOTTOM_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="7">
-													<children>
-														<TextField />
-														<Button id="ButtonFaelleIndizienHinzufuegen" mnemonicParsing="false" text="hinzufügen" AnchorPane.bottomAnchor="95.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-													</children>
-													<padding>
-														<Insets bottom="10.0" />
 													</padding>
 												</VBox>
+												<TextField id="FilterFaelleIndizien" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+<!-- Zeile 8 -->
 												<Label id="LabelFaellePolizisten" text="Polizisten" GridPane.rowIndex="8">
 													<font>
 														<Font name="System Bold" size="12.0" />
 													</font>
 													<padding>
-														<Insets top="20.0" />
+														<Insets top="15.0" />
 													</padding>
 												</Label>
-												<ListView id="ListViewFaellePolizisten" minHeight="20.0" prefHeight="90.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
-													<GridPane.margin>
-														<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-													</GridPane.margin>
-												</ListView>
-												<VBox alignment="BOTTOM_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="8">
+												<VBox nodeOrientation="RIGHT_TO_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="8">
 													<children>
-														<TextField />
-														<Button id="ButtonFaellePolizistenHinzufuegen" mnemonicParsing="false" text="hinzufügen" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+														<ListView id="ListViewFaellePolizisten" minHeight="20.0" prefHeight="90.0">
+															<GridPane.margin>
+																<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+															</GridPane.margin>
+														</ListView>
+														<Button id="ButtonFaellePolizistenHinzufuegen" mnemonicParsing="false" text="hinzufügen" VBox.vgrow="NEVER">
+															<GridPane.margin>
+																<Insets top="50.0" />
+															</GridPane.margin>
+															<font>
+																<Font size="10.0" />
+															</font>
+															<VBox.margin>
+																<Insets top="5.0" />
+															</VBox.margin>
+														</Button>
 													</children>
 													<padding>
-														<Insets bottom="10.0" />
+														<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
 													</padding>
 												</VBox>
+												<TextField id="FilterFaellePolizisten" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+<!-- Zeile 9 -->
 												<Button id="ButtonFaelleFallSchliessen" mnemonicParsing="false" text="Fall schließen" GridPane.columnIndex="2" GridPane.rowIndex="9">
 													<GridPane.margin>
 														<Insets top="10.0" />
 													</GridPane.margin>
 												</Button>
-												<TextField id="TextFieldFaelleFallID" GridPane.columnIndex="1" GridPane.rowIndex="1">
-													<GridPane.margin>
-														<Insets left="10.0" right="10.0" />
-													</GridPane.margin>
-												</TextField>
-												<TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
-												<TextField GridPane.columnIndex="2" GridPane.rowIndex="2" />
-												<TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
-												<TextField GridPane.columnIndex="2" GridPane.rowIndex="4" />
-												<Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="92.0" text="Filter" textAlignment="CENTER" GridPane.columnIndex="2">
-													<font>
-														<Font name="System Bold" size="12.0" />
-													</font>
-												</Label>
-												<DatePicker GridPane.columnIndex="1" GridPane.rowIndex="3">
-													<GridPane.margin>
-														<Insets left="10.0" />
-													</GridPane.margin>
-												</DatePicker>
-												<DatePicker GridPane.columnIndex="1" GridPane.rowIndex="4">
-													<GridPane.margin>
-														<Insets left="10.0" />
-													</GridPane.margin>
-												</DatePicker>
 											</children>
 											<padding>
 												<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
