@@ -1,50 +1,58 @@
 package DataBaseApplication.Tuplets;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  * Created by Funke on 23.01.2016.
  */
 public class Fall extends Tuplet {
 
-        private int fallID;
-        private String name;
-        private String eroeffnungsdatum;
-        private String enddatum;
+    private final SimpleIntegerProperty fallID;
+    private final SimpleStringProperty name;
+    private final SimpleStringProperty eroeffnungsdatum;
+    private final SimpleStringProperty enddatum;
 
     public Fall(int fallID, String name, String eroeffnungsdatum) {
-        this.fallID = fallID;
-        this.name = name;
-        this.eroeffnungsdatum = eroeffnungsdatum;
+        this(fallID, name, eroeffnungsdatum, "");
+    }
+
+    public Fall(int fallID, String name, String eroeffnungsdatum, String enddatum) {
+        this.fallID = new SimpleIntegerProperty(fallID);
+        this.name = new SimpleStringProperty(name);
+        this.eroeffnungsdatum = new SimpleStringProperty(eroeffnungsdatum);
+        this.enddatum = new SimpleStringProperty(enddatum);
     }
 
     public int getFallID() {
-        return fallID;
+        return fallID.get();
     }
 
     public void setFallID(int fallID) {
-        this.fallID = fallID;
+        this.fallID.set(fallID);
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name);
     }
 
     public String getEroeffnungsdatum() {
-        return eroeffnungsdatum;
+        return eroeffnungsdatum.get();
     }
 
     public void setEroeffnungsdatum(String eroeffnungsdatum) {
-        this.eroeffnungsdatum = eroeffnungsdatum;
+        this.eroeffnungsdatum.set(eroeffnungsdatum);
     }
 
     public String getEnddatum() {
-        return enddatum;
+        return enddatum.get();
     }
 
     public void setEnddatum(String enddatum) {
-        this.enddatum = enddatum;
+        this.enddatum.set(enddatum);
     }
 }

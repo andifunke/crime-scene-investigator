@@ -6,6 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.collections.*?>
+<?import DataBaseApplication.*?>
 
 <TabPane fx:controller="DataBaseApplication.FXMLController"
 		prefHeight="1000.0" prefWidth="800.0"
@@ -20,17 +23,36 @@
 							<columns>
 								<TableColumn fx:id="ColumnFaelleFallID"
 											 text="Fall ID"
-											 prefWidth="70.0" minWidth="-1.0" />
+											 prefWidth="70.0" minWidth="-1.0">
+									<cellValueFactory>
+										<PropertyValueFactory property="fallID" />
+									</cellValueFactory>
+								</TableColumn>
 								<TableColumn fx:id="ColumnFaelleName"
 											 text="Name"
-											 prefWidth="410.0" minWidth="-1.0" />
+											 prefWidth="410.0" minWidth="-1.0">
+									<cellValueFactory>
+										<PropertyValueFactory property="name" />
+									</cellValueFactory>
+								</TableColumn>
 								<TableColumn fx:id="ColumnFaelleEroeffnungsdatum"
 											 text="eröffnet"
-											 prefWidth="150.0" minWidth="-1.0" />
+											 prefWidth="150.0" minWidth="-1.0">
+									<cellValueFactory>
+										<PropertyValueFactory property="eroeffnungsdatum" />
+									</cellValueFactory>
+								</TableColumn>
 								<TableColumn fx:id="ColumnFaelleEnddatum"
 											 text="geschlossen"
-											 prefWidth="150.0" minWidth="-1.0" />
+											 prefWidth="150.0" minWidth="-1.0">
+									<cellValueFactory>
+										<PropertyValueFactory property="enddatum" />
+									</cellValueFactory>
+								</TableColumn>
 							</columns>
+<!--							<sortOrder>
+								<fx:reference source="ColumnFaelleFallID"/>
+							</sortOrder>-->
 						</TableView>
 						<VBox>
 							<children>
