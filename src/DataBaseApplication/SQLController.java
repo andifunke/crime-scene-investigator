@@ -1,16 +1,15 @@
 package DataBaseApplication;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-class DBController {
+class SQLController {
 
-    private static final DBController dbcontroller = new DBController();
+    private static final SQLController sqlController = new SQLController();
     private static Connection connection;
     private static final String DB_PATH = "res/crime.db";
 
@@ -23,11 +22,11 @@ class DBController {
         }
     }
 
-    private DBController(){
+    private SQLController(){
     }
 
-    public static DBController getInstance(){
-        return dbcontroller;
+    public static SQLController getInstance(){
+        return sqlController;
     }
 
     private void initDBConnection() {
@@ -91,8 +90,8 @@ class DBController {
         }
     }
 
-    public static void main(String[] args) {
-        DBController dbc = DBController.getInstance();
+    public static void startHere(String[] args) {
+        SQLController dbc = SQLController.getInstance();
         dbc.initDBConnection();
         dbc.handleDB();
     }

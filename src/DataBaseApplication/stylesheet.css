@@ -1,0 +1,23 @@
+#EditorGrid {
+    -fx-vgap: 10;
+    -fx-hgap: 10;
+    -fx-padding: 0 10 10 10;
+}
+
+#LabelAttribute {
+    -fx-font-weight: bold;
+}
+
+#LabelFilter {
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 0 0;
+}
+
+#HBoxForButtons {
+    -fx-padding: 3 0 0 0;
+    -fx-spacing: 3;
+}
+
+#ButtonHinzufuegen {
+    -fx-font-size: 10;
+}

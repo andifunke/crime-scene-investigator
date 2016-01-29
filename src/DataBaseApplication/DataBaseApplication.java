@@ -7,13 +7,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-public class Main extends Application {
+public class DataBaseApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("DataBaseApplication3.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("DataBaseApplication.fxml"));
         primaryStage.setTitle("Crime Scene Investigator");
-        primaryStage.setScene(new Scene(root, 800, 1000));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("DataBaseApplication/stylesheet.css");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
