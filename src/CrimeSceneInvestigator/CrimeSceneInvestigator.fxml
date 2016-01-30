@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.net.URL?>
+<?import CrimeSceneInvestigator.Control_Faelle?>
+<?import CrimeSceneInvestigator.Control_Personen?>
+<?import CrimeSceneInvestigator.Control_Verbrechen?>
+<?import CrimeSceneInvestigator.Control_Bezirke?>
+<?import CrimeSceneInvestigator.Control_Arten?>
+<?import CrimeSceneInvestigator.Control_Behoerden?>
+<?import CrimeSceneInvestigator.Control_Indizien?>
+<?import CrimeSceneInvestigator.Control_Notizen?>
+<?import CrimeSceneInvestigator.Control_Zeitraeume?>
+<?import CrimeSceneInvestigator.Control_ArbeitetAn?>
+<?import CrimeSceneInvestigator.Control_BetrifftOpfer?>
+
+<?import CrimeSceneInvestigator.Control_BetrifftVerdaechtige?>
+<?import CrimeSceneInvestigator.Control_LiegtIn?>
+<TabPane prefHeight="950.0" prefWidth="800.0"
+         tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	<tabs>
+		<Tab text="Fälle">
+            <content>
+                <SplitPane>
+                    <Control_Faelle />
+                </SplitPane>
+            </content>
+        </Tab>
+        <Tab text="Personen">
+            <content>
+                <SplitPane>
+                    <Control_Personen />
+                </SplitPane>
+            </content>
+        </Tab>
+        <Tab text="Verbrechen">
+            <content>
+                <SplitPane>
+                    <Control_Verbrechen />
+                </SplitPane>
+            </content>
+        </Tab>
+        <Tab text="Bezirke">
+            <content>
+                <SplitPane>
+                    <Control_Bezirke />
+                </SplitPane>
+            </content>
+        </Tab>
+        <Tab text="Arten">
+            <content>
+                <SplitPane>
+                    <Control_Arten />
+                </SplitPane>
+            </content>
+        </Tab>
+        <Tab text="Behoerden">
+            <content>
+                <SplitPane>
+                    <Control_Behoerden />
+                </SplitPane>
+            </content>
+        </Tab>
+        <Tab text="Indizien">
+            <content>
+                <SplitPane>
+                    <Control_Indizien />
+                </SplitPane>
+            </content>
+        </Tab>
+        <Tab text="Notizen">
+            <content>
+                <SplitPane>
+                    <Control_Notizen />
+                </SplitPane>
+            </content>
+        </Tab>
+        <Tab text="Zeiträume">
+            <content>
+                <SplitPane>
+                    <Control_Zeitraeume />
+                </SplitPane>
+            </content>
+        </Tab>
+        <Tab text="Beziehungen">
+            <content>
+                <TabPane tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="arbeitet an">
+                            <content>
+                                <SplitPane>
+                                    <Control_ArbeitetAn />
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                        <Tab text="betrifft Opfer">
+                            <content>
+                                <SplitPane>
+                                    <Control_BetrifftOpfer />
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                        <Tab text="betrifft Verdächtigen">
+                            <content>
+                                <SplitPane>
+                                    <Control_BetrifftVerdaechtige />
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                        <Tab text="liegt in">
+                            <content>
+                                <SplitPane>
+                                    <Control_LiegtIn />
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </content>
+        </Tab>
+    </tabs>
+	<stylesheets>
+		<URL value="@CrimeSceneInvestigator.css" />
+	</stylesheets>
+</TabPane>

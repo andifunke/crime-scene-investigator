@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.DatePicker?>
+
+<fx:root type="javafx.scene.control.SplitPane" xmlns:fx="http://javafx.com/fxml">
+    <SplitPane dividerPositions="0.25" orientation="VERTICAL">
+        <items>
+            <TableView fx:id="Table"
+                       editable="true">
+                <columns>
+                    <TableColumn fx:id="Column#ATTRIBUTVARIABLE#"
+                                 text="#ATTRIBUTNAME#"
+                                 prefWidth="70.0" minWidth="-1.0">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="#ATTRIBUTVARIABLE" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+                <!--							<sortOrder>
+                                                <fx:reference source="Column#ATTRIBUTID#"/>
+                                            </sortOrder>-->
+            </TableView>
+            <VBox>
+                <children>
+                    <ToolBar prefHeight="40.0" minHeight="-Infinity" maxHeight="-Infinity"
+                             nodeOrientation="LEFT_TO_RIGHT" VBox.vgrow="NEVER">
+                        <items>
+                            <Button id="ButtonDefault"
+                                    text="Neu..."
+                                    onAction="#neu"
+                                    prefWidth="80.0" minWidth="-Infinity" maxWidth="-Infinity"
+                                    prefHeight="25.0" minHeight="-Infinity" maxHeight="-Infinity"
+                                    mnemonicParsing="false" />
+                            <Button id="ButtonDefault"
+                                    text="Speichern..."
+                                    onAction="#save"
+                                    prefWidth="80.0" minWidth="-Infinity" maxWidth="-Infinity"
+                                    prefHeight="25.0" minHeight="-Infinity" maxHeight="-Infinity"
+                                    mnemonicParsing="false" />
+                            <Button id="ButtonDefault"
+                                    text="Löschen..."
+                                    onAction="#delete"
+                                    prefWidth="80.0" minWidth="-Infinity" maxWidth="-Infinity"
+                                    prefHeight="25.0" minHeight="-Infinity" maxHeight="-Infinity"
+                                    mnemonicParsing="false" />
+                        </items>
+                    </ToolBar>
+                    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" vbarPolicy="ALWAYS">
+                        <content>
+                            <GridPane id="EditorGrid"
+                                      minWidth="400.0"
+                                      alignment="CENTER">
+                                <columnConstraints>
+                                    <ColumnConstraints prefWidth="92.0" minWidth="-Infinity" maxWidth="-Infinity"
+                                                       halignment="RIGHT" hgrow="NEVER" fillWidth="false" />
+                                    <ColumnConstraints prefWidth="550.0" minWidth="10.0"
+                                                       halignment="LEFT" hgrow="SOMETIMES" />
+                                    <ColumnConstraints prefWidth="150.0" minWidth="-Infinity" maxWidth="-Infinity"
+                                                       halignment="CENTER" hgrow="NEVER" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints vgrow="NEVER" />
+                                    <RowConstraints vgrow="NEVER" />
+                                    <RowConstraints vgrow="NEVER" />
+                                    <RowConstraints vgrow="NEVER" />
+                                    <RowConstraints vgrow="NEVER" />
+                                    <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                                    <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                                    <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                                    <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                                    <RowConstraints vgrow="NEVER" />
+                                </rowConstraints>
+                                <children>
+
+                                    <!-- Zeile 0 -->
+                                    <Label id="LabelFilter"
+                                           text="Filter"
+                                           alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER"
+                                           GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                                    <!-- Zeile 1 -->
+                                    <Label id="LabelAttribute"
+                                           text="ID"
+                                           GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                    <TextField id="TextFieldAttribute"
+                                               fx:id="Text#ATTRIBUTID#"
+                                               GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField id="TextFieldFilter"
+                                               fx:id="Filter#ATTRIBUTID#"
+                                               onAction="#filter"
+                                               GridPane.columnIndex="2" GridPane.rowIndex="1" />
+
+                                    <!-- Zeile 5 -->
+                                    <Label id="LabelAttribute"
+                                           text="#FOREIGNLIST#"
+                                           GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                                    <VBox id="VBoxAttribute"
+                                          GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                        <children>
+                                            <ListView id="ListViewAttribute"
+                                                      fx:id="List#FOREIGNLIST#"
+                                                      prefHeight="90.0" minHeight="20.0" />
+                                            <HBox id="HBoxForButtons">
+                                                <Button id="ButtonHinzufuegen"
+                                                        fx:id="ButtonGoTo#FOREIGNLIST#"
+                                                        text="anzeigen"
+                                                        onAction="#goToForeign"
+                                                        mnemonicParsing="false" />
+                                                <Button id="ButtonHinzufuegen"
+                                                        fx:id="ButtonAdd#FOREIGNLIST#"
+                                                        text="hinzufügen"
+                                                        onAction="#addForeign"
+                                                        mnemonicParsing="false" />
+                                            </HBox>
+                                        </children>
+                                    </VBox>
+                                    <TextField id="TextFieldFilter"
+                                               fx:id="Filter#FOREIGNLIST#"
+                                               onAction="#filter"
+                                               GridPane.columnIndex="2" GridPane.rowIndex="5" />
+
+                                </children>
+                            </GridPane>
+                        </content>
+                    </ScrollPane>
+                    <!-- Status Line -->
+                </children>
+            </VBox>
+        </items>
+    </SplitPane>
+</fx:root>
