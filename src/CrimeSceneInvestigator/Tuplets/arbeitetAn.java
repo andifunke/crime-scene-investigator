@@ -1,10 +1,8 @@
 package CrimeSceneInvestigator.Tuplets;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,55 +18,67 @@ import java.util.ArrayList;
  REFERENCES      Polizisten(PersonID),
  FOREIGN KEY      (FallID)
  REFERENCES      Faelle (FallID)
- );
- *
- * Created by Funke on 23.01.2016.
+ ); 
  */
-public class arbeitetAn extends Tuplet {
 
-    private final SimpleIntegerProperty fallID;
-    private final SimpleIntegerProperty personID;
+public class arbeitetan extends Tuplet {
+
+    // Felder
+    private final SimpleStringProperty PersonID;
+    public String getPersonID() { return PersonID.get(); }
+    public void setPersonID(String PersonID) { this.PersonID.set(PersonID); }
+
+    private final SimpleStringProperty FallID;
+    public String getFallID() { return FallID.get(); }
+    public void setFallID(String FallID) { this.FallID.set(FallID); }
+
     private final SimpleStringProperty von;
-    private final SimpleStringProperty bis;
+    public String getvon() { return von.get(); }
+    public void setvon(String von) { this.von.set(von); }
 
-    public arbeitetAn(int fallID, int personID, String von) {
-        this(fallID, personID, von, "");
+    private final SimpleStringProperty bis;
+    public String getbis() { return bis.get(); }
+    public void setbis(String bis) { this.bis.set(bis); }
+
+    // Konstruktoren
+    public arbeitetan(String PersonID, String FallID, String von) {
+        this(PersonID, FallID, von, "");
     }
 
-    public arbeitetAn(int fallID, int personID, String von, String bis) {
-        this.fallID = new SimpleIntegerProperty(fallID);
-        this.personID = new SimpleIntegerProperty(personID);
+    public arbeitetan(String PersonID, String FallID, String von, String bis) {
+        this.PersonID = new SimpleStringProperty(PersonID);
+        this.FallID = new SimpleStringProperty(FallID);
         this.von = new SimpleStringProperty(von);
         this.bis = new SimpleStringProperty(bis);
     }
 
-    public void setFallID(int fallID) {
-        this.fallID.set(fallID);
-    }
-    public void setPersonID(int personID) {
-        this.personID.set(personID);
-    }
-    public void setVon(String von) {
-        this.von.set(von);
-    }
-    public void setBis(String bis) { this.bis.set(bis); }
-
+    // Methoden
     public String getValue(String attribute) {
+        switch (attribute) {
+            case ("PersonID"):
+                return PersonID.get();
+            case ("FallID"):
+                return FallID.get();
+            case ("von"):
+                return von.get();
+            case ("bis"):
+                return bis.get();
+        }
         return null;
     }
 
     public String toString() {
-        return "";
+        return "["+PersonID.get() + "] " + FallID.get();
     }
 
     public static ObservableList<Tuplet> getOL(ResultSet readTable) throws SQLException {
         ArrayList<Tuplet> al = new ArrayList<Tuplet>();
         while (readTable.next()) {
-            Tuplet tuplet = new arbeitetAn(
-                readTable.getInt("fallid"),
-                readTable.getInt("personid"),
-                readTable.getString("von"),
-                readTable.getString("bis")
+            Tuplet tuplet = new Faelle(
+                  readTable.getString("PersonID"),
+                  readTable.getString("FallID"),
+                  readTable.getString("von"),
+                  readTable.getString("bis")
             );
             al.add(tuplet);
         }

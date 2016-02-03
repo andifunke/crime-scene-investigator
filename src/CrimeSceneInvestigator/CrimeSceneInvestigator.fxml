@@ -11,11 +11,11 @@
 <?import CrimeSceneInvestigator.Control_Indizien?>
 <?import CrimeSceneInvestigator.Control_Notizen?>
 <?import CrimeSceneInvestigator.Control_Zeitraeume?>
-<?import CrimeSceneInvestigator.Control_ArbeitetAn?>
-<?import CrimeSceneInvestigator.Control_BetrifftOpfer?>
+<?import CrimeSceneInvestigator.Control_arbeitetan?>
+<?import CrimeSceneInvestigator.Control_betrifftO?>
 
-<?import CrimeSceneInvestigator.Control_BetrifftVerdaechtige?>
-<?import CrimeSceneInvestigator.Control_LiegtIn?>
+<?import CrimeSceneInvestigator.Control_betrifftV?>
+<?import CrimeSceneInvestigator.Control_liegtin?>
 <TabPane fx:controller="CrimeSceneInvestigator.MainController"
         prefHeight="950.0" prefWidth="800.0"
          tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
@@ -90,28 +90,28 @@
                         <Tab text="arbeitet an">
                             <content>
                                 <SplitPane>
-                                    <Control_ArbeitetAn />
+                                    <Control_arbeitetan />
                                 </SplitPane>
                             </content>
                         </Tab>
                         <Tab text="betrifft Opfer">
                             <content>
                                 <SplitPane>
-                                    <Control_BetrifftOpfer />
+                                    <Control_betrifftO />
                                 </SplitPane>
                             </content>
                         </Tab>
                         <Tab text="betrifft Verdächtigen">
                             <content>
                                 <SplitPane>
-                                    <Control_BetrifftVerdaechtige />
+                                    <Control_betrifftV />
                                 </SplitPane>
                             </content>
                         </Tab>
                         <Tab text="liegt in">
                             <content>
                                 <SplitPane>
-                                    <Control_LiegtIn />
+                                    <Control_liegtin />
                                 </SplitPane>
                             </content>
                         </Tab>

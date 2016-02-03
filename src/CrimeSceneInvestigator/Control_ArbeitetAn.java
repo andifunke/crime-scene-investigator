@@ -1,6 +1,5 @@
 package CrimeSceneInvestigator;
 
-import CrimeSceneInvestigator.CrimeSceneInvestigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,11 +8,11 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class Control_ArbeitetAn extends SplitPane {
+public class Control_arbeitetan extends SplitPane {
     @FXML private TextField textField;
 
-    public Control_ArbeitetAn() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/ArbeitetAn.fxml"));
+    public Control_arbeitetan() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/arbeitetan.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

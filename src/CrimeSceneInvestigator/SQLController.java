@@ -1,13 +1,9 @@
 package CrimeSceneInvestigator;
 
-import CrimeSceneInvestigator.Tuplets.Fall;
-import CrimeSceneInvestigator.Tuplets.Tuplet;
-import CrimeSceneInvestigator.Tuplets.Verbrechen;
-import javafx.collections.FXCollections;
+import CrimeSceneInvestigator.Tuplets.*;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 class SQLController {
@@ -102,15 +98,56 @@ class SQLController {
             Statement stmt = connection.createStatement();
             ResultSet readTable = stmt.executeQuery(query);
             switch (table) {
-                case "faelle":
-                    ol = Fall.getOL(readTable);
+                case "arbeitetan":
+                    ol = arbeitetan.getOL(readTable);
                     break;
-                case "verbrechen":
+                case "Arten":
+                    ol = Arten.getOL(readTable);
+                    break;
+                case "Behoerden":
+                    ol = Behoerden.getOL(readTable);
+                    break;
+                case "betrifftO":
+                    ol = betrifftO.getOL(readTable);
+                    break;
+                case "betrifftV":
+                    ol = betrifftV.getOL(readTable);
+                    break;
+                case "Bezirke":
+                    ol = Bezirke.getOL(readTable);
+                    break;
+                case "Faelle":
+                    ol = Faelle.getOL(readTable);
+                    break;
+                case "Indizien":
+                    ol = Indizien.getOL(readTable);
+                    break;
+                case "liegtin":
+                    ol = liegtin.getOL(readTable);
+                    break;
+                case "Notizen":
+                    ol = Notizen.getOL(readTable);
+                    break;
+                case "Opfer":
+                    ol = Opfer.getOL(readTable);
+                    break;
+                case "Personen":
+                    ol = Personen.getOL(readTable);
+                    break;
+                case "Polizisten":
+                    ol = Polizisten.getOL(readTable);
+                    break;
+                case "Verbrechen":
                     ol = Verbrechen.getOL(readTable);
+                    break;
+                case "Verdaechtige":
+                    ol = Verdaechtige.getOL(readTable);
+                    break;
+                case "Zeitraeume":
+                    ol = Zeitraeume.getOL(readTable);
                     break;
             }
             readTable.close();
-//            connection.close();
         } catch (SQLException e) {
             System.err.println("Couldn't handle DB-Query");
             e.printStackTrace();
@@ -136,7 +173,7 @@ class SQLController {
             PreparedStatement insertFaelle = connection.prepareStatement("INSERT INTO faelle VALUES (?, ?, ?, ?);");
 
 //            insertFaelle.setInt(1, 1000);
-//            insertFaelle.setString(2, "Mörder Fall");
+//            insertFaelle.setString(2, "Mörder Faelle");
 //            insertFaelle.setString(3, "2011-05-16");
 //            insertFaelle.setString(4, "2011-05-17");
 //            insertFaelle.addBatch();

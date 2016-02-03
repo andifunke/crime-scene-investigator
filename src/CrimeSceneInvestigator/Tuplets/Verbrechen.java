@@ -1,10 +1,8 @@
 package CrimeSceneInvestigator.Tuplets;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,86 +22,83 @@ import java.util.ArrayList;
  FOREIGN KEY      (BezirkID)
  REFERENCES      Bezirke (BezirkID)
  );
- *
- * Created by Funke on 23.01.2016.
  */
+
 public class Verbrechen extends Tuplet {
 
-    private final SimpleIntegerProperty verbrechenID;
-    public void setVerbrechenID(int verbrechenID) {
-        this.verbrechenID.set(verbrechenID);
+    // Felder
+    private final SimpleStringProperty VerbrechenID;
+    public String getVerbrechenID() { return VerbrechenID.get(); }
+    public void setVerbrechenID(String VerbrechenID) { this.VerbrechenID.set(VerbrechenID); }
+
+    private final SimpleStringProperty Name;
+    public String getName() { return Name.get(); }
+    public void setName(String Name) { this.Name.set(Name); }
+
+    private final SimpleStringProperty Datum;
+    public String getDatum() { return Datum.get(); }
+    public void setDatum(String Datum) { this.Datum.set(Datum); }
+
+    private final SimpleStringProperty FallID;
+    public String getFallID() { return FallID.get(); }
+    public void setFallID(String FallID) { this.FallID.set(FallID); }
+
+    private final SimpleStringProperty ArtName;
+    public String getArtName() { return ArtName.get(); }
+    public void setArtName(String ArtName) { this.ArtName.set(ArtName); }
+
+    private final SimpleStringProperty BezirkID;
+    public String getBezirkID() { return BezirkID.get(); }
+    public void setBezirkID(String BezirkID) { this.BezirkID.set(BezirkID); }
+
+
+    // Konstruktoren
+    public Verbrechen(String VerbrechenID, String Name, String FallID, String ArtName, String BezirkID) {
+        this(VerbrechenID, Name, "", FallID, ArtName, BezirkID);
     }
 
-    private final SimpleStringProperty name;
-    public void setName(String name) {
-        this.name.set(name);
+    public Verbrechen(String VerbrechenID, String Name, String Datum, String FallID, String ArtName, String BezirkID) {
+        this.VerbrechenID = new SimpleStringProperty(VerbrechenID);
+        this.Name = new SimpleStringProperty(Name);
+        this.Datum = new SimpleStringProperty(Datum);
+        this.FallID = new SimpleStringProperty(FallID);
+        this.ArtName = new SimpleStringProperty(ArtName);
+        this.BezirkID = new SimpleStringProperty(BezirkID);
     }
 
-    private final SimpleStringProperty datum;
-    public void setDatum(String datum) {
-        this.datum.set(datum);
-    }
-
-    private final SimpleIntegerProperty fallID;
-    public void setFallID(int fallID) {
-        this.fallID.set(fallID);
-    }
-
-    private final SimpleStringProperty artName;
-    public void setArtName(String artName) {
-        this.artName.set(artName);
-    }
-
-    private final SimpleIntegerProperty bezirkID;
-    public void setBezirkID(int bezirkID) {
-        this.bezirkID.set(bezirkID);
-    }
-
+    // Methoden
     public String getValue(String attribute) {
         switch (attribute) {
-            case ("verbrechenid"):
-                return Integer.toString(verbrechenID.get());
-            case ("name"):
-                return name.get();
-            case ("datum"):
-                return datum.get();
-            case ("fallid"):
-                return Integer.toString(fallID.get());
-            case ("artname"):
-                return artName.get();
-            case ("bezirkid"):
-                return Integer.toString(bezirkID.get());
+            case ("VerbrechenID"):
+                return VerbrechenID.get();
+            case ("Name"):
+                return Name.get();
+            case ("Datum"):
+                return Datum.get();
+            case ("FallID"):
+                return FallID.get();
+            case ("ArtName"):
+                return ArtName.get();
+            case ("BezirkID"):
+                return BezirkID.get();
         }
         return null;
     }
 
     public String toString() {
-        return "["+Integer.toString(verbrechenID.get())+"] " + artName.get() + ": " + name.get();
-    }
-
-    public Verbrechen(int verbrechenID, String name, int fallID, String artName, int bezirkID) {
-        this(verbrechenID, name, "", fallID, artName, bezirkID);
-    }
-
-    public Verbrechen(int verbrechenID, String name, String datum, int fallID, String artName, int bezirkID) {
-        this.name = new SimpleStringProperty(name);
-        this.datum = new SimpleStringProperty(datum);
-        this.fallID = new SimpleIntegerProperty(fallID);
-        this.verbrechenID = new SimpleIntegerProperty(verbrechenID);
-        this.artName = new SimpleStringProperty(artName);
-        this.bezirkID = new SimpleIntegerProperty(bezirkID);
+        return "["+VerbrechenID.get() + "] " + Name.get();
     }
 
     public static ObservableList<Tuplet> getOL(ResultSet readTable) throws SQLException {
         ArrayList<Tuplet> al = new ArrayList<Tuplet>();
         while (readTable.next()) {
             Tuplet tuplet = new Verbrechen(
-                    readTable.getInt("verbrechenid"),
-                    readTable.getString("name"),
-                    readTable.getString("datum"),
-                    readTable.getInt("fallid"),
-                    readTable.getString("artname"),
-                    readTable.getInt("bezirkid")
+                  readTable.getString("VerbrechenID"),
+                  readTable.getString("Name"),
+                  readTable.getString("Datum"),
+                  readTable.getString("FallID"),
+                  readTable.getString("ArtName"),
+                  readTable.getString("BezirkID")
             );
             al.add(tuplet);
         }

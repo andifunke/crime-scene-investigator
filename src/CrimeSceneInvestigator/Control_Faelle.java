@@ -83,19 +83,19 @@ public class Control_Faelle extends SplitPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-        olTable = SQLController.getTable("faelle");
+        olTable = SQLController.getTable("Faelle");
         Table.setItems(olTable);
         Table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tuplet>() {
             @Override
             public void changed(ObservableValue<? extends Tuplet> observable,
                                 Tuplet oldValue, Tuplet newValue) {
 
-                TextFallID.setText(newValue.getValue("fallid"));
-                TextName.setText(newValue.getValue("name"));
-                TextEroeffnungsdatum.setText(newValue.getValue("eroeffnungsdatum"));
-                TextEnddatum.setText(newValue.getValue("enddatum"));
-                Filter filterVerbrechen = new Filter("fallid", newValue.getValue("fallid"));
-                olVerbrechen = SQLController.getTable("verbrechen", filterVerbrechen);
+                TextFallID.setText(newValue.getValue("FallID"));
+                TextName.setText(newValue.getValue("Name"));
+                TextEroeffnungsdatum.setText(newValue.getValue("Eroeffnungsdatum"));
+                TextEnddatum.setText(newValue.getValue("Enddatum"));
+                Filter filterVerbrechen = new Filter("FallID", newValue.getValue("FallID"));
+                olVerbrechen = SQLController.getTable("Verbrechen", filterVerbrechen);
                 ListVerbrechen.setItems(olVerbrechen);
 
             }
