@@ -21,19 +21,22 @@ public class Faelle extends Tuplet {
     // Felder
     private final SimpleStringProperty FallID;
     public String getFallID() { return FallID.get(); }
-    public void setFallID(String FallID) { this.FallID.set(FallID); }
+    public void setAttr0(String FallID) { this.FallID.set(FallID); }
 
     private final SimpleStringProperty Name;
     public String getName() { return Name.get(); }
-    public void setName(String Name) { this.Name.set(Name); }
+    public void setAttr1(String Name) { this.Name.set(Name); }
 
     private final SimpleStringProperty Eroeffnungsdatum;
     public String getEroeffnungsdatum() { return Eroeffnungsdatum.get(); }
-    public void setEroeffnungsdatum(String Eroeffnungsdatum) { this.Eroeffnungsdatum.set(Eroeffnungsdatum); }
+    public void setAttr2(String Eroeffnungsdatum) { this.Eroeffnungsdatum.set(Eroeffnungsdatum); }
 
     private final SimpleStringProperty Enddatum;
-    public void setEnddatum(String Enddatum) { this.Enddatum.set(Enddatum); }
     public String getEnddatum() { return Enddatum.get(); }
+    public void setAttr3(String Enddatum) { this.Enddatum.set(Enddatum); }
+
+    public void setAttr4(String Enddatum) {  }
+    public void setAttr5(String Enddatum) {  }
 
     // Konstruktoren
     public Faelle(String FallID, String Name, String Eroeffnungsdatum) {

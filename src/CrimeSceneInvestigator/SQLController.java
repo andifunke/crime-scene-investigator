@@ -155,10 +155,48 @@ class SQLController {
         return ol;
     }
 
+    public static void delete(String table, String key, String value) {
+        SQLController dbc = SQLController.getInstance();
+        dbc.handleDeleteRequest(table, key, value);
+    }
+
+    private void handleDeleteRequest(String table, String key, String value) {
+        try {
+            String query = "DELETE FROM "+table+" WHERE "+key+" = "+value+";";
+            System.out.println(query);
+				Statement stmt = connection.createStatement();
+            stmt.execute(query);
+        } catch (SQLException e) {
+				System.err.println("Couldn't handle DB-Query");
+				e.printStackTrace();
+        }
+    }
+
+
     public static void closeConnection() {
         try {
             connection.close();
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setUpDB() {
+        SQLController dbc = SQLController.getInstance();
+        dbc.setupDB();
+    }
+
+    private void setupDB() {
+        try {
+            String query = "";
+            System.out.println(query);
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(query);
+            query = "";
+            stmt.execute(query);
+
+        } catch (SQLException e) {
+            System.err.println("Couldn't handle DB-Query");
             e.printStackTrace();
         }
     }

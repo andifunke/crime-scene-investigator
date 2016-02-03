@@ -12,6 +12,7 @@ public class CrimeSceneInvestigator extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         SQLController.connect();
+//        SQLController.setUpDB();
         Parent root = FXMLLoader.load(getClass().getResource("CrimeSceneInvestigator.fxml"));
         primaryStage.setTitle("Crime Scene Investigator");
         Scene scene = new Scene(root);
