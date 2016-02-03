@@ -84,4 +84,12 @@ public class arbeitetan extends Tuplet {
         }
         return FXCollections.observableArrayList(al);
     }
+
+    public void setAttr0(String attr0) {}
+    public void setAttr1(String attr1) {}
+    public void setAttr2(String attr2) {}
+    public void setAttr3(String attr3) {}
+    public void setAttr4(String attr4) {}
+    public void setAttr5(String attr5) {}
+
 }

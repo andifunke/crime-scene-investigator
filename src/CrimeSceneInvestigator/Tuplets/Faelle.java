@@ -1,5 +1,6 @@
 package CrimeSceneInvestigator.Tuplets;
 
+import CrimeSceneInvestigator.MainController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -75,8 +76,8 @@ public class Faelle extends Tuplet {
             Tuplet tuplet = new Faelle(
                 readTable.getString("FallID"),
                 readTable.getString("Name"),
-                readTable.getString("Eroeffnungsdatum"),
-                readTable.getString("Enddatum")
+                MainController.formatDateToDMY(readTable.getString("Eroeffnungsdatum")),
+                MainController.formatDateToDMY(readTable.getString("Enddatum"))
             );
             al.add(tuplet);
         }

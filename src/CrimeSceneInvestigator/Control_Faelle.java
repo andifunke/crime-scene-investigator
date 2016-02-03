@@ -93,8 +93,8 @@ public class Control_Faelle extends SplitPane {
                 isNew = false;
 					 val0 = newValue.getValue(attr0);
 					 val1 = newValue.getValue(attr1);
-					 val2 = formatDateToDMY(newValue.getValue(attr2));
-					 val3 = formatDateToDMY(newValue.getValue(attr3));
+					 val2 = newValue.getValue(attr2);
+					 val3 = newValue.getValue(attr3);
 					 setUpFields();
 					 setUpLists();
 				}
@@ -149,6 +149,7 @@ public class Control_Faelle extends SplitPane {
 
     @FXML
     private void save(ActionEvent actionEvent) {
+        String val0old = val0;
         val0 = TextFallID.getText();
         val1 = TextName.getText();
         val2 = TextEroeffnungsdatum.getText();
@@ -158,22 +159,37 @@ public class Control_Faelle extends SplitPane {
         }
         catch (NumberFormatException e) {
             System.out.println("kein Integer");
-            val0 = "";
+            try {
+                int x = Integer.parseInt(val0old);
+                val0 = val0old;
+                TextFallID.setText(val0);
+            }
+            catch (NumberFormatException e2) {
+                System.out.println("kein Integer");
+                val0 = "";
+                TextFallID.setText(val0);
+            }
         }
         if (val1.equals("")) {
-            System.out.println("kein "+val1+" eingetragen");
+            System.out.println("kein "+attr1+" eingetragen");
             return;
         }
         if (val2.equals("")) {
-            System.out.println("kein "+val2+" eingetragen");
+            System.out.println("kein "+attr2+" eingetragen");
             return;
         }
         if (isNew) {
-            Faelle fall = new Faelle(val0, val1, formatDateToYMD(val2), formatDateToYMD(val3));
+            Faelle fall = new Faelle(val0, val1, val2, val3);
             olTable.add(fall);
+            tableView.getSelectionModel().selectLast();
+            isNew = false;
         }
         else {
-            tableView.getSelectionModel().getSelectedItem().se
+            tableView.getSelectionModel().getSelectedItem().setAttr0(val0);
+            tableView.getSelectionModel().getSelectedItem().setAttr1(val1);
+            tableView.getSelectionModel().getSelectedItem().setAttr2(val2);
+            tableView.getSelectionModel().getSelectedItem().setAttr3(val3);
+            tableView.refresh();
         }
     }
 
@@ -219,22 +235,6 @@ public class Control_Faelle extends SplitPane {
     @FXML
     private void goToForeign(ActionEvent actionEvent) {
         System.out.println("anzeigen");
-    }
-
-    private String formatDateToYMD(String date) {
-        if (date != null && date.matches("\\d{4}-\\d{2}-\\d{2}")) {
-            String[] splitdate = date.split("-");
-            return splitdate[2]+"."+splitdate[1]+"."+splitdate[0];
-        }
-        return date;
-    }
-
-    private String formatDateToDMY(String date) {
-        if (date != null && date.matches("\\d{2}.\\d{2}.\\d{4}")) {
-            String[] splitdate = date.split(".");
-            return splitdate[2]+"-"+splitdate[1]+"-"+splitdate[0];
-        }
-        return date;
     }
 
 }

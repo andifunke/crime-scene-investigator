@@ -26,6 +26,12 @@ import java.util.ArrayList;
 
 public class Verbrechen extends Tuplet {
 
+    public void setAttr0(String attr0) {}
+    public void setAttr1(String attr1) {}
+    public void setAttr2(String attr2) {}
+    public void setAttr3(String attr3) {}
+    public void setAttr4(String attr4) {}
+    public void setAttr5(String attr5) {}
     // Felder
     private final SimpleStringProperty VerbrechenID;
     public String getVerbrechenID() { return VerbrechenID.get(); }
