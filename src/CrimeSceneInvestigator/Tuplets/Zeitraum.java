@@ -57,4 +57,14 @@ public class Zeitraum extends Tuplet {
     public void setPersonID(int personID) {
         this.personID = personID;
     }
+
+    public String getValue(String attribute) {
+        return null;
+    }
+
+    public String toString() {
+        return "";
+    }
+
+
 }

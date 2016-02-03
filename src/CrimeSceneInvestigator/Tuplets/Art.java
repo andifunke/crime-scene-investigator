@@ -28,4 +28,14 @@ public class Art extends Tuplet {
     public void setBeschreibung(String beschreibung) {
         this.beschreibung = beschreibung;
     }
+
+    public String getValue(String attribute) {
+        return null;
+    }
+
+    public String toString() {
+        return "";
+    }
+
+
 }

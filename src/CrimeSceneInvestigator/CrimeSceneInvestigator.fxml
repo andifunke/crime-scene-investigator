@@ -16,7 +16,8 @@
 
 <?import CrimeSceneInvestigator.Control_BetrifftVerdaechtige?>
 <?import CrimeSceneInvestigator.Control_LiegtIn?>
-<TabPane prefHeight="950.0" prefWidth="800.0"
+<TabPane fx:controller="CrimeSceneInvestigator.MainController"
+        prefHeight="950.0" prefWidth="800.0"
          tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 	<tabs>
 		<Tab text="Fälle">

@@ -8,4 +8,6 @@ public class Verdaechtiger extends Person {
     public Verdaechtiger(int personID) {
         super(personID);
     }
+
+
 }

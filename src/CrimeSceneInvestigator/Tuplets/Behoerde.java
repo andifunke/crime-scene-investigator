@@ -17,35 +17,13 @@ public class Behoerde extends Tuplet {
         this.bezirkID = bezirkID;
     }
 
-    public int getBehoerdeID() {
-        return behoerdeID;
+    public String getValue(String attribute) {
+        return null;
     }
 
-    public void setBehoerdeID(int behoerdeID) {
-        this.behoerdeID = behoerdeID;
+    public String toString() {
+        return "";
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getTyp() {
-        return typ;
-    }
-
-    public void setTyp(String typ) {
-        this.typ = typ;
-    }
-
-    public int getBezirkID() {
-        return bezirkID;
-    }
-
-    public void setBezirkID(int bezirkID) {
-        this.bezirkID = bezirkID;
-    }
 }

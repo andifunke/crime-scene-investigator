@@ -68,4 +68,13 @@ public class Indiz extends Tuplet {
     public void setFallID(int fallID) {
         this.fallID = fallID;
     }
+
+    public String getValue(String attribute) {
+        return null;
+    }
+
+    public String toString() {
+        return "";
+    }
+
 }

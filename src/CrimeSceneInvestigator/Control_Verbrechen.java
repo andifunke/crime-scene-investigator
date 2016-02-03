@@ -2,7 +2,6 @@ package CrimeSceneInvestigator;
 
 import java.io.IOException;
 
-import CrimeSceneInvestigator.CrimeSceneInvestigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +9,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 
 public class Control_Verbrechen extends SplitPane {
+
     @FXML private TextField textField;
 
     public Control_Verbrechen() {

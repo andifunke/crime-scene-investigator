@@ -28,4 +28,13 @@ public class liegtIn extends Tuplet {
     public void setSupBezirkID(int supBezirkID) {
         this.supBezirkID = supBezirkID;
     }
+
+    public String getValue(String attribute) {
+        return null;
+    }
+
+    public String toString() {
+        return "";
+    }
+
 }

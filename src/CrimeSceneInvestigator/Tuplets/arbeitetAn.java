@@ -1,51 +1,77 @@
 package CrimeSceneInvestigator.Tuplets;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
+ CREATE TABLE arbeitetan (
+ PersonID         INT           not null,
+ FallID           INT           not null,
+ von              DATE          not null,
+ bis              DATE,
+ PRIMARY KEY      (PersonID, FallID),
+ FOREIGN KEY      (PersonID)
+ REFERENCES      Polizisten(PersonID),
+ FOREIGN KEY      (FallID)
+ REFERENCES      Faelle (FallID)
+ );
+ *
  * Created by Funke on 23.01.2016.
  */
 public class arbeitetAn extends Tuplet {
 
-    private int personID;
-    private int fallID;
-    private String von;
-    private String bis;
+    private final SimpleIntegerProperty fallID;
+    private final SimpleIntegerProperty personID;
+    private final SimpleStringProperty von;
+    private final SimpleStringProperty bis;
 
-    public arbeitetAn (int personID, int fallID, String von) {
-        this.personID = personID;
-        this.fallID = fallID;
-        this.von = von;
+    public arbeitetAn(int fallID, int personID, String von) {
+        this(fallID, personID, von, "");
     }
 
-    public int getPersonID() {
-        return personID;
-    }
-
-    public void setPersonID(int personID) {
-        this.personID = personID;
-    }
-
-    public int getFallID() {
-        return fallID;
+    public arbeitetAn(int fallID, int personID, String von, String bis) {
+        this.fallID = new SimpleIntegerProperty(fallID);
+        this.personID = new SimpleIntegerProperty(personID);
+        this.von = new SimpleStringProperty(von);
+        this.bis = new SimpleStringProperty(bis);
     }
 
     public void setFallID(int fallID) {
-        this.fallID = fallID;
+        this.fallID.set(fallID);
     }
-
-    public String getVon() {
-        return von;
+    public void setPersonID(int personID) {
+        this.personID.set(personID);
     }
-
     public void setVon(String von) {
-        this.von = von;
+        this.von.set(von);
+    }
+    public void setBis(String bis) { this.bis.set(bis); }
+
+    public String getValue(String attribute) {
+        return null;
     }
 
-    public String getBis() {
-        return bis;
+    public String toString() {
+        return "";
     }
 
-    public void setBis(String bis) {
-        this.bis = bis;
+    public static ObservableList<Tuplet> getOL(ResultSet readTable) throws SQLException {
+        ArrayList<Tuplet> al = new ArrayList<Tuplet>();
+        while (readTable.next()) {
+            Tuplet tuplet = new arbeitetAn(
+                readTable.getInt("fallid"),
+                readTable.getInt("personid"),
+                readTable.getString("von"),
+                readTable.getString("bis")
+            );
+            al.add(tuplet);
+        }
+        return FXCollections.observableArrayList(al);
     }
-
 }

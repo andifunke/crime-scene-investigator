@@ -13,19 +13,13 @@ public class betrifftOpfer extends Tuplet {
         this.verbrechenID = verbrechenID;
     }
 
-    public int getPersonID() {
-        return personID;
+    public String getValue(String attribute) {
+        return null;
     }
 
-    public void setPersonID(int personID) {
-        this.personID = personID;
+    public String toString() {
+        return "";
     }
 
-    public int getVerbrechenID() {
-        return verbrechenID;
-    }
 
-    public void setVerbrechenID(int verbrechenID) {
-        this.verbrechenID = verbrechenID;
-    }
 }

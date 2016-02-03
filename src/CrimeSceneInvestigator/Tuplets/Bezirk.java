@@ -11,11 +11,13 @@ public class Bezirk extends Tuplet {
         this.bezirkID = bezirkID;
     }
 
-    public int getBezirkID() {
-        return bezirkID;
+    public String getValue(String attribute) {
+        return null;
     }
 
-    public void setBezirkID(int bezirkID) {
-        this.bezirkID = bezirkID;
+    public String toString() {
+        return "";
     }
+
+
 }

@@ -1,22 +1,23 @@
 package CrimeSceneInvestigator;
 
-import CrimeSceneInvestigator.CrimeSceneInvestigator;
-import CrimeSceneInvestigator.Tuplets.Fall;
 import CrimeSceneInvestigator.Tuplets.Tuplet;
-import javafx.collections.FXCollections;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class Control_Faelle extends SplitPane {
 
     @FXML
-    private TableView Table;
-    private ObservableList<Tuplet> olFaelle;
+    private TableView<Tuplet> Table;
+    private ObservableList<Tuplet> olTable;
 
     @FXML
     private TextField TextFallID;
@@ -33,42 +34,44 @@ public class Control_Faelle extends SplitPane {
     private TableColumn ColumnName;
 
     @FXML
-    private DatePicker TextEroeffnungsdatum;
+    private TextField TextEroeffnungsdatum;
     @FXML
     private TextField FilterEroeffnungsdatum;
     @FXML
     private TableColumn ColumnEroeffnungsdatum;
 
     @FXML
-    private DatePicker TextEnddatum;
+    private TextField TextEnddatum;
     @FXML
     private TextField FilterEnddatum;
     @FXML
     private TableColumn ColumnEnddatum;
 
     @FXML
-    private ListView<String> ListVerbrechen;
+    private ListView<Tuplet> ListVerbrechen;
     @FXML
     private TextField FilterVerbrechen;
-    private ObservableList<String> olVerbrechen;
+    private ObservableList<Tuplet> olVerbrechen;
 
     @FXML
     private ListView ListNotizen;
     @FXML
     private TextField FilterNotizen;
-    private ObservableList<String> olNotizen;
+    private ObservableList<Tuplet> olNotizen;
 
     @FXML
     private ListView ListIndizien;
     @FXML
     private TextField FilterIndizien;
-    private ObservableList<String> olIndizien;
+    private ObservableList<Tuplet> olIndizien;
 
     @FXML
     private ListView ListPolizisten;
     @FXML
     private TextField FilterPolizisten;
-    private ObservableList<String> olPolizisten;
+    private ObservableList<Tuplet> olPolizisten;
+
+    private LinkedList<Filter> filterVerbrechen;
 
     public Control_Faelle() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Faelle.fxml"));
@@ -80,18 +83,33 @@ public class Control_Faelle extends SplitPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-        olFaelle = SQLController.getTable("Faelle");
-        Table.setItems(olFaelle);
+        olTable = SQLController.getTable("faelle");
+        Table.setItems(olTable);
+        Table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tuplet>() {
+            @Override
+            public void changed(ObservableValue<? extends Tuplet> observable,
+                                Tuplet oldValue, Tuplet newValue) {
+
+                TextFallID.setText(newValue.getValue("fallid"));
+                TextName.setText(newValue.getValue("name"));
+                TextEroeffnungsdatum.setText(newValue.getValue("eroeffnungsdatum"));
+                TextEnddatum.setText(newValue.getValue("enddatum"));
+                Filter filterVerbrechen = new Filter("fallid", newValue.getValue("fallid"));
+                olVerbrechen = SQLController.getTable("verbrechen", filterVerbrechen);
+                ListVerbrechen.setItems(olVerbrechen);
+
+            }
+        });
+    }
+
+    @FXML
+    private void tableSelect(EventHandler event) {
+        System.out.println("click on table faelle");
     }
 
     @FXML
     private void neu(ActionEvent actionEvent) {
-//        olVerbrechen = SQLController.getTable('Faelle');
-//        olVerbrechen = FXCollections.observableArrayList (
-//                "Single", "Double", "Suite", "Family App");
-//        ListVerbrechen.setItems(olVerbrechen);
         System.out.println("neu");
-        TextFallID.setText("text");
     }
 
     @FXML

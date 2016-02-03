@@ -63,4 +63,13 @@ public class Person extends Tuplet {
     public void setTodesdatum(String todesdatum) {
         Todesdatum = todesdatum;
     }
+
+    public String getValue(String attribute) {
+        return null;
+    }
+
+    public String toString() {
+        return "";
+    }
+
 }

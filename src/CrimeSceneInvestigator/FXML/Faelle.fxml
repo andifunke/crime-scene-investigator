@@ -21,6 +21,7 @@
     <SplitPane dividerPositions="0.25" orientation="VERTICAL">
         <items>
             <TableView fx:id="Table"
+
                        editable="true">
                 <columns>
                     <TableColumn fx:id="ColumnFallID"
@@ -141,7 +142,7 @@
                                     <Label id="LabelAttribute"
                                            text="eröffnet"
                                            GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                                    <DatePicker id="DatePickerAttribute"
+                                    <TextField id="TextFieldAttribute"
                                                 fx:id="TextEroeffnungsdatum"
                                                 GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <TextField id="TextFieldFilter"
@@ -153,7 +154,7 @@
                                     <Label id="LabelAttribute"
                                            text="geschlossen"
                                            GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                                    <DatePicker id="DatePickerAttribute"
+                                    <TextField id="TextFieldAttribute"
                                                 fx:id="TextEnddatum"
                                                 GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                     <TextField id="TextFieldFilter"

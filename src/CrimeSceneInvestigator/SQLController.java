@@ -2,11 +2,13 @@ package CrimeSceneInvestigator;
 
 import CrimeSceneInvestigator.Tuplets.Fall;
 import CrimeSceneInvestigator.Tuplets.Tuplet;
+import CrimeSceneInvestigator.Tuplets.Verbrechen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 class SQLController {
 
@@ -63,27 +65,65 @@ class SQLController {
     }
 
     public static ObservableList<Tuplet> getTable(String table) {
-        SQLController dbc = SQLController.getInstance();
-        return dbc.handleTableRequest(table);
+        LinkedList<Filter> filterList = null;
+        return getTable(table, filterList);
     }
 
-    private ObservableList<Tuplet> handleTableRequest(String table) {
+    public static ObservableList<Tuplet> getTable(String table, Filter filter) {
+        LinkedList<Filter> filterList = new LinkedList<>();
+        filterList.addFirst(filter);
+        return getTable(table, filterList);
+    }
+
+    public static ObservableList<Tuplet> getTable(String table, LinkedList<Filter> filterList) {
+        SQLController dbc = SQLController.getInstance();
+        return dbc.handleTableRequest(table, filterList);
+    }
+
+    private ObservableList<Tuplet> handleTableRequest(String table, LinkedList<Filter> filterList) {
         ObservableList<Tuplet> ol = null;
+        String where = "";
+        if (filterList != null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(" WHERE ");
+            boolean hasMultipleFilter = false;
+            for (Filter filter : filterList) {
+                if (hasMultipleFilter) {
+                    sb.append(" AND ");
+                }
+                sb.append(filter.getAttribute()).append(" = \"").append(filter.getValue()).append("\"");
+                hasMultipleFilter = true;
+            }
+            where += sb.toString();
+        }
         try {
+            String query = "SELECT * FROM "+table+where+";";
+            System.out.println(query);
             Statement stmt = connection.createStatement();
-            ResultSet readTable = stmt.executeQuery("SELECT * FROM "+table+";");
+            ResultSet readTable = stmt.executeQuery(query);
             switch (table) {
-                case "Faelle":
+                case "faelle":
                     ol = Fall.getOL(readTable);
+                    break;
+                case "verbrechen":
+                    ol = Verbrechen.getOL(readTable);
                     break;
             }
             readTable.close();
-            connection.close();
+//            connection.close();
         } catch (SQLException e) {
             System.err.println("Couldn't handle DB-Query");
             e.printStackTrace();
         }
         return ol;
+    }
+
+    public static void closeConnection() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 /*    private void handleRequest() {
