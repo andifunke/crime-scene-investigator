@@ -93,6 +93,7 @@ public class Control_Faelle extends SplitPane {
     private int counter = 0;
 
     public Control_Faelle() {
+        System.out.println("constructor");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Faelle.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -113,18 +114,13 @@ public class Control_Faelle extends SplitPane {
         columnAttr1.setText(attr1name);
         columnAttr2.setText(attr2name);
         columnAttr3.setText(attr3name);
-        setUpDefaultTable();
-        tableView.getSelectionModel().select(0);
-    }
-
-    private void setUpDefaultTable() {
+        System.out.println("setUpDefaultTable");
         olTable = SQLController.getTable(table);
-        setUpFilteredTable();
-    }
-    private void setUpFilteredTable() {
+        System.out.println("setUpFilteredTable");
         tableView.setItems(olTable);
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
+                System.out.println("newValue != null");
                 isNew = false;
                 val0 = newValue.getVal0();
                 val1 = newValue.getVal1();
@@ -134,12 +130,30 @@ public class Control_Faelle extends SplitPane {
                 setUpLists();
             }
             else {
+                System.out.println("newValue == null");
                 reset();
             }
         });
+        tableView.getSelectionModel().selectFirst();
+    }
+
+    private void refreshTable() {
+        System.out.println("refreshTable");
+        olTable.clear();
+        olTable.addAll(SQLController.getTable(table));
+        tableView.refresh();
+        tableView.getSelectionModel().selectFirst();
+    }
+    private void refreshTable(LinkedList<Filter> filterList) {
+        System.out.println("refreshTable filtered");
+        olTable.clear();
+        olTable.addAll(SQLController.getTable(table, filterList));
+        tableView.refresh();
+        tableView.getSelectionModel().selectFirst();
     }
 
     private void reset() {
+        System.out.println("reset");
         val0 = "";
         val1 = "";
         val2 = "";
@@ -150,27 +164,32 @@ public class Control_Faelle extends SplitPane {
         setUpLists();
     }
 
-    private void setUpLists() {
-        Filter filter = new Filter(table, attr0, val0);
-        ol0 = SQLController.getTable(list0table, filter);
-        list0.setItems(ol0);
-        ol1 = SQLController.getTable(list1table, filter);
-        list1.setItems(ol1);
-        ol2 = SQLController.getTable(list2table, filter);
-        list2.setItems(ol2);
-        //                    ol3 = SQLController.getTable(list3table, filter);
-        //                    list3.setItems(ol3);
-    }
-
     private void setUpFields() {
+        System.out.println("setUpFields");
         textAttr0.setText(val0);
         textAttr1.setText(val1);
         textAttr2.setText(val2);
         textAttr3.setText(val3);
     }
 
+    private void setUpLists() {
+        System.out.println("setUpLists");
+        if (!val0.equals("")) {
+            Filter filter = new Filter(table, attr0, val0);
+            ol0 = SQLController.getTable(list0table, filter);
+            list0.setItems(ol0);
+            ol1 = SQLController.getTable(list1table, filter);
+            list1.setItems(ol1);
+            ol2 = SQLController.getTable(list2table, filter);
+            list2.setItems(ol2);
+            //                    ol3 = SQLController.getTable(list3table, filter);
+            //                    list3.setItems(ol3);
+        }
+    }
+
     @FXML
     private void neu(ActionEvent actionEvent) {
+        System.out.println("neu");
         isNew = true;
         tableView.getSelectionModel().clearSelection();
         reset();
@@ -181,6 +200,7 @@ public class Control_Faelle extends SplitPane {
 
     @FXML
     private void save(ActionEvent actionEvent) {
+        System.out.println("save");
         String[] keys = new String[6];
         keys[0] = val0;
         val0 = textAttr0.getText();
@@ -215,9 +235,9 @@ public class Control_Faelle extends SplitPane {
         if (isNew) {
             Tuplet tuplet = new Faelle(val0, val1, val2, val3);
             SQLController.insert(tuplet);
-            setUpDefaultTable();
-//            olTable.add(tuplet);
-            // TODO: sollte nicht gespeichert werden, wenn keine Integer-ID, bzw. ID aus Datenbank auslesen
+            refreshTable();
+            System.out.println(tableView.getSelectionModel().getSelectedIndex());
+            tableView.getSelectionModel().clearSelection();
             tableView.getSelectionModel().selectLast();
             isNew = false;
         }
@@ -228,13 +248,12 @@ public class Control_Faelle extends SplitPane {
             tuplet.setVal2(val2);
             tuplet.setVal3(val3);
             SQLController.update(tuplet, keys);
-            setUpFilteredTable();
-            tableView.getSelectionModel().select(0);
-//            tableView.refresh();
+            refreshTable();
         }
     }
 
     private void setUpIDMessage() {
+        System.out.println("setUpIDMessage");
         if (isNew) {
             val0 = "wird automatisch generiert";
             textAttr0.setText(val0);
@@ -243,16 +262,13 @@ public class Control_Faelle extends SplitPane {
 
     @FXML
     private void delete(ActionEvent actionEvent) {
+        System.out.println("delete");
         int index = tableView.getSelectionModel().getSelectedIndex();
+        System.out.println("index: "+index);
         if (index > -1) {
             try {
-                Tuplet deletedTuplet = (Tuplet) tableView.getItems().get(index);
-                String attr = attr0;
-                String val = val0;
-                olTable.remove(deletedTuplet);
-                SQLController.delete(table, attr, val);
-                setUpFilteredTable();
-                tableView.getSelectionModel().select(0);
+                SQLController.delete(table, attr0, val0);
+                refreshTable();
             } catch (NullPointerException e) {
                 System.out.println("keine Einträge vorhanden");
             }
@@ -261,7 +277,7 @@ public class Control_Faelle extends SplitPane {
 
     @FXML
     private void filter(ActionEvent actionEvent) {
-//        System.out.println(++counter);
+        System.out.println("filter "+counter++);
         LinkedList<Filter> filterList = new LinkedList<>();
 
         String filter0 = filterAttr0.getText().trim();
@@ -269,25 +285,25 @@ public class Control_Faelle extends SplitPane {
         String filter2 = filterAttr2.getText().trim();
         String filter3 = filterAttr3.getText().trim();
         if (!filter0.equals("")) filterList.add(new Filter(table, attr0, filter0));
-        if (!filter1.equals("")) filterList.add(new Filter(table, attr1, filter0));
-        if (!filter2.equals("")) filterList.add(new Filter(table, attr2, filter0));
-        if (!filter3.equals("")) filterList.add(new Filter(table, attr3, filter0));
+        if (!filter1.equals("")) filterList.add(new Filter(table, attr1, filter1));
+        if (!filter2.equals("")) filterList.add(new Filter(table, attr2, filter2));
+        if (!filter3.equals("")) filterList.add(new Filter(table, attr3, filter3));
         for (Filter filter : filterList) {
             System.out.println(filter.getTable()+", "+filter.getAttribute()+", "+filter.getValue());
         }
         if (!filterList.isEmpty()) {
-            olTable = SQLController.getTable(table, filterList);
-            setUpFilteredTable();
-            tableView.getSelectionModel().select(0);
+            System.out.println("filterlist not empty");
+            refreshTable(filterList);
         }
         else {
-            setUpDefaultTable();
-            tableView.getSelectionModel().select(0);
+            System.out.println("filterlist empty");
+            refreshTable();
         }
     }
 
     @FXML
     private void FallSchliessen(ActionEvent actionEvent) {
+        System.out.println("FallSchliessen");
         val3 = formatter.format(new Date());
         textAttr3.setText(val3);
         save(new ActionEvent());
@@ -295,12 +311,12 @@ public class Control_Faelle extends SplitPane {
 
     @FXML
     private void addForeign(ActionEvent actionEvent) {
-        System.out.println("hinzufügen");
+        System.out.println("addForeign");
     }
 
     @FXML
     private void goToForeign(ActionEvent actionEvent) {
-        System.out.println("anzeigen");
+        System.out.println("goToForeign");
         if (actionEvent.getSource() == filterAttr0) {
             String filter = filterAttr0.getText();
             textAttr0.setText(filter);
