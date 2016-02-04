@@ -179,16 +179,19 @@ public class Control_Faelle extends SplitPane {
             return;
         }
         if (isNew) {
-            Faelle fall = new Faelle(val0, val1, val2, val3);
-            olTable.add(fall);
+            Tuplet tuplet = new Faelle(val0, val1, val2, val3);
+            olTable.add(tuplet);
+            // TODO: sollte nicht gespeichert werden, wenn keine Integer-ID, bzw. ID aus Datenbank auslesen
             tableView.getSelectionModel().selectLast();
             isNew = false;
         }
         else {
-            tableView.getSelectionModel().getSelectedItem().setAttr0(val0);
-            tableView.getSelectionModel().getSelectedItem().setAttr1(val1);
-            tableView.getSelectionModel().getSelectedItem().setAttr2(val2);
-            tableView.getSelectionModel().getSelectedItem().setAttr3(val3);
+            Tuplet tuplet = tableView.getSelectionModel().getSelectedItem();
+            tuplet.setAttr0(val0);
+            tuplet.setAttr1(val1);
+            tuplet.setAttr2(val2);
+            tuplet.setAttr3(val3);
+            //SQLController.update(table, tuplet);
             tableView.refresh();
         }
     }
@@ -203,7 +206,7 @@ public class Control_Faelle extends SplitPane {
                 String val = val0;
                 olTable.remove(deletedTuplet);
                 SQLController.delete(table, attr, val);
-                //setUpTable();
+                setUpTable();
             } catch (NullPointerException e) {
                 System.out.println("keine Einträge vorhanden");
             }

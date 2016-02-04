@@ -64,18 +64,15 @@ class SQLController {
         LinkedList<Filter> filterList = null;
         return getTable(table, filterList);
     }
-
     public static ObservableList<Tuplet> getTable(String table, Filter filter) {
         LinkedList<Filter> filterList = new LinkedList<>();
         filterList.addFirst(filter);
         return getTable(table, filterList);
     }
-
     public static ObservableList<Tuplet> getTable(String table, LinkedList<Filter> filterList) {
         SQLController dbc = SQLController.getInstance();
         return dbc.handleTableRequest(table, filterList);
     }
-
     private ObservableList<Tuplet> handleTableRequest(String table, LinkedList<Filter> filterList) {
         ObservableList<Tuplet> ol = null;
         String where = "";
@@ -159,7 +156,6 @@ class SQLController {
         SQLController dbc = SQLController.getInstance();
         dbc.handleDeleteRequest(table, key, value);
     }
-
     private void handleDeleteRequest(String table, String key, String value) {
         try {
             String query = "DELETE FROM "+table+" WHERE "+key+" = "+value+";";
@@ -172,7 +168,6 @@ class SQLController {
         }
     }
 
-
     public static void closeConnection() {
         try {
             connection.close();
@@ -181,24 +176,26 @@ class SQLController {
         }
     }
 
-    public static void setUpDB() {
+    public static void setUpDB(LinkedList<String> statementList) {
         SQLController dbc = SQLController.getInstance();
-        dbc.setupDB();
+        dbc.setupDB(statementList);
     }
-
-    private void setupDB() {
+    private void setupDB(LinkedList<String> statementList) {
+        Statement statement = null;
         try {
-            String query = "";
-            System.out.println(query);
-            Statement stmt = connection.createStatement();
-            stmt.executeUpdate(query);
-            query = "";
-            stmt.execute(query);
-
+            statement = connection.createStatement();
+            for (String query : statementList) {
+                System.out.println(query + "\nnext...");
+                statement.addBatch(query);
+            }
+            connection.setAutoCommit(false);
+            statement.executeBatch();
+            connection.setAutoCommit(true);
         } catch (SQLException e) {
             System.err.println("Couldn't handle DB-Query");
             e.printStackTrace();
         }
+
     }
 
 /*    private void handleRequest() {
