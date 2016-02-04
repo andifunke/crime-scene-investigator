@@ -261,65 +261,17 @@ public class Control_Faelle extends SplitPane {
 
     @FXML
     private void filter(ActionEvent actionEvent) {
-        System.out.println(++counter);
+//        System.out.println(++counter);
         LinkedList<Filter> filterList = new LinkedList<>();
-        String filter0[] = filterAttr0.getText().split(split);
-        String filter1[] = filterAttr1.getText().split(split);
-        String filter2[] = filterAttr2.getText().split(split);
-        String filter3[] = filterAttr3.getText().split(split);
-//        String listFilter0[] = filterList0.getText().split(split);
-//        String listFilter1[] = filterList1.getText().split(split);
-//        String listFilter2[] = filterList2.getText().split(split);
-//        String listFilter3[] = filterList3.getText().split(split);
-        for (String filter : filter0) {
-            filter = filter.trim();
-            if (!filter.equals("")) {
-                filterList.add(new Filter(table, attr0, filter));
-            }
-        }
-        for (String filter : filter1) {
-            filter = filter.trim();
-            if (!filter.equals("")) {
-                filterList.add(new Filter(table, attr1, filter));
-            }
-        }
-        for (String filter : filter2) {
-            filter = filter.trim();
-            if (!filter.equals("")) {
-                filterList.add(new Filter(table, attr2, filter));
-            }
-        }
-        for (String filter : filter3) {
-            filter = filter.trim();
-            if (!filter.equals("")) {
-                filterList.add(new Filter(table, attr3, filter));
-            }
-        }
-/*        for (String filter : listFilter0) {
-            filter = filter.trim();
-            if (!filter.equals("")) {
-                filterList.add(new Filter(list0table, "Name", filter.trim()));
-            }
-        }
-        for (String filter : listFilter1) {
-            filter = filter.trim();
-            if (!filter.equals("")) {
-                filterList.add(new Filter(list1table, "Text", filter.trim()));
-            }
-        }
-        for (String filter : listFilter2) {
-            filter = filter.trim();
-            if (!filter.equals("")) {
-                filterList.add(new Filter(list2table, "Text", filter.trim()));
-            }
-        }
-        for (String filter : listFilter3) {
-            filter = filter.trim();
-            if (!filter.equals("")) {
-                filterList.add(new Filter(list3table, "Name", filter.trim()));
-            }
-        }
-*/
+
+        String filter0 = filterAttr0.getText().trim();
+        String filter1 = filterAttr1.getText().trim();
+        String filter2 = filterAttr2.getText().trim();
+        String filter3 = filterAttr3.getText().trim();
+        if (!filter0.equals("")) filterList.add(new Filter(table, attr0, filter0));
+        if (!filter1.equals("")) filterList.add(new Filter(table, attr1, filter0));
+        if (!filter2.equals("")) filterList.add(new Filter(table, attr2, filter0));
+        if (!filter3.equals("")) filterList.add(new Filter(table, attr3, filter0));
         for (Filter filter : filterList) {
             System.out.println(filter.getTable()+", "+filter.getAttribute()+", "+filter.getValue());
         }
