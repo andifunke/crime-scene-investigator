@@ -176,46 +176,24 @@ class SQLController {
         }
     }
 
-    public static void setUpDB(LinkedList<String> statementList) {
-        SQLController dbc = SQLController.getInstance();
-        dbc.setupDB(statementList);
-    }
-    private void setupDB(LinkedList<String> statementList) {
-        Statement statement = null;
-        try {
-            statement = connection.createStatement();
-            for (String query : statementList) {
-                System.out.println(query + "\nnext...");
-                statement.addBatch(query);
-            }
-            connection.setAutoCommit(false);
-            statement.executeBatch();
-            connection.setAutoCommit(true);
-        } catch (SQLException e) {
-            System.err.println("Couldn't handle DB-Query");
-            e.printStackTrace();
-        }
-
-    }
-
 /*    private void handleRequest() {
         try {
             Statement stmt = connection.createStatement();
-//            stmt.executeUpdate("DROP TABLE IF EXISTS books;");
-//            stmt.executeUpdate("CREATE TABLE books (author, title, publication, pages, price);");
-//            stmt.execute("INSERT INTO books (author, title, publication, pages, price) VALUES ('Paulchen Paule', 'Paul der Penner', '2001-05-06', '1234', '5.67')");
+            stmt.executeUpdate("DROP TABLE IF EXISTS books;");
+            stmt.executeUpdate("CREATE TABLE books (author, title, publication, pages, price);");
+            stmt.execute("INSERT INTO books (author, title, publication, pages, price) VALUES ('Paulchen Paule', 'Paul der Penner', '2001-05-06', '1234', '5.67')");
 
             PreparedStatement insertFaelle = connection.prepareStatement("INSERT INTO faelle VALUES (?, ?, ?, ?);");
 
-//            insertFaelle.setInt(1, 1000);
-//            insertFaelle.setString(2, "Mörder Faelle");
-//            insertFaelle.setString(3, "2011-05-16");
-//            insertFaelle.setString(4, "2011-05-17");
-//            insertFaelle.addBatch();
+            insertFaelle.setInt(1, 1000);
+            insertFaelle.setString(2, "Mörder Faelle");
+            insertFaelle.setString(3, "2011-05-16");
+            insertFaelle.setString(4, "2011-05-17");
+            insertFaelle.addBatch();
 
-//            connection.setAutoCommit(false);
-//            insertFaelle.executeBatch();
-//            connection.setAutoCommit(true);
+            connection.setAutoCommit(false);
+            insertFaelle.executeBatch();
+            connection.setAutoCommit(true);
 
             ResultSet readFaelle = stmt.executeQuery("SELECT * FROM faelle;");
             readFaelle.close();

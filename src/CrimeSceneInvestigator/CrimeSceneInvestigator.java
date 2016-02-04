@@ -22,64 +22,11 @@ public class CrimeSceneInvestigator extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         SQLController.connect();
-
-        final Parameters params = getParameters();
-        final List<String> parameters = params.getRaw();
-
-        if (!parameters.isEmpty() && parameters.get(0).toLowerCase().equals("setupdb")) {
-            FileReader fr = null;
-            try {
-                fr = new FileReader(dbSetupFile);
-            } catch (FileNotFoundException e) {
-                System.out.println("Datei nicht vorhanden!");
-                System.exit(0);
-            }
-            BufferedReader br = null;
-            String zeile;
-            StringBuilder stringBuilder = new StringBuilder();
-            LinkedList<String> statementList = new LinkedList<>();
-            try {
-                br = new BufferedReader(fr);
-                boolean newItem = false;
-                while( (zeile = br.readLine()) != null ) {
-                    if (zeile.toLowerCase().trim().startsWith("create") ||
-                          zeile.toLowerCase().trim().startsWith("insert")) {
-                        if (newItem) {
-                            statementList.add(stringBuilder.toString());
-                            stringBuilder.setLength(0);
-                        }
-                        newItem = true;
-                    }
-                    if (zeile.toLowerCase().trim().startsWith("select")) {
-                        if (newItem) {
-                            statementList.add(stringBuilder.toString());
-                            stringBuilder.setLength(0);
-                        }
-                        break;
-                    }
-                    stringBuilder.append(zeile);
-                    stringBuilder.append('\n');
-                }
-                br.close();
-                SQLController.setUpDB(statementList);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    fr.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            //System.exit(0);
-        }
-        else {
-            Parent root = FXMLLoader.load(getClass().getResource("CrimeSceneInvestigator.fxml"));
-            primaryStage.setTitle("Crime Scene Investigator");
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        }
+        Parent root = FXMLLoader.load(getClass().getResource("CrimeSceneInvestigator.fxml"));
+        primaryStage.setTitle("Crime Scene Investigator");
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
