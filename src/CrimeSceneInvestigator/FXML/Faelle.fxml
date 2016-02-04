@@ -23,32 +23,28 @@
             <TableView fx:id="tableView"
                        editable="true">
                 <columns>
-                    <TableColumn fx:id="ColumnFallID"
-                                 text="Fall ID"
+                    <TableColumn fx:id="columnAttr0"
                                  prefWidth="70.0" minWidth="-1.0">
                         <cellValueFactory>
-                            <PropertyValueFactory property="fallID" />
+                            <PropertyValueFactory property="val0" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="ColumnName"
-                                 text="Name"
+                    <TableColumn fx:id="columnAttr1"
                                  prefWidth="410.0" minWidth="-1.0">
                         <cellValueFactory>
-                            <PropertyValueFactory property="name" />
+                            <PropertyValueFactory property="val1" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="ColumnEroeffnungsdatum"
-                                 text="eröffnet"
+                    <TableColumn fx:id="columnAttr2"
                                  prefWidth="150.0" minWidth="-1.0">
                         <cellValueFactory>
-                            <PropertyValueFactory property="eroeffnungsdatum" />
+                            <PropertyValueFactory property="val2" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="ColumnEnddatum"
-                                 text="geschlossen"
+                    <TableColumn fx:id="columnAttr3"
                                  prefWidth="150.0" minWidth="-1.0">
                         <cellValueFactory>
-                            <PropertyValueFactory property="enddatum" />
+                            <PropertyValueFactory property="val3" />
                         </cellValueFactory>
                     </TableColumn>
                 </columns>
@@ -106,27 +102,30 @@
                                 <children>
 
                                     <!-- Zeile 0 -->
-                                    <Button id="ButtonFilter"
-                                           fx:id="FilterButton"
-                                           onAction="#filter"
-                                           text="Filter"
-                                           alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER"
-                                           GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                                    <HBox id="HBoxForButtons2"
+                                          alignment="CENTER"
+                                          GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                        <Button id="ButtonFilter"
+                                                fx:id="filterButton"
+                                                onAction="#filter"
+                                                text="Filter"
+                                                prefWidth="75.0"
+                                                alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER"/>
+                                    </HBox>
                                     <!-- Zeile 1 -->
                                     <HBox id="HBoxLabel"
                                           alignment="CENTER_RIGHT"
                                           GridPane.columnIndex="0" GridPane.rowIndex="1">
                                         <Label id="LabelAttribute"
-                                               text="ID"/>
+                                               fx:id="labelAttr0" />
                                         <Label id="Asterisk"
                                                text=" *"/>
                                     </HBox>
                                     <TextField id="TextFieldAttribute"
-                                               fx:id="TextFallID"
+                                               fx:id="textAttr0"
                                                GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <TextField id="TextFieldFilter"
-                                               fx:id="FilterFallID"
-                                               onAction="#filter"
+                                               fx:id="filterAttr0"
                                                GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
                                     <!-- Zeile 2 -->
@@ -134,16 +133,15 @@
                                           alignment="CENTER_RIGHT"
                                           GridPane.columnIndex="0" GridPane.rowIndex="2">
                                         <Label id="LabelAttribute"
-                                               text="Name"/>
+                                               fx:id="labelAttr1" />
                                         <Label id="Asterisk"
                                                text=" *"/>
                                     </HBox>
                                     <TextField id="TextFieldAttribute"
-                                               fx:id="TextName"
+                                               fx:id="textAttr1"
                                                GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <TextField id="TextFieldFilter"
-                                               fx:id="FilterName"
-                                               onAction="#filter"
+                                               fx:id="filterAttr1"
                                                GridPane.columnIndex="2" GridPane.rowIndex="2" />
 
                                     <!-- Zeile 3 -->
@@ -151,145 +149,134 @@
                                           alignment="CENTER_RIGHT"
                                           GridPane.columnIndex="0" GridPane.rowIndex="3">
                                         <Label id="LabelAttribute"
-                                               text="eröffnet"/>
+                                               fx:id="labelAttr2" />
                                         <Label id="Asterisk"
                                                text=" *"/>
                                     </HBox>
                                     <TextField id="TextFieldAttribute"
-                                                fx:id="TextEroeffnungsdatum"
+                                                fx:id="textAttr2"
                                                 GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <TextField id="TextFieldFilter"
-                                               fx:id="FilterEroeffnungsdatum"
-                                               onAction="#filter"
+                                               fx:id="filterAttr2"
                                                GridPane.columnIndex="2" GridPane.rowIndex="3" />
 
                                     <!-- Zeile 4 -->
-                                    <Label id="LabelAttribute"
-                                           text="geschlossen"
-                                           GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                                    <HBox id="HBoxAttribute"
+                                          alignment="CENTER_RIGHT"
+                                          GridPane.columnIndex="0" GridPane.rowIndex="4">
+                                        <Label id="LabelAttribute"
+                                               fx:id="labelAttr3" />
+                                    </HBox>
                                     <TextField id="TextFieldAttribute"
-                                                fx:id="TextEnddatum"
+                                                fx:id="textAttr3"
                                                 GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                     <TextField id="TextFieldFilter"
-                                               fx:id="FilterEnddatum"
-                                               onAction="#filter"
+                                               fx:id="filterAttr3"
                                                GridPane.columnIndex="2" GridPane.rowIndex="4" />
 
                                     <!-- Zeile 5 -->
                                     <Label id="LabelAttribute"
-                                           text="Verbrechen"
+                                           fx:id="labelList0"
                                            GridPane.columnIndex="0" GridPane.rowIndex="5" />
                                     <VBox id="VBoxAttribute"
                                           GridPane.columnIndex="1" GridPane.rowIndex="5">
                                         <children>
                                             <ListView id="ListViewAttribute"
-                                                      fx:id="ListVerbrechen"
+                                                      fx:id="list0"
                                                       prefHeight="90.0" minHeight="20.0" />
                                             <HBox id="HBoxForButtons">
                                                 <Button id="ButtonHinzufuegen"
-                                                        fx:id="ButtonGoToVerbrechen"
+                                                        fx:id="goToList0"
                                                         text="anzeigen"
                                                         onAction="#goToForeign"
                                                         mnemonicParsing="false" />
                                                 <Button id="ButtonHinzufuegen"
-                                                        fx:id="ButtonAddVerbrechen"
+                                                        fx:id="addList0"
                                                         text="hinzufügen"
                                                         onAction="#addForeign"
                                                         mnemonicParsing="false" />
                                             </HBox>
                                         </children>
                                     </VBox>
-                                    <TextField id="TextFieldFilter"
-                                               fx:id="FilterVerbrechen"
-                                               onAction="#filter"
-                                               GridPane.columnIndex="2" GridPane.rowIndex="5" />
 
                                     <!-- Zeile 6 -->
                                     <Label id="LabelAttribute"
-                                           text="Notizen"
+                                           fx:id="labelList1"
                                            GridPane.columnIndex="0" GridPane.rowIndex="6" />
                                     <VBox id="VBoxAttribute"
                                           GridPane.columnIndex="1" GridPane.rowIndex="6">
                                         <children>
                                             <ListView id="ListViewAttribute"
-                                                      fx:id="ListNotizen"
+                                                      fx:id="list1"
                                                       prefHeight="90.0" minHeight="20.0" />
                                             <HBox id="HBoxForButtons">
                                                 <Button id="ButtonHinzufuegen"
-                                                        fx:id="ButtonGoToNotizen"
+                                                        fx:id="oToList1"
                                                         text="anzeigen"
                                                         onAction="#goToForeign"
                                                         mnemonicParsing="false" />
                                                 <Button id="ButtonHinzufuegen"
-                                                        fx:id="ButtonAddNotizen"
+                                                        fx:id="addList1"
                                                         text="hinzufügen"
                                                         onAction="#addForeign"
                                                         mnemonicParsing="false" />
                                             </HBox>
                                         </children>
                                     </VBox>
-                                    <TextField id="TextFieldFilter"
-                                               fx:id="FilterNotizen"
-                                               onAction="#filter"
-                                               GridPane.columnIndex="2" GridPane.rowIndex="6" />
 
                                     <!-- Zeile 7 -->
                                     <Label id="LabelAttribute"
-                                           text="Indizien"
+                                           fx:id="labelList2"
                                            GridPane.columnIndex="0" GridPane.rowIndex="7" />
                                     <VBox id="VBoxAttribute"
                                           GridPane.columnIndex="1" GridPane.rowIndex="7">
                                         <children>
                                             <ListView id="ListViewAttribute"
-                                                      fx:id="ListIndizien"
+                                                      fx:id="list2"
                                                       prefHeight="90.0" minHeight="20.0" />
                                             <HBox id="HBoxForButtons">
                                                 <Button id="ButtonHinzufuegen"
-                                                        fx:id="ButtonGoToIndizien"
+                                                        fx:id="goToList2"
                                                         text="anzeigen"
                                                         onAction="#goToForeign"
                                                         mnemonicParsing="false" />
                                                 <Button id="ButtonHinzufuegen"
-                                                        fx:id="ButtonAddIndizien"
+                                                        fx:id="addList2"
                                                         text="hinzufügen"
                                                         onAction="#addForeign"
                                                         mnemonicParsing="false" />
                                             </HBox>
                                         </children>
                                     </VBox>
-                                    <TextField id="TextFieldFilter"
-                                               fx:id="FilterIndizien"
-                                               onAction="#filter"
-                                               GridPane.columnIndex="2" GridPane.rowIndex="7" />
 
                                     <!-- Zeile 8 -->
-                                    <Label id="LabelAttribute" text="Polizisten"
+                                    <Label id="LabelAttribute"
+                                           fx:id="labelList3"
                                            GridPane.columnIndex="0" GridPane.rowIndex="8" />
                                     <VBox id="VBoxAttribute"
                                           GridPane.columnIndex="1" GridPane.rowIndex="8">
                                         <children>
                                             <ListView id="ListViewAttribute"
-                                                      fx:id="ListPolizisten"
+                                                      fx:id="listList3"
                                                       prefHeight="90.0" minHeight="20.0" />
                                             <HBox id="HBoxForButtons">
                                                 <Button id="ButtonHinzufuegen"
-                                                        fx:id="ButtonGoToPolizisten"
+                                                        fx:id="goToList3"
                                                         text="anzeigen"
                                                         onAction="#goToForeign"
                                                         mnemonicParsing="false" />
                                                 <Button id="ButtonHinzufuegen"
-                                                        fx:id="ButtonAddPolizisten"
+                                                        fx:id="addList3"
                                                         text="hinzufügen"
                                                         onAction="#addForeign"
                                                         mnemonicParsing="false" />
                                             </HBox>
                                         </children>
                                     </VBox>
-                                    <TextField id="TextFieldFilter"
-                                               fx:id="FilterPolizisten"
-                                               onAction="#filter"
+<!--                                    <TextField id="TextFieldFilter"
+                                               fx:id="filterList3"
                                                GridPane.columnIndex="2" GridPane.rowIndex="8" />
-
+-->
                                     <!-- Zeile 9 -->
                                     <Label id="LabelAttribute"
                                            text="* Pflichtfeld"

@@ -2,8 +2,8 @@
 
 
 CREATE TABLE Faelle (
-   FallID           INTEGER PRIMARY KEY,
-   Name             VARCHAR(256) not null,
+   val0           INTEGER PRIMARY KEY,
+   val1             VARCHAR(256) not null,
    Eroeffnungsdatum DATE         not null,
    Enddatum         DATE
 );
@@ -11,7 +11,7 @@ CREATE TABLE Faelle (
 
 CREATE TABLE Personen (
    PersonID         INTEGER PRIMARY KEY,
-   Name             VARCHAR(256),
+   val1             VARCHAR(256),
    Geschlecht       CHAR(1)       check(Geschlecht in ('w', 'm', 'u')),
    Nationalitaet    VARCHAR(256),
    Geburtsdatum     DATE,
@@ -38,35 +38,35 @@ CREATE TABLE Polizisten (
  );
 
 CREATE TABLE Arten (
-   Name             VARCHAR(256)  not null,
+   val1             VARCHAR(256)  not null,
    Beschreibung     CLOB          not null,
-   PRIMARY KEY      (Name)
+   PRIMARY KEY      (val1)
  );
 
 CREATE TABLE Bezirke (
    BezirkID         INTEGER PRIMARY KEY,
-   Name             VARCHAR(256)  not null,
+   val1             VARCHAR(256)  not null,
    Typ              VARCHAR(256)  not null
  );
 
 CREATE TABLE Verbrechen (
    VerbrechenID     INTEGER PRIMARY KEY,
-   Name             VARCHAR(256)  not null,
+   val1             VARCHAR(256)  not null,
    Datum            DATE,
-   FallID           INT           not null,
+   val0           INT           not null,
    ArtName          VARCHAR(256)  not null,
    BezirkID         INT           not null,
-   FOREIGN KEY      (FallID)
-     REFERENCES      Faelle (FallID),
+   FOREIGN KEY      (val0)
+     REFERENCES      Faelle (val0),
    FOREIGN KEY      (ArtName)
-     REFERENCES      Arten (Name),
+     REFERENCES      Arten (val1),
    FOREIGN KEY      (BezirkID)
      REFERENCES      Bezirke (BezirkID)
  );
 
 CREATE TABLE Behoerden (
    BehoerdeID       INTEGER PRIMARY KEY,
-   Name             VARCHAR(256)  not null,
+   val1             VARCHAR(256)  not null,
    Typ              VARCHAR(256)  not null,
    BezirkID         INT           not null,
    FOREIGN KEY      (BezirkID)
@@ -90,11 +90,11 @@ CREATE TABLE Notizen (
    angelegtam       DATE           not null,
    Text             CLOB           not null,
    PersonID         INT            not null,
-   FallID           INT            not null,
+   val0           INT            not null,
    FOREIGN KEY      (PersonID)
      REFERENCES      Polizisten(PersonID),
-   FOREIGN KEY      (FallID)
-     REFERENCES      Faelle (FallID)
+   FOREIGN KEY      (val0)
+     REFERENCES      Faelle (val0)
  );
 
 CREATE TABLE Indizien (
@@ -103,11 +103,11 @@ CREATE TABLE Indizien (
    Bild             BLOB,
    Text             CLOB,
    PersonID         INT           not null,
-   FallID           INT           not null,
+   val0           INT           not null,
    FOREIGN KEY      (PersonID)
      REFERENCES      Polizisten(PersonID),
-   FOREIGN KEY      (FallID)
-     REFERENCES      Faelle (FallID)
+   FOREIGN KEY      (val0)
+     REFERENCES      Faelle (val0)
  );
 
 CREATE TABLE betrifftV (
@@ -143,14 +143,14 @@ CREATE TABLE liegtin (
 
 CREATE TABLE arbeitetan (
    PersonID         INT           not null,
-   FallID           INT           not null,
+   val0           INT           not null,
    von              DATE          not null,
    bis              DATE,
-   PRIMARY KEY      (PersonID, FallID),
+   PRIMARY KEY      (PersonID, val0),
    FOREIGN KEY      (PersonID)
      REFERENCES      Polizisten(PersonID),
-   FOREIGN KEY      (FallID)
-     REFERENCES      Faelle (FallID)
+   FOREIGN KEY      (val0)
+     REFERENCES      Faelle (val0)
  ); 
 
 

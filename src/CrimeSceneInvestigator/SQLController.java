@@ -168,6 +168,38 @@ class SQLController {
         }
     }
 
+    public static void update(Tuplet tuplet, String[] keys) {
+        SQLController dbc = SQLController.getInstance();
+        dbc.handleUpdateRequest(tuplet, keys);
+    }
+    private void handleUpdateRequest(Tuplet tuplet, String[] keys) {
+        try {
+            String query = tuplet.getUpdateQuery(keys);
+            System.out.println(query);
+            Statement stmt = connection.createStatement();
+            stmt.execute(query);
+        } catch (SQLException e) {
+            System.err.println("Couldn't handle DB-Query");
+            e.printStackTrace();
+        }
+    }
+
+    public static void insert(Tuplet tuplet) {
+        SQLController dbc = SQLController.getInstance();
+        dbc.handleInsertRequest(tuplet);
+    }
+    private void handleInsertRequest(Tuplet tuplet) {
+        try {
+            String query = tuplet.getInsertQuery();
+            System.out.println(query);
+            Statement stmt = connection.createStatement();
+            stmt.execute(query);
+        } catch (SQLException e) {
+            System.err.println("Couldn't handle DB-Query");
+            e.printStackTrace();
+        }
+    }
+
     public static void closeConnection() {
         try {
             connection.close();

@@ -1,5 +1,6 @@
 package CrimeSceneInvestigator.Tuplets;
 
+import CrimeSceneInvestigator.MainController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,88 +27,52 @@ import java.util.ArrayList;
 
 public class Verbrechen extends Tuplet {
 
-    public void setAttr0(String attr0) {}
-    public void setAttr1(String attr1) {}
-    public void setAttr2(String attr2) {}
-    public void setAttr3(String attr3) {}
-    public void setAttr4(String attr4) {}
-    public void setAttr5(String attr5) {}
-    // Felder
-    private final SimpleStringProperty VerbrechenID;
-    public String getVerbrechenID() { return VerbrechenID.get(); }
-    public void setVerbrechenID(String VerbrechenID) { this.VerbrechenID.set(VerbrechenID); }
+    public static final String[] attr = {"VerbrechenID","Name","Datum","FallID","ArtName","BezirkID","Verbrechen"};
 
-    private final SimpleStringProperty Name;
-    public String getName() { return Name.get(); }
-    public void setName(String Name) { this.Name.set(Name); }
-
-    private final SimpleStringProperty Datum;
-    public String getDatum() { return Datum.get(); }
-    public void setDatum(String Datum) { this.Datum.set(Datum); }
-
-    private final SimpleStringProperty FallID;
-    public String getFallID() { return FallID.get(); }
-    public void setFallID(String FallID) { this.FallID.set(FallID); }
-
-    private final SimpleStringProperty ArtName;
-    public String getArtName() { return ArtName.get(); }
-    public void setArtName(String ArtName) { this.ArtName.set(ArtName); }
-
-    private final SimpleStringProperty BezirkID;
-    public String getBezirkID() { return BezirkID.get(); }
-    public void setBezirkID(String BezirkID) { this.BezirkID.set(BezirkID); }
-
-
-    // Konstruktoren
-    public Verbrechen(String VerbrechenID, String Name, String FallID, String ArtName, String BezirkID) {
-        this(VerbrechenID, Name, "", FallID, ArtName, BezirkID);
-    }
-
-    public Verbrechen(String VerbrechenID, String Name, String Datum, String FallID, String ArtName, String BezirkID) {
-        this.VerbrechenID = new SimpleStringProperty(VerbrechenID);
-        this.Name = new SimpleStringProperty(Name);
-        this.Datum = new SimpleStringProperty(Datum);
-        this.FallID = new SimpleStringProperty(FallID);
-        this.ArtName = new SimpleStringProperty(ArtName);
-        this.BezirkID = new SimpleStringProperty(BezirkID);
-    }
-
-    // Methoden
-    public String getValue(String attribute) {
-        switch (attribute) {
-            case ("VerbrechenID"):
-                return VerbrechenID.get();
-            case ("Name"):
-                return Name.get();
-            case ("Datum"):
-                return Datum.get();
-            case ("FallID"):
-                return FallID.get();
-            case ("ArtName"):
-                return ArtName.get();
-            case ("BezirkID"):
-                return BezirkID.get();
-        }
-        return null;
+    public Verbrechen(String val0, String val1, String val2, String val3, String val4, String val5) {
+        super(val0,val1,val2,val3,val4,val5);
+        setAttr(Faelle.attr);
     }
 
     public String toString() {
-        return "["+VerbrechenID.get() + "] " + Name.get();
+        return "["+ getVal0() + "] " + getVal1();
+    }
+
+    public String getUpdateQuery(String[] key) {
+        String query =
+              "UPDATE "+getAttr(7)+"\n"+
+                    "SET "+
+                    getAttr(0)+"="+getVal0()+", "+
+                    getAttr(1)+"="+getVal1()+", "+
+                    getAttr(2)+"="+getVal2()+", "+
+                    getAttr(3)+"="+getVal3()+", "+
+                    getAttr(4)+"="+getVal4()+", "+
+                    getAttr(5)+"="+getVal5()+"\n"+
+                    "WHERE "+getAttr(0)+"="+key[0]+";";
+        return query;
+    }
+
+    public String getInsertQuery() {
+        String query =
+              "INSERT INTO "+getAttr(6)+" "+
+                    "VALUES (NULL, '"+getVal1()+"', '"+getVal2()+"', '"+getVal3()+"'"+");";
+        return query;
     }
 
     public static ObservableList<Tuplet> getOL(ResultSet readTable) throws SQLException {
         ArrayList<Tuplet> al = new ArrayList<Tuplet>();
         while (readTable.next()) {
             Tuplet tuplet = new Verbrechen(
-                  readTable.getString("VerbrechenID"),
-                  readTable.getString("Name"),
-                  readTable.getString("Datum"),
-                  readTable.getString("FallID"),
-                  readTable.getString("ArtName"),
-                  readTable.getString("BezirkID")
+                  readTable.getString(attr[0]),
+                  readTable.getString(attr[1]),
+                  MainController.formatDateToDMY(readTable.getString(attr[2])),
+                  readTable.getString(attr[3]),
+                  readTable.getString(attr[4]),
+                  readTable.getString(attr[5])
             );
             al.add(tuplet);
         }
         return FXCollections.observableArrayList(al);
     }
+
 }

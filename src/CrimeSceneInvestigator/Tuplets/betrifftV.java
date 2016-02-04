@@ -22,60 +22,48 @@ import java.util.ArrayList;
 
 public class betrifftV extends Tuplet {
 
-    public void setAttr0(String attr0) {}
-    public void setAttr1(String attr1) {}
-    public void setAttr2(String attr2) {}
-    public void setAttr3(String attr3) {}
-    public void setAttr4(String attr4) {}
-    public void setAttr5(String attr5) {}
-    // Felder
-    private final SimpleStringProperty VerbrechenID;
-    public String getVerbrechenID() { return VerbrechenID.get(); }
-    public void setVerbrechenID(String VerbrechenID) { this.VerbrechenID.set(VerbrechenID); }
+    public static final String[] attr = {"BehoerdeID","Name","Typ","BezirkID","","","betrifftV"};
 
-    private final SimpleStringProperty PersonID;
-    public String getPersonID() { return PersonID.get(); }
-    public void setPersonID(String PersonID) { this.PersonID.set(PersonID); }
-
-    private final SimpleStringProperty ueberfuehrt;
-    public String getueberfuehrt() { return ueberfuehrt.get(); }
-    public void setueberfuehrt(String ueberfuehrt) { this.ueberfuehrt.set(ueberfuehrt); }
-
-
-    // Konstruktoren
-    public betrifftV(String VerbrechenID, String PersonID, String ueberfuehrt) {
-        this.VerbrechenID = new SimpleStringProperty(VerbrechenID);
-        this.PersonID = new SimpleStringProperty(PersonID);
-        this.ueberfuehrt = new SimpleStringProperty(ueberfuehrt);
-    }
-
-    // Methoden
-    public String getValue(String attribute) {
-        switch (attribute) {
-            case ("VerbrechenID"):
-                return VerbrechenID.get();
-            case ("PersonID"):
-                return PersonID.get();
-            case ("ueberfuehrt"):
-                return ueberfuehrt.get();
-        }
-        return null;
+    public betrifftV(String val0, String val1, String val2, String val3) {
+        super(val0,val1,val2,val3,"","");
+        setAttr(Faelle.attr);
     }
 
     public String toString() {
-        return "["+VerbrechenID.get() + "] " + PersonID.get();
+        return "["+ getVal0() + "] " + getVal1();
+    }
+
+    public String getUpdateQuery(String[] key) {
+        String query =
+              "UPDATE "+getAttr(7)+"\n"+
+                    "SET "+
+                    getAttr(0)+"="+getVal0()+", "+
+                    getAttr(1)+"="+getVal1()+", "+
+                    getAttr(2)+"="+getVal2()+", "+
+                    getAttr(3)+"="+getVal3()+"\n"+
+                    "WHERE "+getAttr(0)+"="+key[0]+";";
+        return query;
+    }
+
+    public String getInsertQuery() {
+        String query =
+              "INSERT INTO "+getAttr(6)+" "+
+                    "VALUES (NULL, '"+getVal1()+"', '"+getVal2()+"', '"+getVal3()+"'"+");";
+        return query;
     }
 
     public static ObservableList<Tuplet> getOL(ResultSet readTable) throws SQLException {
         ArrayList<Tuplet> al = new ArrayList<Tuplet>();
         while (readTable.next()) {
             Tuplet tuplet = new betrifftV(
-                  readTable.getString("VerbrechenID"),
-                  readTable.getString("PersonID"),
-                  readTable.getString("ueberfuehrt")
+                  readTable.getString(attr[0]),
+                  readTable.getString(attr[1]),
+                  readTable.getString(attr[2]),
+                  readTable.getString(attr[3])
             );
             al.add(tuplet);
         }
         return FXCollections.observableArrayList(al);
     }
+
 }

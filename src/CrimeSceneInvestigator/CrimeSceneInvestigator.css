@@ -18,6 +18,10 @@
     -fx-spacing: 3;
 }
 
+#HBoxForButtons2 {
+    -fx-padding: 15 5 5 0;
+}
+
 #ButtonHinzufuegen {
     -fx-font-size: 10;
 }

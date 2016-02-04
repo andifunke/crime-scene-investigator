@@ -31,7 +31,7 @@
                         </cellValueFactory>
                     </TableColumn>
                     <TableColumn fx:id="ColumnFaelleName"
-                                 text="Name"
+                                 text="val1"
                                  prefWidth="410.0" minWidth="-1.0">
                         <cellValueFactory>
                             <PropertyValueFactory property="name" />
@@ -126,7 +126,7 @@
 
                                     <!-- Zeile 2 -->
                                     <Label id="LabelAttribute"
-                                           text="Name"
+                                           text="val1"
                                            GridPane.columnIndex="0" GridPane.rowIndex="2" />
                                     <TextField id="TextFieldAttribute"
                                                fx:id="FaelleName"
