@@ -20,44 +20,50 @@ import java.util.ArrayList;
 
 public class betrifftO extends Tuplet {
 
-    public static final String[] attr = {"VerbrechenID","PersonID","","","","","betrifftO"};
-
-    public betrifftO(String val0, String val1) {
-        super(val0,val1,"","","","");
-        setAttr(Faelle.attr);
-    }
-
-    public String toString() {
-        return "["+ getVal0() + "] " + getVal1();
-    }
-
-    public String getUpdateQuery(String[] key) {
-        String query =
-              "UPDATE "+getAttr(7)+"\n"+
-                    "SET "+
-                    getAttr(0)+"="+getVal0()+", "+
-                    getAttr(1)+"="+getVal1()+"\n"+
-                    "WHERE "+getAttr(0)+"="+key[0]+";";
-        return query;
-    }
-
-    public String getInsertQuery() {
-        String query =
-              "INSERT INTO "+getAttr(6)+" "+
-                    "VALUES (NULL, '"+getVal1()+"', '"+getVal2()+"', '"+getVal3()+"'"+");";
-        return query;
-    }
-
+    public static final String table = "betrifftO";
+    public static final String[] attr = {
+          "VerbrechenID",
+          "PersonID",
+    };
     public static ObservableList<Tuplet> getOL(ResultSet readTable) throws SQLException {
         ArrayList<Tuplet> al = new ArrayList<Tuplet>();
         while (readTable.next()) {
-            Tuplet tuplet = new betrifftO(
+            String[] values = {
                   readTable.getString(attr[0]),
-                  readTable.getString(attr[1])
-            );
-            al.add(tuplet);
+                  readTable.getString(attr[1]),
+            };
+            al.add(new betrifftO(values)); // TODO: CHANGE HERE
         }
         return FXCollections.observableArrayList(al);
+    }
+
+    public betrifftO(String[] val) {
+        super(val);
+        setTable(table);
+        setAttr(attr);
+    }
+
+    public String toString() {
+        return
+              "[" + getVal0() + "] " + getVal1();
+    }
+
+    public String getUpdateQuery(String[] key) {
+        return
+              "UPDATE " + table + "\n"+
+                    " SET "+
+                    attr[0] + "= " + getVal0() + ", " +
+                    attr[1] + "='" + getVal1() + "', " +
+                    " WHERE " + attr[0] + "=" + key[0] + ";";
+    }
+
+    public String getInsertQuery() {
+        return
+              "INSERT INTO " + table +
+                    " VALUES (" +
+                    getVal0() + ", " +
+                    getVal1() + " " +
+                    ");";
     }
 
 }

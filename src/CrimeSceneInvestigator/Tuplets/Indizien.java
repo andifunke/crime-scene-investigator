@@ -25,53 +25,66 @@ import java.util.ArrayList;
 
 public class Indizien extends Tuplet {
 
-    public static final String[] attr = {"IndizID","angelegtam","Bild","Text","PersonID","FallID","Indizien"};
-
-    public Indizien(String val0, String val1, String val2, String val3, String val4, String val5) {
-        super(val0,val1,val2,val3,val4,val5);
-        setAttr(Faelle.attr);
-    }
-
-    public String toString() {
-        int endindex = (getVal3().length() < Tuplet.VARCHAR) ? getVal3().length() : Tuplet.VARCHAR;
-        return "["+ getVal0() + "] " + getVal3().substring(0,endindex);
-    }
-
-    public String getUpdateQuery(String[] key) {
-        String query =
-              "UPDATE "+getAttr(7)+"\n"+
-                    "SET "+
-                    getAttr(0)+"="+getVal0()+", "+
-                    getAttr(1)+"="+getVal1()+", "+
-                    getAttr(2)+"="+getVal2()+", "+
-                    getAttr(3)+"="+getVal3()+", "+
-                    getAttr(4)+"="+getVal4()+", "+
-                    getAttr(5)+"="+getVal5()+"\n"+
-                    "WHERE "+getAttr(0)+"="+key[0]+";";
-        return query;
-    }
-
-    public String getInsertQuery() {
-        String query =
-              "INSERT INTO "+getAttr(6)+" "+
-                    "VALUES (NULL, '"+getVal1()+"', '"+getVal2()+"', '"+getVal3()+"'"+");";
-        return query;
-    }
-
+    public static final String table = "Indizien";
+    public static final String[] attr = {
+          "IndizID",
+          "angelegtam",
+          "Bild",
+          "Text",
+          "PersonID",
+          "FallID",
+    };
     public static ObservableList<Tuplet> getOL(ResultSet readTable) throws SQLException {
         ArrayList<Tuplet> al = new ArrayList<Tuplet>();
         while (readTable.next()) {
-            Tuplet tuplet = new Indizien(
+            String[] values = {
                   readTable.getString(attr[0]),
                   MainController.formatDateToDMY(readTable.getString(attr[1])),
                   readTable.getString(attr[2]),
                   readTable.getString(attr[3]),
                   readTable.getString(attr[4]),
-                  readTable.getString(attr[5])
-            );
-            al.add(tuplet);
+                  readTable.getString(attr[5]),
+            };
+            al.add(new Indizien(values)); // TODO: CHANGE HERE
         }
         return FXCollections.observableArrayList(al);
+    }
+
+    public Indizien(String[] val) {
+        super(val);
+        setTable(table);
+        setAttr(attr);
+    }
+
+    public String toString() {
+        return
+              "[" + getVal0() + "] " + getVal1();
+    }
+
+    public String getUpdateQuery(String[] key) {
+        return
+              "UPDATE " + table + "\n"+
+                    " SET "+
+                    attr[0] + "= " + getVal0() + ", " +
+                    attr[1] + "='" + MainController.formatDateToYMD(getVal1()) + "', " +
+                    attr[2] + "='" + getVal2() + "', " +
+                    attr[3] + "='" + getVal3() + "', " +
+                    attr[4] + "='" + getVal4() + "', " +
+                    attr[5] + "='" + getVal5() + "' " +
+                    "\n WHERE " + attr[0] + "=" + key[0] + ";";
+    }
+
+    public String getInsertQuery() {
+        return
+              "INSERT INTO " + table +
+                    " VALUES (" +
+                    "NULL" + ", " +
+                    "'" + MainController.formatDateToYMD(getVal1()) + "', " +
+                    getVal2() + ", " +
+                    getVal3() + ", " +
+                    getVal4() + ", " +
+                    getVal5() + " " +
+                    ");";
     }
 
 }

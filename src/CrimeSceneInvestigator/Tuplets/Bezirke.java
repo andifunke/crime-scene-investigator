@@ -17,48 +17,54 @@ import java.util.ArrayList;
 
 public class Bezirke extends Tuplet {
 
-    public static final String[] attr = {"BehoerdeID","Name","Typ","BezirkID","","","Bezirke"};
-
-    public Bezirke(String val0, String val1, String val2, String val3) {
-        super(val0,val1,val2,val3,"","");
-        setAttr(Faelle.attr);
-    }
-
-    public String toString() {
-        return "["+ getVal0() + "] " + getVal1();
-    }
-
-    public String getUpdateQuery(String[] key) {
-        String query =
-              "UPDATE "+getAttr(7)+"\n"+
-                    "SET "+
-                    getAttr(0)+"="+getVal0()+", "+
-                    getAttr(1)+"="+getVal1()+", "+
-                    getAttr(2)+"="+getVal2()+", "+
-                    getAttr(3)+"="+getVal3()+"\n"+
-                    "WHERE "+getAttr(0)+"="+key[0]+";";
-        return query;
-    }
-
-    public String getInsertQuery() {
-        String query =
-              "INSERT INTO "+getAttr(6)+" "+
-                    "VALUES (NULL, '"+getVal1()+"', '"+getVal2()+"', '"+getVal3()+"'"+");";
-        return query;
-    }
-
+    public static final String table = "Bezirke";
+    public static final String[] attr = {
+          "BezirkID",
+          "Name",
+          "Typ",
+    };
     public static ObservableList<Tuplet> getOL(ResultSet readTable) throws SQLException {
         ArrayList<Tuplet> al = new ArrayList<Tuplet>();
         while (readTable.next()) {
-            Tuplet tuplet = new Bezirke(
+            String[] values = {
                   readTable.getString(attr[0]),
                   readTable.getString(attr[1]),
                   readTable.getString(attr[2]),
-                  readTable.getString(attr[3])
-            );
-            al.add(tuplet);
+            };
+            al.add(new Bezirke(values)); // TODO: CHANGE HERE
         }
         return FXCollections.observableArrayList(al);
+    }
+
+    public Bezirke(String[] val) {
+        super(val);
+        setTable(table);
+        setAttr(attr);
+    }
+
+    public String toString() {
+        return
+              "[" + getVal0() + "] " + getVal1();
+    }
+
+    public String getUpdateQuery(String[] key) {
+        return
+              "UPDATE " + table + "\n"+
+                    " SET "+
+                    attr[0] + "= " + getVal0() + ", " +
+                    attr[1] + "='" + getVal1() + "', " +
+                    attr[2] + "='" + getVal2() + "' " +
+                    "\n WHERE " + attr[0] + "=" + key[0] + ";";
+    }
+
+    public String getInsertQuery() {
+        return
+              "INSERT INTO " + table +
+                    " VALUES (" +
+                    "NULL" + ", " +
+                    getVal1() + ", " +
+                    getVal2() + " " +
+                    ");";
     }
 
 }

@@ -15,13 +15,13 @@ import java.util.LinkedList;
 
 public class Control_Faelle extends SplitPane {
 
-    private final String table = Faelle.attr[9];
+    private final String table = Faelle.table;
     private final String attr0 = Faelle.attr[0];
     private final String attr1 = Faelle.attr[1];
     private final String attr2 = Faelle.attr[2];
     private final String attr3 = Faelle.attr[3];
-    private final String attr4 = Faelle.attr[4];
-    private final String attr5 = Faelle.attr[5];
+    private final String attr4 = "";
+    private final String attr5 = "";
     private final String list0table = "Verbrechen";
     private final String list1table = "Notizen";
     private final String list2table = "Indizien";
@@ -195,8 +195,8 @@ public class Control_Faelle extends SplitPane {
                         "  WHERE Polizisten.PersonID = Personen.PersonID\n" +
                         "  AND Polizisten.PersonID = arbeitetan.PersonID\n" +
                               "  AND arbeitetan.FallID = " + val0 + ";";
-            ol3 = SQLController.selectFromQuery(list3table, query);
-            list3.setItems(ol3);
+            //ol3 = SQLController.selectFromQuery(list3table, query);
+            //list3.setItems(ol3);
         }
     }
 
@@ -243,7 +243,8 @@ public class Control_Faelle extends SplitPane {
             return;
         }
         if (isNew) {
-            Tuplet tuplet = new Faelle(val0, val1, val2, val3);
+            String[] val = { val0, val1, val2, val3 };
+            Tuplet tuplet = new Faelle(val);
             SQLController.insert(tuplet);
             resetFilter(new ActionEvent());
             tableView.getSelectionModel().clearSelection();
