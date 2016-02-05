@@ -23,10 +23,21 @@ import java.util.ArrayList;
 
 public class arbeitetan extends Tuplet {
 
-    public static final String[] attr = {"PersonID","FallID","von","bis","","","arbeitetan"};
+    public static final String[] attr = {
+          "PersonID",
+          "FallID",
+          "von",
+          "bis",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "arbeitetan"
+    };
 
     public arbeitetan(String val0, String val1, String val2, String val3) {
-        super(val0,val1,val2,val3,"","");
+        super(val0,val1,val2,val3,"","","","","");
         setAttr(Faelle.attr);
     }
 
@@ -36,12 +47,12 @@ public class arbeitetan extends Tuplet {
 
     public String getUpdateQuery(String[] key) {
         String query =
-              "UPDATE "+getAttr(7)+"\n"+
+              "UPDATE "+getAttr(6)+"\n"+
                     "SET "+
                     getAttr(0)+"="+getVal0()+", "+
                     getAttr(1)+"="+getVal1()+", "+
-                    getAttr(2)+"="+getVal2()+", "+
-                    getAttr(3)+"="+getVal3()+"\n"+
+                    getAttr(2)+"='"+MainController.formatDateToYMD(getVal2())+"', "+
+                    getAttr(3)+"='"+MainController.formatDateToYMD(getVal3())+"'\n"+
                     "WHERE "+getAttr(0)+"="+key[0]+";";
         return query;
     }
@@ -49,14 +60,14 @@ public class arbeitetan extends Tuplet {
     public String getInsertQuery() {
         String query =
               "INSERT INTO "+getAttr(6)+" "+
-                    "VALUES (NULL, '"+getVal1()+"', '"+getVal2()+"', '"+getVal3()+"'"+");";
+                    "VALUES (NULL, '"+getVal1()+"', '"+MainController.formatDateToYMD(getVal2())+"', '"+MainController.formatDateToYMD(getVal3())+"'"+");";
         return query;
     }
 
     public static ObservableList<Tuplet> getOL(ResultSet readTable) throws SQLException {
         ArrayList<Tuplet> al = new ArrayList<Tuplet>();
         while (readTable.next()) {
-            Tuplet tuplet = new arbeitetan(
+            Tuplet tuplet = new Faelle(
                   readTable.getString(attr[0]),
                   readTable.getString(attr[1]),
                   MainController.formatDateToDMY(readTable.getString(attr[2])),

@@ -18,10 +18,21 @@ import java.util.ArrayList;
 
 public class Faelle extends Tuplet {
 
-    public static final String[] attr = {"FallID","Name","Eroeffnungsdatum","Enddatum","","","Faelle"};
+    public static final String[] attr = {
+          "FallID",
+          "Name",
+          "Eroeffnungsdatum",
+          "Enddatum",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "Faelle"
+    };
 
     public Faelle(String val0, String val1, String val2, String val3) {
-        super(val0,val1,val2,val3,"","");
+        super(val0,val1,val2,val3,"","","","","");
         setAttr(Faelle.attr);
     }
 
@@ -43,8 +54,11 @@ public class Faelle extends Tuplet {
 
     public String getInsertQuery() {
         String query =
-                "INSERT INTO "+getAttr(6)+" "+
-                "VALUES (NULL, '"+getVal1()+"', '"+MainController.formatDateToYMD(getVal2())+"', '"+MainController.formatDateToYMD(getVal3())+"'"+");";
+                "INSERT INTO " + getAttr(6) + " " +
+                "VALUES (NULL, '" + getVal1() +
+                "', '"+MainController.formatDateToYMD(getVal2())+
+                "', '"+MainController.formatDateToYMD(getVal3())+
+                "'"+");";
         return query;
     }
 

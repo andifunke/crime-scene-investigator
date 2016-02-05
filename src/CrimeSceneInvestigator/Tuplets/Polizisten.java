@@ -1,6 +1,5 @@
 package CrimeSceneInvestigator.Tuplets;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.ResultSet;
@@ -16,12 +15,12 @@ import java.util.ArrayList;
  );
  */
 
-public class Polizisten extends Tuplet {
+public class Polizisten extends Personen {
 
 	public static final String[] attr = {"BehoerdeID","Name","Typ","BezirkID","","","Polizisten"};
 
 	public Polizisten(String val0, String val1, String val2, String val3) {
-		super(val0,val1,val2,val3,"","");
+		super(val0,val1,val2,val3);
 		setAttr(Faelle.attr);
 	}
 

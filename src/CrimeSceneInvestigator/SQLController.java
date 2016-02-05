@@ -60,21 +60,18 @@ class SQLController {
         });
     }
 
-    public static ObservableList<Tuplet> getTable(String table) {
+    public static ObservableList<Tuplet> selectFromTable(String table) {
         LinkedList<Filter> filterList = null;
-        return getTable(table, filterList);
+        return selectFromTable(table, filterList);
     }
-    public static ObservableList<Tuplet> getTable(String table, Filter filter) {
+
+    public static ObservableList<Tuplet> selectFromTable(String table, Filter filter) {
         LinkedList<Filter> filterList = new LinkedList<>();
         filterList.addFirst(filter);
-        return getTable(table, filterList);
+        return selectFromTable(table, filterList);
     }
-    public static ObservableList<Tuplet> getTable(String table, LinkedList<Filter> filterList) {
-        SQLController dbc = SQLController.getInstance();
-        return dbc.handleTableRequest(table, filterList);
-    }
-    private ObservableList<Tuplet> handleTableRequest(String table, LinkedList<Filter> filterList) {
-        ObservableList<Tuplet> ol = null;
+
+    public static ObservableList<Tuplet> selectFromTable(String table, LinkedList<Filter> filterList) {
         String where = "";
         if (filterList != null) {
             StringBuilder sb = new StringBuilder();
@@ -84,16 +81,34 @@ class SQLController {
                 if (hasMultipleFilter) {
                     sb.append(" AND ");
                 }
-                sb.append(filter.getAttribute()).append(" = \"").append(filter.getValue()).append("\"");
+                if (filter.isStrict()) {
+                    sb.append(filter.getAttribute()).append(" = '").append(filter.getValue()).append("'");
+                }
+                else {
+                    sb.append(filter.getAttribute()).append(" like '%").append(filter.getValue()).append("%'");
+                }
                 hasMultipleFilter = true;
             }
             where += sb.toString();
         }
+        String query = "SELECT * FROM "+table+where+";";
+
+        SQLController dbc = SQLController.getInstance();
+        return dbc.handleSelectRequest(table, query);
+    }
+
+    public static ObservableList<Tuplet> selectFromQuery(String table, String query) {
+        SQLController dbc = SQLController.getInstance();
+        return dbc.handleSelectRequest(table, query);
+    }
+
+    private ObservableList<Tuplet> handleSelectRequest(String table, String query) {
+        System.out.println(query);
+        ObservableList<Tuplet> ol = null;
         try {
-            String query = "SELECT * FROM "+table+where+";";
-            System.out.println(query);
             Statement stmt = connection.createStatement();
             ResultSet readTable = stmt.executeQuery(query);
+
             switch (table) {
                 case "arbeitetan":
                     ol = arbeitetan.getOL(readTable);

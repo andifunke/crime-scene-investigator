@@ -8,11 +8,19 @@ public class Filter {
     private String table;
     private String attribute;
     private String value;
+    private boolean strict;
 
     public Filter(String table, String attribute, String value) {
         this.table = table;
         this.attribute = attribute;
         this.value = value;
+        this.strict = false;
+    }
+    public Filter(String table, String attribute, String value, Boolean strict) {
+        this.table = table;
+        this.attribute = attribute;
+        this.value = value;
+        this.strict = strict;
     }
 
     public String getTable() {
@@ -22,4 +30,6 @@ public class Filter {
     public String getValue() {
         return value;
     }
+    public Boolean isStrict() { return strict; }
+
 }

@@ -6,14 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-
-
 public class CrimeSceneInvestigator extends Application {
 
     public final String dbSetupFile = "X:\\Dropbox\\BC\\Meine Dokumente\\Studium\\Informatik\\2015-10 (WS)\\Datenbanksysteme\\Abschlussprojekt 4\\dbs4_sql.txt";
