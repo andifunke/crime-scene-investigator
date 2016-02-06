@@ -42,9 +42,8 @@ public class betrifftV extends Tuplet {
     }
 
     public betrifftV(String[] val) {
-        super(val);
+        super(attr, val);
         setTable(table);
-        setAttr(attr);
     }
 
     public String toString() {

@@ -34,9 +34,8 @@ public class Arten extends Tuplet {
     }
 
     public Arten(String[] val) {
-        super(val);
+        super(attr, val);
         setTable(table);
-        setAttr(attr);
     }
 
     public String toString() {

@@ -53,9 +53,8 @@ public class Verbrechen extends Tuplet {
     }
 
     public Verbrechen(String[] val) {
-        super(val);
+        super(attr, val);
         setTable(table);
-        setAttr(attr);
     }
 
     public String toString() {

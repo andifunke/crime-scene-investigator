@@ -45,9 +45,8 @@ public class arbeitetan extends Tuplet {
     }
 
     public arbeitetan(String[] val) {
-        super(val);
+        super(attr, val);
         setTable(table);
-        setAttr(attr);
     }
 
     public String toString() {

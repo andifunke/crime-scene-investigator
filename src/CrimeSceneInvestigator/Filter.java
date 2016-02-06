@@ -32,4 +32,7 @@ public class Filter {
     }
     public Boolean isStrict() { return strict; }
 
+    public void setStrict(boolean strict) {
+        this.strict = strict;
+    }
 }

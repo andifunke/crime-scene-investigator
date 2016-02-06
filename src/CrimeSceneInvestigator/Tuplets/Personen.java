@@ -47,9 +47,8 @@ public class Personen extends Tuplet {
     }
 
     public Personen(String[] val) {
-        super(val);
+        super(attr, val);
         setTable(table);
-        setAttr(attr);
     }
 
     public String toString() {

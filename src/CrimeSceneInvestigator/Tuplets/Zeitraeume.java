@@ -47,9 +47,8 @@ public class Zeitraeume extends Tuplet {
     }
 
     public Zeitraeume(String[] val) {
-        super(val);
+        super(attr, val);
         setTable(table);
-        setAttr(attr);
     }
 
     public String toString() {

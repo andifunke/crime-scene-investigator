@@ -38,9 +38,8 @@ public class betrifftO extends Tuplet {
     }
 
     public betrifftO(String[] val) {
-        super(val);
+        super(attr, val);
         setTable(table);
-        setAttr(attr);
     }
 
     public String toString() {

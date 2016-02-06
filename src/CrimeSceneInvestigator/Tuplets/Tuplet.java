@@ -38,11 +38,12 @@ public abstract class Tuplet {
     public String getVal8() { return val[8].get(); }
     public void setVal8(String val8) { this.val[8].set(val8); }
 
-    public Tuplet (String[] val) {
+    public Tuplet (String[] attr, String[] val) {
+        this.attr = attr;
         for (String s : val)
             if (s == null) s = "";
         int i;
-        for (i = 0; i < val.length; i++)
+        for (i = 0; i < attr.length; i++)
             this.val[i] = new SimpleStringProperty(val[i]);
         for ( ; i < this.val.length; i++)
             this.val[i] = new SimpleStringProperty("");
@@ -53,6 +54,20 @@ public abstract class Tuplet {
             if (param.equals(attr[i])) return val[i].get();
         return null;
     }
+
+    public String getValue(int index) {
+        return val[index].get();
+    }
+
+    public void setValue(String param, String value) {
+        for (int i=0; i < attr.length; i++)
+            if (param.equals(attr[i])) val[i].set(value);
+    }
+
+    public void setValue(int index, String value) {
+        val[index].set(value);
+    }
+
 
     public abstract String toString();
     public abstract String getUpdateQuery(String[] key);

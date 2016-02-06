@@ -1,47 +1,20 @@
 package CrimeSceneInvestigator;
 
-import CrimeSceneInvestigator.Tuplets.Faelle;
 import CrimeSceneInvestigator.Tuplets.Tuplet;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedList;
 
 public class MainController extends SplitPane {
 
     String table;
-    String attr0;
-    String attr1;
-    String attr2;
-    String attr3;
-    String attr4;
-    String attr5;
-    String list0table;
-    String list1table;
-    String list2table;
-    String list3table;
-    String attr0name ;
-    String attr1name ;
-    String attr2name ;
-    String attr3name ;
-    String attr4name ;
-    String attr5name ;
-    String list0name ;
-    String list1name ;
-    String list2name ;
-    String list3name ;
-    String val0;
-    String val1;
-    String val2;
-    String val3;
-    String val4;
-    String val5;
+    String attr[];
+    String listTable[];
+    String attrName[];
+    String val[];
     final SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
     boolean isNew = false;
     final String split = ",|;";
@@ -70,6 +43,26 @@ public class MainController extends SplitPane {
     @FXML Label labelAttr3;
     @FXML TableColumn columnAttr3;
 
+    @FXML TextField textAttr4;
+    @FXML TextField filterAttr4;
+    @FXML Label labelAttr4;
+    @FXML TableColumn columnAttr4;
+
+    @FXML TextField textAttr5;
+    @FXML TextField filterAttr5;
+    @FXML Label labelAttr5;
+    @FXML TableColumn columnAttr5;
+
+    @FXML TextField textAttr6;
+    @FXML TextField filterAttr6;
+    @FXML Label labelAttr6;
+    @FXML TableColumn columnAttr6;
+
+    TextField[] textAttr;
+    TextField[] filterAttr;
+    Label[] labelAttr;
+    TableColumn[] columnAttr;
+
     @FXML ListView<Tuplet> list0;
     @FXML Label labelList0;
     ObservableList<Tuplet> ol0;
@@ -86,6 +79,11 @@ public class MainController extends SplitPane {
     @FXML Label labelList3;
     ObservableList<Tuplet> ol3;
 
+    ListView[] listView;
+    Label[] labelList;
+    ObservableList[] ol;
+
+
     @FXML Button filterButton;
     @FXML Button resetButton;
 
@@ -93,13 +91,11 @@ public class MainController extends SplitPane {
     }
 
     void refreshTable() {
-        System.out.println("refreshTable");
         olTable.clear();
         olTable.addAll(SQLController.selectFromTable(table));
         tableView.refresh();
     }
     void refreshTable(LinkedList<Filter> filterList) {
-        System.out.println("refreshTable filtered");
         olTable.clear();
         olTable.addAll(SQLController.selectFromTable(table, filterList));
         tableView.refresh();
@@ -107,22 +103,15 @@ public class MainController extends SplitPane {
 
     @FXML
     void reset() {
-        System.out.println("reset");
-        val0 = "";
-        val1 = "";
-        val2 = "";
-        val3 = "";
-        val4 = "";
-        val5 = "";
+        for (int i=0; i<attr.length; i++)
+            val[i] = "";
         setUpFields();
         setUpLists();
     }
 
     void setUpFields() {
-        textAttr0.setText(val0);
-        textAttr1.setText(val1);
-        textAttr2.setText(val2);
-        textAttr3.setText(val3);
+        for (int i = 0; i < attr.length; i++)
+            textAttr[i].setText(val[i]);
     }
 
     void setUpLists() {
@@ -130,78 +119,21 @@ public class MainController extends SplitPane {
 
     @FXML
     void neu(ActionEvent actionEvent) {
-        System.out.println("neu");
         isNew = true;
         tableView.getSelectionModel().clearSelection();
         reset();
-        val2 = formatter.format(new Date());
-        textAttr2.setText(val2);
     }
 
     @FXML
     void save(ActionEvent actionEvent) {
-        System.out.println("save");
-        String[] keys = new String[10];
-        keys[0] = val0;
-        val0 = textAttr0.getText();
-        val1 = textAttr1.getText();
-        val2 = textAttr2.getText();
-        val3 = textAttr3.getText();
-        try {
-            int x = Integer.parseInt(val0);
-        }
-        catch (NumberFormatException e) {
-            System.out.println(attr0+" ist kein Integer");
-            try {
-                int x = Integer.parseInt(keys[0]);
-                val0 = keys[0];
-                textAttr0.setText(val0);
-            }
-            catch (NumberFormatException e2) {
-                val0 = "";
-                textAttr0.setText(val0);
-            }
-        }
-        if (val1.equals("")) {
-            System.out.println("kein "+attr1+" eingetragen");
-            return;
-        }
-        if (val2.equals("")) {
-            System.out.println("kein "+attr2+" eingetragen");
-            return;
-        }
-        if (isNew) {
-            String[] val = { val0, val1, val2, val3 };
-            Tuplet tuplet = new Faelle(val);
-            SQLController.insert(tuplet);
-            resetFilter(new ActionEvent());
-            tableView.getSelectionModel().clearSelection();
-            tableView.getSelectionModel().selectLast();
-            int last = tableView.getSelectionModel().getSelectedIndex();
-            tableView.scrollTo(last);
-            isNew = false;
-        }
-        else {
-            Tuplet tuplet = tableView.getSelectionModel().getSelectedItem();
-            int index = tableView.getSelectionModel().getSelectedIndex();
-            tuplet.setVal0(val0);
-            tuplet.setVal1(val1);
-            tuplet.setVal2(val2);
-            tuplet.setVal3(val3);
-            SQLController.update(tuplet, keys);
-            filter(new ActionEvent());
-            tableView.getSelectionModel().clearAndSelect(index);
-        }
     }
 
     @FXML
     void delete(ActionEvent actionEvent) {
-        System.out.println("delete");
         int index = tableView.getSelectionModel().getSelectedIndex();
-        System.out.println("index: "+index);
         if (index > -1) {
             try {
-                SQLController.delete(table, attr0, val0);
+                SQLController.delete(table, attr[0], val[0]);
                 refreshTable();
                 tableView.getSelectionModel().clearAndSelect(index-1);
             } catch (NullPointerException e) {
@@ -214,25 +146,18 @@ public class MainController extends SplitPane {
     void filter(ActionEvent actionEvent) {
         LinkedList<Filter> filterList = new LinkedList<>();
 
-        String filter0 = filterAttr0.getText().trim();
-        String filter1 = filterAttr1.getText().trim();
-        String filter2 = filterAttr2.getText().trim();
-        String filter3 = filterAttr3.getText().trim();
-        if (!filter0.equals("")) filterList.add(new Filter(table, attr0, filter0, true));
-        if (!filter1.equals("")) filterList.add(new Filter(table, attr1, filter1));
-        if (!filter2.equals("")) filterList.add(new Filter(table, attr2, filter2));
-        if (!filter3.equals("")) filterList.add(new Filter(table, attr3, filter3));
-        for (Filter filter : filterList) {
-            System.out.println(filter.getTable()+", "+filter.getAttribute()+", "+filter.getValue());
-        }
+        String[] filters = new String[attr.length];
+        for (int i=0; i<attr.length; i++)
+            filters[i] = filterAttr[i].getText().trim();
+        for (int i=0; i<attr.length; i++)
+            if (!filters[i].equals("")) filterList.add(new Filter(table, attr[i], filters[i]));
         if (!filterList.isEmpty()) {
-            System.out.println("filterlist not empty");
+            filterList.get(0).setStrict(true);
             refreshTable(filterList);
             tableView.getSelectionModel().clearSelection();
             tableView.getSelectionModel().selectFirst();
         }
         else {
-            System.out.println("filterlist empty");
             refreshTable();
             tableView.getSelectionModel().clearSelection();
             tableView.getSelectionModel().selectFirst();
@@ -240,10 +165,8 @@ public class MainController extends SplitPane {
     }
     @FXML
     void resetFilter(ActionEvent actionEvent) {
-        filterAttr0.clear();
-        filterAttr1.clear();
-        filterAttr2.clear();
-        filterAttr3.clear();
+        for (int i=0; i<attr.length; i++)
+            filterAttr[i].clear();
         filter(new ActionEvent());
     }
 

@@ -40,9 +40,8 @@ public class Faelle extends Tuplet {
     }
 
     public Faelle(String[] val) {
-        super(val);
+        super(attr, val);
         setTable(table);
-        setAttr(attr);
     }
 
     public String toString() {
@@ -66,7 +65,7 @@ public class Faelle extends Tuplet {
               "INSERT INTO " + table +
                     " VALUES (" +
                     "NULL" + ", " +
-                    getVal1() + ", " +
+                    "'" + getVal1() + "', " +
                     "'" + MainController.formatDateToYMD(getVal2()) + "', " +
                     "'" + MainController.formatDateToYMD(getVal3()) + "'" +
                     ");";

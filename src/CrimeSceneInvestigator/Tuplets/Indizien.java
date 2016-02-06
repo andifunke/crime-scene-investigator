@@ -1,7 +1,6 @@
 package CrimeSceneInvestigator.Tuplets;
 
 import CrimeSceneInvestigator.MainController;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.ResultSet;
@@ -51,9 +50,8 @@ public class Indizien extends Tuplet {
     }
 
     public Indizien(String[] val) {
-        super(val);
+        super(attr,val);
         setTable(table);
-        setAttr(attr);
     }
 
     public String toString() {

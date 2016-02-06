@@ -38,9 +38,8 @@ public class liegtin extends Tuplet {
     }
 
     public liegtin(String[] val) {
-        super(val);
+        super(attr, val);
         setTable(table);
-        setAttr(attr);
     }
 
     public String toString() {
