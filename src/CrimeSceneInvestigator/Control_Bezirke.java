@@ -32,13 +32,13 @@ public class Control_Bezirke extends MainController {
         attrName = new String[attr.length];
         attrName[0] = "ID";
         attrName[1] = attr[1];
-        attrName[2] = attr[1];
+        attrName[2] = attr[2];
 
         listTable = new String[4];
-        listTable[0] = "liegtin";
-        listTable[1] = "liegtin";
-        listTable[2] = "Verbrechen";
-        listTable[3] = "Behoerden";
+        listTable[0] = "Bezirke";
+        listTable[1] = "Bezirke";
+        listTable[2] = "Behoerden";
+        listTable[3] = "Verbrechen";
 
         textAttr = new TextField[7];
         textAttr[0] = textAttr0;
@@ -98,6 +98,9 @@ public class Control_Bezirke extends MainController {
         for (int i=0; i<listTable.length; i++)
             if (labelList[i] != null)
                 labelList[i].setText(listTable[i]);
+        labelList[0].setText("Oberbezirk");
+        labelList[1].setText("Unterbezirke");
+        labelList[2].setText("Behörden");
 
         val = new String[attr.length];
         for (int i=0; i<attr.length; i++)
@@ -122,14 +125,28 @@ public class Control_Bezirke extends MainController {
 
     void setUpLists() {
         Filter filter = new Filter(table, attr[0], val[0], true);
-        ol0 = SQLController.selectFromTable(listTable[0], filter);
+
+        String query0 =
+              "SELECT Bezirke.BezirkID,Bezirke.Name,Bezirke.Typ\n" +
+                    "  FROM Bezirke,liegtin\n" +
+                    "  WHERE Bezirke.BezirkID = liegtin.SupBezirkID\n" +
+                    "  AND liegtin.SubBezirkID = '" + val[0] + "';";
+        ol0 = SQLController.selectFromQuery(listTable[0], query0);
         list0.setItems(ol0);
-        ol1 = SQLController.selectFromTable(listTable[1], filter);
+
+        String query1 =
+              "SELECT BezirkID,Name,Typ\n" +
+                    "  FROM Bezirke,liegtin\n" +
+                    "  WHERE BezirkID = SubBezirkID\n" +
+                    "  AND SupBezirkID = '" + val[0] + "';";
+        ol1 = SQLController.selectFromQuery(listTable[1], query1);
         list1.setItems(ol1);
+
         ol2 = SQLController.selectFromTable(listTable[2], filter);
         list2.setItems(ol2);
+
         ol3 = SQLController.selectFromTable(listTable[3], filter);
-        list2.setItems(ol3);
+        list3.setItems(ol3);
     }
 
     @FXML

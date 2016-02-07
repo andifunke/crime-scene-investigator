@@ -25,4 +25,20 @@ public class Verdaechtige extends Personen {
 		setAttr(attr);
 	}
 
+	public String getUpdateQuery2(String[] key) {
+		return
+				"UPDATE " + table + "\n"+
+						" SET "+
+						attr[0] + "='" + getVal0() + "'" +
+						"\n WHERE " + attr[0] + "=" + key[0] + ";";
+	}
+
+	public String getInsertQuery2() {
+		return
+				"INSERT INTO " + table +
+						" VALUES (" +
+						"'" + getVal0() + "'" +
+						");";
+	}
+
 }

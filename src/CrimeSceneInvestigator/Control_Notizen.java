@@ -31,14 +31,14 @@ public class Control_Notizen extends MainController {
 
         attrName = new String[attr.length];
         attrName[0] = "ID";
-        attrName[1] = attr[1];
+        attrName[1] = "angelegt am";
         attrName[2] = attr[2];
-        attrName[3] = attr[3];
-        attrName[4] = attr[4];
+        attrName[3] = "Polizist ID";
+        attrName[4] = "Fall ID";
 
         listTable = new String[4];
-        listTable[0] = "";
-        listTable[1] = "";
+        listTable[0] = "Polizisten";
+        listTable[1] = "Faelle";
         listTable[2] = "";
         listTable[3] = "";
 
@@ -52,6 +52,10 @@ public class Control_Notizen extends MainController {
         textAttr[6] = textAttr6;
 
         textAttr[0].setPromptText("* Pflichtfeld - wird automatisch generiert");
+        textAttr[1].setPromptText("* Pflichtfeld");
+        textAttr[2].setPromptText("* Pflichtfeld");
+        textAttr[3].setPromptText("* Pflichtfeld");
+        textAttr[4].setPromptText("* Pflichtfeld");
 
         filterAttr = new TextField[7];
         filterAttr[0] = filterAttr0;
@@ -120,11 +124,28 @@ public class Control_Notizen extends MainController {
         tableView.getSelectionModel().selectFirst();
     }
 
+    void setUpLists() {
+        Filter filter = new Filter(table, attr[0], val[0], true);
+
+        String query0 =
+              "SELECT Personen.PersonID,Personen.Name,Geschlecht,Nationalitaet,Geburtsdatum,Todesdatum,Dienstgrad\n" +
+                    " FROM Personen,Polizisten\n" +
+                    " WHERE Polizisten.PersonID = Personen.PersonID\n" +
+                    " AND Personen.PersonID = '" + val[3] + "';";
+        ol0 = SQLController.selectFromQuery(listTable[0], query0);
+        list0.setItems(ol0);
+
+        String query1 =
+              "SELECT * FROM Faelle WHERE FallID = '" + val[4] + "';";
+        ol1 = SQLController.selectFromQuery(listTable[1], query1);
+        list1.setItems(ol1);
+    }
+
     @FXML
     void neu(ActionEvent actionEvent) {
         neuDefault();
-        val[2] = formatter.format(new Date());
-        textAttr2.setText(val[2]);
+        val[1] = formatter.format(new Date());
+        textAttr1.setText(val[1]);
     }
 
     @FXML
@@ -154,6 +175,14 @@ public class Control_Notizen extends MainController {
         }
         if (val[2].equals("")) {
             System.out.println("kein " + attr[2] + " eingetragen");
+            return;
+        }
+        if (val[3].equals("")) {
+            System.out.println("kein " + attr[3] + " eingetragen");
+            return;
+        }
+        if (val[4].equals("")) {
+            System.out.println("kein " + attr[4] + " eingetragen");
             return;
         }
         if (isNew) {

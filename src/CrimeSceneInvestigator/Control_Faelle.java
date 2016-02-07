@@ -129,13 +129,13 @@ public class Control_Faelle extends MainController {
         list1.setItems(ol1);
         ol2 = SQLController.selectFromTable(listTable[2], filter);
         list2.setItems(ol2);
-        String query =
+        String query3 =
                     "SELECT Polizisten.PersonID,Name,Geschlecht,Nationalitaet,Geburtsdatum,Todesdatum,Dienstgrad\n" +
                     "  FROM Polizisten,Personen,arbeitetan\n" +
                     "  WHERE Polizisten.PersonID = Personen.PersonID\n" +
                     "  AND Polizisten.PersonID = arbeitetan.PersonID\n" +
-                    "  AND arbeitetan.FallID = " + val[0] + ";";
-        ol3 = SQLController.selectFromQuery(listTable[3], query);
+                    "  AND arbeitetan.FallID = '" + val[0] + "';";
+        ol3 = SQLController.selectFromQuery(listTable[3], query3);
         list3.setItems(ol3);
     }
 

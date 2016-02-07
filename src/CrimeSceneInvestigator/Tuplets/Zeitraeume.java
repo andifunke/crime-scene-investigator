@@ -53,18 +53,18 @@ public class Zeitraeume extends Tuplet {
 
     public String toString() {
         return
-              "[" + getVal0() + "] " + getVal1();
+              "Behörde: [" + getVal3() + "] von " + getVal1() + " bis " + getVal2();
     }
 
     public String getUpdateQuery(String[] key) {
         return
               "UPDATE " + table + "\n"+
                     " SET "+
-                    attr[0] + "= " + getVal0() + ", " +
-                    attr[1] + "='" + MainController.formatDateToYMD(getVal1()) + "', " +
-                    attr[2] + "='" + MainController.formatDateToYMD(getVal2()) + "', " +
-                    attr[3] + "='" + getVal1() + "', " +
-                    attr[4] + "='" + getVal1() + "' " +
+                    attr[0] + "='" + getVal0() + "'," +
+                    attr[1] + "='" + MainController.formatDateToYMD(getVal1()) + "'," +
+                    attr[2] + "='" + MainController.formatDateToYMD(getVal2()) + "'," +
+                    attr[3] + "='" + getVal3() + "'," +
+                    attr[4] + "='" + getVal4() + "'" +
                     "\n WHERE " + attr[0] + "=" + key[0] + ";";
     }
 
@@ -72,11 +72,11 @@ public class Zeitraeume extends Tuplet {
         return
               "INSERT INTO " + table +
                     " VALUES (" +
-                    "NULL" + ", " +
-                    "'" + MainController.formatDateToYMD(getVal1()) + "', " +
-                    "'" + MainController.formatDateToYMD(getVal2()) + "'" +
-                    getVal3() + ", " +
-                    getVal4() + ", " +
+                    "NULL" + "," +
+                    "'" + MainController.formatDateToYMD(getVal1()) + "'," +
+                    "'" + MainController.formatDateToYMD(getVal2()) + "'," +
+                    "'" + getVal3() + "'," +
+                    "'" + getVal4() + "'" +
                     ");";
     }
 

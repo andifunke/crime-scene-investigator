@@ -113,6 +113,26 @@
                                onAction="#filter"
                                GridPane.columnIndex="2" GridPane.rowIndex="1"/>
 
+                    <Label id="LabelAttribute"
+                           fx:id="labelList0"
+                           GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+                    <VBox id="VBoxAttribute"
+                          GridPane.columnIndex="1" GridPane.rowIndex="7">
+                        <ListView id="ListViewAttribute"
+                                  fx:id="list0"
+                                  prefHeight="80.0" minHeight="20.0"/>
+                    </VBox>
+
+                    <Label id="LabelAttribute"
+                           fx:id="labelList1"
+                           GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+                    <VBox id="VBoxAttribute"
+                          GridPane.columnIndex="1" GridPane.rowIndex="8">
+                        <ListView id="ListViewAttribute"
+                                  fx:id="list1"
+                                  prefHeight="80.0" minHeight="20.0"/>
+                    </VBox>
+
                     <HBox id="HBoxForButtons2"
                           alignment="TOP_CENTER"
                           GridPane.columnIndex="2" GridPane.rowIndex="7">

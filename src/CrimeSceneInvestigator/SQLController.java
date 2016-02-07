@@ -1,9 +1,11 @@
 package CrimeSceneInvestigator;
 
 import CrimeSceneInvestigator.Tuplets.*;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 class SQLController {
@@ -83,9 +85,11 @@ class SQLController {
                 }
                 if (filter.isStrict()) {
                     sb.append(filter.getAttribute()).append(" = '").append(filter.getValue()).append("'");
+//                    System.out.println("strict");
                 }
                 else {
-                    sb.append(filter.getAttribute()).append(" like '%").append(filter.getValue()).append("%'");
+                    sb.append(filter.getAttribute()).append(" LIKE '%").append(filter.getValue()).append("%'");
+//                    System.out.println("!strict");
                 }
                 hasMultipleFilter = true;
             }
@@ -102,67 +106,94 @@ class SQLController {
         return dbc.handleSelectRequest(table, query);
     }
 
+    public static ObservableList<Tuplet> selectFromQuery(String table, String query, LinkedList<Filter> filterList) {
+        if (filterList != null && !filterList.isEmpty()) {
+            query = query.replace(";","\n");
+            StringBuilder sb = new StringBuilder();
+            for (Filter filter : filterList) {
+                sb.append(" AND ");
+                if (filter.isStrict()) {
+                    sb.append(filter.getAttribute()).append(" = '").append(filter.getValue()).append("'");
+//                    System.out.println("strict");
+                }
+                else {
+                    sb.append(filter.getAttribute()).append(" LIKE '%").append(filter.getValue()).append("%'");
+//                    System.out.println("!strict");
+                }
+            }
+            query += sb.append(";").toString();
+        }
+
+        SQLController dbc = SQLController.getInstance();
+        return dbc.handleSelectRequest(table, query);
+    }
+
     private ObservableList<Tuplet> handleSelectRequest(String table, String query) {
         System.out.println(query);
         ObservableList<Tuplet> ol = null;
         try {
             Statement stmt = connection.createStatement();
             ResultSet readTable = stmt.executeQuery(query);
-
-            switch (table) {
-                case "arbeitetan":
-                    ol = arbeitetan.getOL(readTable);
-                    break;
-                case "Arten":
-                    ol = Arten.getOL(readTable);
-                    break;
-                case "Behoerden":
-                    ol = Behoerden.getOL(readTable);
-                    break;
-                case "betrifftO":
-                    ol = betrifftO.getOL(readTable);
-                    break;
-                case "betrifftV":
-                    ol = betrifftV.getOL(readTable);
-                    break;
-                case "Bezirke":
-                    ol = Bezirke.getOL(readTable);
-                    break;
-                case "Faelle":
-                    ol = Faelle.getOL(readTable);
-                    break;
-                case "Indizien":
-                    ol = Indizien.getOL(readTable);
-                    break;
-                case "liegtin":
-                    ol = liegtin.getOL(readTable);
-                    break;
-                case "Notizen":
-                    ol = Notizen.getOL(readTable);
-                    break;
-                case "Opfer":
-                    ol = Opfer.getOL(readTable);
-                    break;
-                case "Personen":
-                    ol = Personen.getOL(readTable);
-                    break;
-                case "Polizisten":
-                    ol = Polizisten.getOL(readTable);
-                    break;
-                case "Verbrechen":
-                    ol = Verbrechen.getOL(readTable);
-                    break;
-                case "Verdaechtige":
-                    ol = Verdaechtige.getOL(readTable);
-                    break;
-                case "Zeitraeume":
-                    ol = Zeitraeume.getOL(readTable);
-                    break;
+            if (!readTable.isClosed()) {
+                switch (table) {
+                    case "arbeitetan":
+                        ol = arbeitetan.getOL(readTable);
+                        break;
+                    case "Arten":
+                        ol = Arten.getOL(readTable);
+                        break;
+                    case "Behoerden":
+                        ol = Behoerden.getOL(readTable);
+                        break;
+                    case "betrifftO":
+                        ol = betrifftO.getOL(readTable);
+                        break;
+                    case "betrifftV":
+                        ol = betrifftV.getOL(readTable);
+                        break;
+                    case "Bezirke":
+                        ol = Bezirke.getOL(readTable);
+                        break;
+                    case "Faelle":
+                        ol = Faelle.getOL(readTable);
+                        break;
+                    case "Indizien":
+                        ol = Indizien.getOL(readTable);
+                        break;
+                    case "liegtin":
+                        ol = liegtin.getOL(readTable);
+                        break;
+                    case "Notizen":
+                        ol = Notizen.getOL(readTable);
+                        break;
+                    case "Opfer":
+                        ol = Opfer.getOL(readTable);
+                        break;
+                    case "Personen":
+                        ol = Personen.getOL(readTable);
+                        break;
+                    case "Polizisten":
+                        ol = Polizisten.getOL(readTable);
+                        break;
+                    case "Verbrechen":
+                        ol = Verbrechen.getOL(readTable);
+                        break;
+                    case "Verdaechtige":
+                        ol = Verdaechtige.getOL(readTable);
+                        break;
+                    case "Zeitraeume":
+                        ol = Zeitraeume.getOL(readTable);
+                        break;
+                }
+                readTable.close();
             }
-            readTable.close();
         } catch (SQLException e) {
             System.err.println("Couldn't handle DB-Query");
             e.printStackTrace();
+        }
+        if (ol == null) {
+            ArrayList<Tuplet> al = new ArrayList<Tuplet>();
+            ol = FXCollections.observableArrayList(al);
         }
         return ol;
     }
@@ -171,15 +202,30 @@ class SQLController {
         SQLController dbc = SQLController.getInstance();
         dbc.handleDeleteRequest(table, key, value);
     }
+    public static void delete(String table, String key0, String value0, String key1, String value1) {
+        SQLController dbc = SQLController.getInstance();
+        dbc.handleDeleteRequest(table, key0, value0, key1, value1);
+    }
     private void handleDeleteRequest(String table, String key, String value) {
         try {
-            String query = "DELETE FROM "+table+" WHERE "+key+" = "+value+";";
+            String query = "DELETE FROM "+table+" WHERE "+key+" = '"+value+"';";
             System.out.println(query);
 				Statement stmt = connection.createStatement();
             stmt.execute(query);
         } catch (SQLException e) {
 				System.err.println("Couldn't handle DB-Query");
 				e.printStackTrace();
+        }
+    }
+    private void handleDeleteRequest(String table, String key0, String value0, String key1, String value1) {
+        try {
+            String query = "DELETE FROM "+table+" WHERE "+key0+" = '"+value0+"' AND "+key1+" = '"+value1+"';";
+            System.out.println(query);
+            Statement stmt = connection.createStatement();
+            stmt.execute(query);
+        } catch (SQLException e) {
+            System.err.println("Couldn't handle DB-Query");
+            e.printStackTrace();
         }
     }
 
@@ -193,6 +239,16 @@ class SQLController {
             System.out.println(query);
             Statement stmt = connection.createStatement();
             stmt.execute(query);
+            switch (tuplet.getTable()) {
+                case "Polizisten":
+                case "Verdaechtige":
+                case "Opfer":
+                    query = tuplet.getUpdateQuery2(keys);
+                    System.out.println(query);
+                    stmt = connection.createStatement();
+                    stmt.execute(query);
+                    break;
+            }
         } catch (SQLException e) {
             System.err.println("Couldn't handle DB-Query");
             e.printStackTrace();
@@ -206,12 +262,25 @@ class SQLController {
     private void handleInsertRequest(Tuplet tuplet) {
         try {
             String query = tuplet.getInsertQuery();
-            System.out.println(query);
-            Statement stmt = connection.createStatement();
-            stmt.execute(query);
+            switch (tuplet.getTable()) {
+                case "Polizisten":
+                case "Verdaechtige":
+                case "Opfer":
+                    System.out.println(query);
+                    PreparedStatement pstmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                    pstmt.executeUpdate();
+                    ResultSet res = pstmt.getGeneratedKeys();
+                    String id = res.getString(1);
+                    tuplet.setVal0(id);
+                    query = tuplet.getInsertQuery2();
+                default:
+                    System.out.println(query);
+                    Statement stmt = connection.createStatement();
+                    stmt.execute(query);
+            }
         } catch (SQLException e) {
             System.err.println("Couldn't handle DB-Query");
-            e.printStackTrace();
+            e.getCause();// printStackTrace();
         }
     }
 

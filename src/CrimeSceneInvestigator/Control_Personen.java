@@ -14,6 +14,8 @@ import java.util.Date;
 
 public class Control_Personen extends MainController {
 
+    public static Control_Personen controlPersonen;
+
     public Control_Personen() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Personen.fxml"));
         fxmlLoader.setRoot(this);
@@ -23,6 +25,8 @@ public class Control_Personen extends MainController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        controlPersonen = this;
 
         table = Personen.table;
 
@@ -54,7 +58,6 @@ public class Control_Personen extends MainController {
 
         textAttr[0].setPromptText("* Pflichtfeld - wird automatisch generiert");
         textAttr[1].setPromptText("* Pflichtfeld");
-        textAttr[2].setPromptText("* Pflichtfeld");
 
         filterAttr = new TextField[7];
         filterAttr[0] = filterAttr0;
@@ -143,14 +146,6 @@ public class Control_Personen extends MainController {
                 val[0] = "";
                 textAttr0.setText(val[0]);
             }
-        }
-        if (val[1].equals("")) {
-            System.out.println("kein " + attr[1] + " eingetragen");
-            return;
-        }
-        if (val[2].equals("")) {
-            System.out.println("kein " + attr[2] + " eingetragen");
-            return;
         }
         if (isNew) {
             Tuplet tuplet = new Personen(val);

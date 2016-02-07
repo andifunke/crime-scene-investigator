@@ -30,12 +30,12 @@ public class Control_betrifftO extends MainController {
         System.arraycopy(betrifftO.attr, 0, attr, 0, attr.length);
 
         attrName = new String[attr.length];
-        attrName[0] = attr[1];
-        attrName[1] = attr[1];
+        attrName[0] = "Verbrechen ID";
+        attrName[1] = "Opfer ID";
 
         listTable = new String[4];
-        listTable[0] = "";
-        listTable[1] = "";
+        listTable[0] = "Verbrechen";
+        listTable[1] = "Opfer";
         listTable[2] = "";
         listTable[3] = "";
 
@@ -118,33 +118,50 @@ public class Control_betrifftO extends MainController {
         tableView.getSelectionModel().selectFirst();
     }
 
+    void setUpLists() {
+        Filter filter = new Filter(table, attr[0], val[0], true);
+
+        String query0 =
+              "SELECT * FROM Verbrechen WHERE VerbrechenID = '" + val[0] + "';";
+        ol0 = SQLController.selectFromQuery(listTable[0], query0);
+        list0.setItems(ol0);
+
+        String query1 =
+              "SELECT Personen.PersonID,Personen.Name,Geschlecht,Nationalitaet,Geburtsdatum,Todesdatum\n" +
+                    " FROM Personen,Opfer" +
+                    " WHERE Personen.PersonID = Opfer.PersonID" +
+                    " AND Personen.PersonID = '" + val[1] + "';";
+        ol1 = SQLController.selectFromQuery(listTable[1], query1);
+        list1.setItems(ol1);
+    }
+
+    @FXML
+    void delete(ActionEvent actionEvent) {
+        int index = tableView.getSelectionModel().getSelectedIndex();
+        if (index > -1) {
+            try {
+                SQLController.delete(table, attr[0], val[0], attr[1], val[1]);
+                refreshTable();
+                tableView.getSelectionModel().clearAndSelect(index-1);
+            } catch (NullPointerException e) {
+                System.out.println("keine Einträge vorhanden");
+            }
+        }
+    }
+
     @FXML
     void save(ActionEvent actionEvent) {
         String[] keys = new String[10];
         keys[0] = val[0];
+        keys[1] = val[1];
         for (int i=0; i<attr.length; i++)
             val[i] = textAttr[i].getText();
-        try {
-            int x = Integer.parseInt(val[0]);
-        }
-        catch (NumberFormatException e) {
-            System.out.println(attr[0] + " ist kein Integer");
-            try {
-                int x = Integer.parseInt(keys[0]);
-                val[0] = keys[0];
-                textAttr0.setText(val[0]);
-            }
-            catch (NumberFormatException e2) {
-                val[0] = "";
-                textAttr0.setText(val[0]);
-            }
+        if (val[0].equals("")) {
+            System.out.println("kein " + attr[0] + " eingetragen");
+            return;
         }
         if (val[1].equals("")) {
             System.out.println("kein " + attr[1] + " eingetragen");
-            return;
-        }
-        if (val[2].equals("")) {
-            System.out.println("kein " + attr[2] + " eingetragen");
             return;
         }
         if (isNew) {

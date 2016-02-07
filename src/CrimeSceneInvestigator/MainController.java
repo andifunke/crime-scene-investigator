@@ -150,45 +150,34 @@ public class MainController extends SplitPane {
         LinkedList<Filter> filterList = new LinkedList<>();
 
         String[] filters = new String[attr.length];
-        for (int i=0; i<attr.length; i++)
+        for (int i=0; i<attr.length; i++) {
             filters[i] = filterAttr[i].getText().trim();
-        for (int i=0; i<attr.length; i++)
-            if (!filters[i].equals("")) filterList.add(new Filter(table, attr[i], filters[i]));
+        }
+        for (int i=0; i<attr.length; i++) {
+            if (!filters[i].equals("")) {
+                boolean strict = false;
+                if (attr[i].matches("ID")) {
+                    strict = strictIdFilterPolicy;
+                }
+                filterList.add(new Filter(table, attr[i], filters[i], strict));
+            }
+        }
         if (!filterList.isEmpty()) {
-            filterList.get(0).setStrict(true);
             refreshTable(filterList);
-            tableView.getSelectionModel().clearSelection();
-            tableView.getSelectionModel().selectFirst();
         }
         else {
             refreshTable();
-            tableView.getSelectionModel().clearSelection();
-            tableView.getSelectionModel().selectFirst();
         }
+        tableView.getSelectionModel().clearSelection();
+        tableView.getSelectionModel().selectFirst();
     }
+    boolean strictIdFilterPolicy = true;
+
     @FXML
     void resetFilter(ActionEvent actionEvent) {
         for (int i=0; i<attr.length; i++)
             filterAttr[i].clear();
         filter(new ActionEvent());
-    }
-
-    @FXML
-    void addForeign(ActionEvent actionEvent) {
-        System.out.println("addForeign");
-    }
-
-    @FXML
-    void goToForeign(ActionEvent actionEvent) {
-        System.out.println("goToForeign");
-        if (actionEvent.getSource() == filterAttr0) {
-            String filter = filterAttr0.getText();
-            textAttr0.setText(filter);
-        }
-        else if (actionEvent.getSource() == filterAttr1) {
-            String filter = filterAttr1.getText();
-            textAttr1.setText(filter);
-        }
     }
 
     public static String formatDateToDMY(String date) {

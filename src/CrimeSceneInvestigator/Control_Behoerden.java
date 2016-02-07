@@ -33,11 +33,11 @@ public class Control_Behoerden extends MainController {
         attrName[0] = "ID";
         attrName[1] = attr[1];
         attrName[2] = attr[2];
-        attrName[3] = attr[3];
+        attrName[3] = "Bezirk ID";
 
         listTable = new String[4];
-        listTable[0] = "Polizisten";
-        listTable[1] = "";
+        listTable[0] = "Bezirke";
+        listTable[1] = "Polizisten";
         listTable[2] = "";
         listTable[3] = "";
 
@@ -51,6 +51,9 @@ public class Control_Behoerden extends MainController {
         textAttr[6] = textAttr6;
 
         textAttr[0].setPromptText("* Pflichtfeld - wird automatisch generiert");
+        textAttr[1].setPromptText("* Pflichtfeld");
+        textAttr[2].setPromptText("* Pflichtfeld");
+        textAttr[3].setPromptText("* Pflichtfeld");
 
         filterAttr = new TextField[7];
         filterAttr[0] = filterAttr0;
@@ -97,6 +100,7 @@ public class Control_Behoerden extends MainController {
         for (int i=0; i<listTable.length; i++)
             if (labelList[i] != null)
                 labelList[i].setText(listTable[i]);
+        labelList[0].setText("Bezirk");
 
         val = new String[attr.length];
         for (int i=0; i<attr.length; i++)
@@ -121,8 +125,21 @@ public class Control_Behoerden extends MainController {
 
     void setUpLists() {
         Filter filter = new Filter(table, attr[0], val[0], true);
-        ol0 = SQLController.selectFromTable(listTable[0], filter);
+
+        String query0 =
+              "SELECT * FROM Bezirke WHERE BezirkID = '" + val[3] + "';";
+        ol0 = SQLController.selectFromQuery(listTable[0], query0);
         list0.setItems(ol0);
+
+        String query1 =
+              "SELECT Polizisten.PersonID,Name,Geschlecht,Nationalitaet,Geburtsdatum,Todesdatum,Dienstgrad\n" +
+                    "  FROM Polizisten,Personen,Zeitraeume\n" +
+                    "  WHERE Polizisten.PersonID = Zeitraeume.PersonID\n" +
+                    "  AND Polizisten.PersonID = Personen.PersonID\n" +
+                    "  AND Zeitraeume.BehoerdeID = '" + val[0] + "';";
+        ol1 = SQLController.selectFromQuery(listTable[1], query1);
+        list1.setItems(ol1);
+
     }
 
     @FXML
@@ -152,6 +169,10 @@ public class Control_Behoerden extends MainController {
         }
         if (val[2].equals("")) {
             System.out.println("kein " + attr[2] + " eingetragen");
+            return;
+        }
+        if (val[3].equals("")) {
+            System.out.println("kein " + attr[3] + " eingetragen");
             return;
         }
         if (isNew) {

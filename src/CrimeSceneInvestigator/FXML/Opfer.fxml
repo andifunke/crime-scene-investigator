@@ -201,18 +201,6 @@
                         <ListView id="ListViewAttribute"
                                   fx:id="list0"
                                   prefHeight="80.0" minHeight="20.0"/>
-                        <HBox id="HBoxForButtons">
-                            <Button id="ButtonHinzufuegen"
-                                    fx:id="goToList0"
-                                    text="anzeigen"
-                                    onAction="#goToForeign"
-                                    mnemonicParsing="false"/>
-                            <Button id="ButtonHinzufuegen"
-                                    fx:id="addList0"
-                                    text="hinzufügen"
-                                    onAction="#addForeign"
-                                    mnemonicParsing="false"/>
-                        </HBox>
                     </VBox>
 
                     <HBox id="HBoxForButtons2"

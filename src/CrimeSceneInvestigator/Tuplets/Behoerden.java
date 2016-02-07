@@ -54,20 +54,20 @@ public class Behoerden extends Tuplet {
         return
               "UPDATE " + table + "\n"+
                     " SET "+
-                    attr[0] + "= " + getVal0() + ", " +
-                    attr[1] + "='" + getVal1() + "', " +
-                    attr[2] + "= " + getVal2() + ", " +
-                    attr[3] + "='" + getVal3() + "'\n " +
-                    " WHERE " + attr[0] + "=" + key[0] + ";";
+                    attr[0] + "='" + getVal0() + "'," +
+                    attr[1] + "='" + getVal1() + "'," +
+                    attr[2] + "='" + getVal2() + "'," +
+                    attr[3] + "='" + getVal3() + "'" +
+                    "\n WHERE " + attr[0] + "=" + key[0] + ";";
     }
 
     public String getInsertQuery() {
         return
               "INSERT INTO " + table +
                     " VALUES (" +
-                    "NULL" + ", " +
-                    "'" + getVal1() + "', " +
-                    "'" + getVal2() + "', " +
+                    "NULL" + "," +
+                    "'" + getVal1() + "'," +
+                    "'" + getVal2() + "'," +
                     "'" + getVal3() + "'" +
                     ");";
     }

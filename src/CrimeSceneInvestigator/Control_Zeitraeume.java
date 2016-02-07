@@ -33,12 +33,12 @@ public class Control_Zeitraeume extends MainController {
         attrName[0] = "ID";
         attrName[1] = attr[1];
         attrName[2] = attr[2];
-        attrName[3] = attr[3];
-        attrName[4] = attr[4];
+        attrName[3] = "Behörden ID";
+        attrName[4] = "Polizist ID";
 
         listTable = new String[4];
-        listTable[0] = "";
-        listTable[1] = "";
+        listTable[0] = "Behoerden";
+        listTable[1] = "Polizisten";
         listTable[2] = "";
         listTable[3] = "";
 
@@ -52,6 +52,9 @@ public class Control_Zeitraeume extends MainController {
         textAttr[6] = textAttr6;
 
         textAttr[0].setPromptText("* Pflichtfeld - wird automatisch generiert");
+        textAttr[1].setPromptText("* Pflichtfeld");
+        textAttr[3].setPromptText("* Pflichtfeld");
+        textAttr[4].setPromptText("* Pflichtfeld");
 
         filterAttr = new TextField[7];
         filterAttr[0] = filterAttr0;
@@ -120,6 +123,23 @@ public class Control_Zeitraeume extends MainController {
         tableView.getSelectionModel().selectFirst();
     }
 
+    void setUpLists() {
+        Filter filter = new Filter(table, attr[0], val[0], true);
+
+        String query0 =
+              "SELECT * FROM Behoerden WHERE BehoerdeID = '" + val[3] + "';";
+        ol0 = SQLController.selectFromQuery(listTable[0], query0);
+        list0.setItems(ol0);
+
+        String query1 =
+              "SELECT Personen.PersonID,Personen.Name,Geschlecht,Nationalitaet,Geburtsdatum,Todesdatum,Dienstgrad\n" +
+                    " FROM Personen,Polizisten\n" +
+                    " WHERE Polizisten.PersonID = Personen.PersonID\n" +
+                    " AND Personen.PersonID = '" + val[4] + "';";
+        ol1 = SQLController.selectFromQuery(listTable[1], query1);
+        list1.setItems(ol1);
+    }
+
     @FXML
     void save(ActionEvent actionEvent) {
         String[] keys = new String[10];
@@ -145,8 +165,12 @@ public class Control_Zeitraeume extends MainController {
             System.out.println("kein " + attr[1] + " eingetragen");
             return;
         }
-        if (val[2].equals("")) {
-            System.out.println("kein " + attr[2] + " eingetragen");
+        if (val[3].equals("")) {
+            System.out.println("kein " + attr[3] + " eingetragen");
+            return;
+        }
+        if (val[4].equals("")) {
+            System.out.println("kein " + attr[4] + " eingetragen");
             return;
         }
         if (isNew) {

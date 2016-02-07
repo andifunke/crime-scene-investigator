@@ -221,18 +221,6 @@
                         <ListView id="ListViewAttribute"
                                   fx:id="list0"
                                   prefHeight="80.0" minHeight="20.0"/>
-                        <HBox id="HBoxForButtons">
-                            <Button id="ButtonHinzufuegen"
-                                    fx:id="goToList0"
-                                    text="anzeigen"
-                                    onAction="#goToForeign"
-                                    mnemonicParsing="false"/>
-                            <Button id="ButtonHinzufuegen"
-                                    fx:id="addList0"
-                                    text="hinzufügen"
-                                    onAction="#addForeign"
-                                    mnemonicParsing="false"/>
-                        </HBox>
                     </VBox>
 
                     <Label id="LabelAttribute"
@@ -243,18 +231,6 @@
                         <ListView id="ListViewAttribute"
                                   fx:id="list1"
                                   prefHeight="80.0" minHeight="20.0"/>
-                        <HBox id="HBoxForButtons">
-                            <Button id="ButtonHinzufuegen"
-                                    fx:id="goToList1"
-                                    text="anzeigen"
-                                    onAction="#goToForeign"
-                                    mnemonicParsing="false"/>
-                            <Button id="ButtonHinzufuegen"
-                                    fx:id="addList1"
-                                    text="hinzufügen"
-                                    onAction="#addForeign"
-                                    mnemonicParsing="false"/>
-                        </HBox>
                     </VBox>
 
                     <Label id="LabelAttribute"
@@ -265,18 +241,6 @@
                         <ListView id="ListViewAttribute"
                                   fx:id="list2"
                                   prefHeight="80.0" minHeight="20.0"/>
-                        <HBox id="HBoxForButtons">
-                            <Button id="ButtonHinzufuegen"
-                                    fx:id="goToList2"
-                                    text="anzeigen"
-                                    onAction="#goToForeign"
-                                    mnemonicParsing="false"/>
-                            <Button id="ButtonHinzufuegen"
-                                    fx:id="addList2"
-                                    text="hinzufügen"
-                                    onAction="#addForeign"
-                                    mnemonicParsing="false"/>
-                        </HBox>
                     </VBox>
 
                     <Label id="LabelAttribute"
@@ -287,18 +251,6 @@
                         <ListView id="ListViewAttribute"
                                   fx:id="list3"
                                   prefHeight="80.0" minHeight="20.0"/>
-                        <HBox id="HBoxForButtons">
-                            <Button id="ButtonHinzufuegen"
-                                    fx:id="goToList3"
-                                    text="anzeigen"
-                                    onAction="#goToForeign"
-                                    mnemonicParsing="false"/>
-                            <Button id="ButtonHinzufuegen"
-                                    fx:id="addList3"
-                                    text="hinzufügen"
-                                    onAction="#addForeign"
-                                    mnemonicParsing="false"/>
-                        </HBox>
                     </VBox>
 
                     <HBox id="HBoxForButtons2"

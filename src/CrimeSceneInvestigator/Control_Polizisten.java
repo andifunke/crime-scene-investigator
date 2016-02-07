@@ -11,8 +11,14 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.LinkedList;
 
 public class Control_Polizisten extends MainController {
+
+    String query =
+          "SELECT Polizisten.PersonID,Name,Geschlecht,Nationalitaet,Geburtsdatum,Todesdatum,Polizisten.Dienstgrad\n" +
+                "  FROM Polizisten,Personen\n" +
+                "  WHERE Polizisten.PersonID = Personen.PersonID;";
 
     public Control_Polizisten() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Polizisten.fxml"));
@@ -55,7 +61,7 @@ public class Control_Polizisten extends MainController {
 
         textAttr[0].setPromptText("* Pflichtfeld - wird automatisch generiert");
         textAttr[1].setPromptText("* Pflichtfeld");
-        textAttr[2].setPromptText("* Pflichtfeld");
+        textAttr[6].setPromptText("* Pflichtfeld");
 
         filterAttr = new TextField[7];
         filterAttr[0] = filterAttr0;
@@ -107,7 +113,7 @@ public class Control_Polizisten extends MainController {
         for (int i=0; i<attr.length; i++)
             val[i] = "";
 
-        olTable = SQLController.selectFromTable(table);
+        olTable = SQLController.selectFromQuery(table, query);
         tableView.setItems(olTable);
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -124,16 +130,41 @@ public class Control_Polizisten extends MainController {
         tableView.getSelectionModel().selectFirst();
     }
 
+    void refreshTable() {
+        olTable.clear();
+        olTable.addAll(SQLController.selectFromQuery(table, query));
+        tableView.refresh();
+    }
+    void refreshTable(LinkedList<Filter> filterList) {
+        olTable.clear();
+        olTable.addAll(SQLController.selectFromQuery(table, query, filterList));
+        tableView.refresh();
+    }
+
     void setUpLists() {
         Filter filter = new Filter(table, attr[0], val[0], true);
-        ol0 = SQLController.selectFromTable(listTable[0], filter);
+
+        String query0 =
+              "SELECT Faelle.FallID,Faelle.Name,Eroeffnungsdatum,Enddatum\n" +
+                    "  FROM arbeitetan,Faelle\n" +
+                    "  WHERE Faelle.FallID = arbeitetan.FallID\n" +
+                    "  AND arbeitetan.PersonID = '" + val[0] + "';";
+        ol0 = SQLController.selectFromQuery(listTable[0], query0);
         list0.setItems(ol0);
-        ol1 = SQLController.selectFromTable(listTable[1], filter);
+
+        String query1 =
+              "SELECT Behoerden.BehoerdeID,Behoerden.Name,Typ,BezirkID\n" +
+                    "  FROM Behoerden,Zeitraeume\n" +
+                    "  WHERE Behoerden.BehoerdeID = Zeitraeume.BehoerdeID\n" +
+                    "  AND Zeitraeume.PersonID = '" + val[0] + "';";
+        ol1 = SQLController.selectFromQuery(listTable[1], query1);
         list1.setItems(ol1);
+
         ol2 = SQLController.selectFromTable(listTable[2], filter);
         list2.setItems(ol2);
+
         ol3 = SQLController.selectFromTable(listTable[3], filter);
-        list2.setItems(ol3);
+        list3.setItems(ol3);
     }
 
     @FXML
@@ -161,8 +192,8 @@ public class Control_Polizisten extends MainController {
             System.out.println("kein " + attr[1] + " eingetragen");
             return;
         }
-        if (val[2].equals("")) {
-            System.out.println("kein " + attr[2] + " eingetragen");
+        if (val[6].equals("")) {
+            System.out.println("kein " + attr[6] + " eingetragen");
             return;
         }
         if (isNew) {
@@ -184,6 +215,7 @@ public class Control_Polizisten extends MainController {
             filter(new ActionEvent());
             tableView.getSelectionModel().clearAndSelect(index);
         }
+        Control_Personen.controlPersonen.filter(new ActionEvent());
     }
 
 }

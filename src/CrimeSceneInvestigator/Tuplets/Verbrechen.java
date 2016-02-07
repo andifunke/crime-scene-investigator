@@ -66,12 +66,12 @@ public class Verbrechen extends Tuplet {
         return
               "UPDATE " + table + "\n"+
                     " SET "+
-                    attr[0] + "= " + getVal0() + ", " +
-                    attr[1] + "='" + getVal1() + "', " +
-                    attr[2] + "='" + MainController.formatDateToYMD(getVal2()) + "', " +
-                    attr[3] + "='" + getVal3() + "', " +
-                    attr[4] + "='" + getVal4() + "', " +
-                    attr[5] + "='" + getVal5() + "' " +
+                    attr[0] + "='" + getVal0() + "'," +
+                    attr[1] + "='" + getVal1() + "'," +
+                    attr[2] + "='" + MainController.formatDateToYMD(getVal2()) + "'," +
+                    attr[3] + "='" + getVal3() + "'," +
+                    attr[4] + "='" + getVal4() + "'," +
+                    attr[5] + "='" + getVal5() + "'" +
                     "\n WHERE " + attr[0] + "=" + key[0] + ";";
     }
 
@@ -79,12 +79,12 @@ public class Verbrechen extends Tuplet {
         return
               "INSERT INTO " + table +
                     " VALUES (" +
-                    "NULL" + ", " +
-                    getVal1() + ", " +
-                    "'" + MainController.formatDateToYMD(getVal2()) + "', " +
-                    getVal3() + ", " +
-                    getVal4() + ", " +
-                    getVal5() + ", " +
+                    "NULL" + "," +
+                    "'" + getVal1() + "'," +
+                    "'" + MainController.formatDateToYMD(getVal2()) + "'," +
+                    "'" + getVal3() + "'," +
+                    "'" + getVal4() + "'," +
+                    "'" + getVal5() + "'" +
                     ");";
     }
 

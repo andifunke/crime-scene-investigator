@@ -13,7 +13,6 @@
 <?import CrimeSceneInvestigator.Control_Zeitraeume?>
 <?import CrimeSceneInvestigator.Control_arbeitetan?>
 <?import CrimeSceneInvestigator.Control_betrifftO?>
-
 <?import CrimeSceneInvestigator.Control_betrifftV?>
 <?import CrimeSceneInvestigator.Control_liegtin?>
 <?import CrimeSceneInvestigator.Control_Polizisten?>
@@ -22,11 +21,11 @@
 <TabPane fx:controller="CrimeSceneInvestigator.MainController"
          prefHeight="950.0" prefWidth="800.0"
          tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-	<tabs>
-		<Tab text="Fälle">
+    <tabs>
+        <Tab text="Fälle">
             <content>
                 <SplitPane>
-                    <Control_Faelle />
+                    <Control_Faelle/>
                 </SplitPane>
             </content>
         </Tab>
@@ -37,28 +36,28 @@
                         <Tab text="alle Personen">
                             <content>
                                 <SplitPane>
-                                    <Control_Personen />
+                                    <Control_Personen/>
                                 </SplitPane>
                             </content>
                         </Tab>
                         <Tab text="Polizisten">
                             <content>
                                 <SplitPane>
-                                    <Control_Polizisten />
+                                    <Control_Polizisten/>
                                 </SplitPane>
                             </content>
                         </Tab>
                         <Tab text="Verdächtige">
                             <content>
                                 <SplitPane>
-                                    <Control_Verdaechtige />
+                                    <Control_Verdaechtige/>
                                 </SplitPane>
                             </content>
                         </Tab>
                         <Tab text="Opfer">
                             <content>
                                 <SplitPane>
-                                    <Control_Opfer />
+                                    <Control_Opfer/>
                                 </SplitPane>
                             </content>
                         </Tab>
@@ -69,49 +68,49 @@
         <Tab text="Verbrechen">
             <content>
                 <SplitPane>
-                    <Control_Verbrechen />
-                </SplitPane>
-            </content>
-        </Tab>
-        <Tab text="Bezirke">
-            <content>
-                <SplitPane>
-                    <Control_Bezirke />
+                    <Control_Verbrechen/>
                 </SplitPane>
             </content>
         </Tab>
         <Tab text="Arten">
             <content>
                 <SplitPane>
-                    <Control_Arten />
+                    <Control_Arten/>
+                </SplitPane>
+            </content>
+        </Tab>
+        <Tab text="Bezirke">
+            <content>
+                <SplitPane>
+                    <Control_Bezirke/>
                 </SplitPane>
             </content>
         </Tab>
         <Tab text="Behoerden">
             <content>
                 <SplitPane>
-                    <Control_Behoerden />
+                    <Control_Behoerden/>
                 </SplitPane>
             </content>
         </Tab>
         <Tab text="Indizien">
             <content>
                 <SplitPane>
-                    <Control_Indizien />
+                    <Control_Indizien/>
                 </SplitPane>
             </content>
         </Tab>
         <Tab text="Notizen">
             <content>
                 <SplitPane>
-                    <Control_Notizen />
+                    <Control_Notizen/>
                 </SplitPane>
             </content>
         </Tab>
         <Tab text="Zeiträume">
             <content>
                 <SplitPane>
-                    <Control_Zeitraeume />
+                    <Control_Zeitraeume/>
                 </SplitPane>
             </content>
         </Tab>
@@ -122,28 +121,28 @@
                         <Tab text="arbeitet an">
                             <content>
                                 <SplitPane>
-                                    <Control_arbeitetan />
+                                    <Control_arbeitetan/>
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                        <Tab text="betrifft Verdächtige">
+                            <content>
+                                <SplitPane>
+                                    <Control_betrifftV/>
                                 </SplitPane>
                             </content>
                         </Tab>
                         <Tab text="betrifft Opfer">
                             <content>
                                 <SplitPane>
-                                    <Control_betrifftO />
-                                </SplitPane>
-                            </content>
-                        </Tab>
-                        <Tab text="betrifft Verdächtigen">
-                            <content>
-                                <SplitPane>
-                                    <Control_betrifftV />
+                                    <Control_betrifftO/>
                                 </SplitPane>
                             </content>
                         </Tab>
                         <Tab text="liegt in">
                             <content>
                                 <SplitPane>
-                                    <Control_liegtin />
+                                    <Control_liegtin/>
                                 </SplitPane>
                             </content>
                         </Tab>
@@ -152,7 +151,7 @@
             </content>
         </Tab>
     </tabs>
-	<stylesheets>
-		<URL value="@CrimeSceneInvestigator.css" />
-	</stylesheets>
+    <stylesheets>
+        <URL value="@CrimeSceneInvestigator.css"/>
+    </stylesheets>
 </TabPane>

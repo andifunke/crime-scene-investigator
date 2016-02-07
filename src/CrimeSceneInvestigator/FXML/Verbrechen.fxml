@@ -201,18 +201,6 @@
                         <ListView id="ListViewAttribute"
                                   fx:id="list0"
                                   prefHeight="80.0" minHeight="20.0"/>
-                        <HBox id="HBoxForButtons">
-                            <Button id="ButtonHinzufuegen"
-                                    fx:id="goToList0"
-                                    text="anzeigen"
-                                    onAction="#goToForeign"
-                                    mnemonicParsing="false"/>
-                            <Button id="ButtonHinzufuegen"
-                                    fx:id="addList0"
-                                    text="hinzufügen"
-                                    onAction="#addForeign"
-                                    mnemonicParsing="false"/>
-                        </HBox>
                     </VBox>
 
                     <Label id="LabelAttribute"
@@ -223,18 +211,26 @@
                         <ListView id="ListViewAttribute"
                                   fx:id="list1"
                                   prefHeight="80.0" minHeight="20.0"/>
-                        <HBox id="HBoxForButtons">
-                            <Button id="ButtonHinzufuegen"
-                                    fx:id="goToList1"
-                                    text="anzeigen"
-                                    onAction="#goToForeign"
-                                    mnemonicParsing="false"/>
-                            <Button id="ButtonHinzufuegen"
-                                    fx:id="addList1"
-                                    text="hinzufügen"
-                                    onAction="#addForeign"
-                                    mnemonicParsing="false"/>
-                        </HBox>
+                    </VBox>
+
+                    <Label id="LabelAttribute"
+                           fx:id="labelList2"
+                           GridPane.columnIndex="0" GridPane.rowIndex="9"/>
+                    <VBox id="VBoxAttribute"
+                          GridPane.columnIndex="1" GridPane.rowIndex="9">
+                        <ListView id="ListViewAttribute"
+                                  fx:id="list2"
+                                  prefHeight="80.0" minHeight="20.0"/>
+                    </VBox>
+
+                    <Label id="LabelAttribute"
+                           fx:id="labelList3"
+                           GridPane.columnIndex="0" GridPane.rowIndex="10"/>
+                    <VBox id="VBoxAttribute"
+                          GridPane.columnIndex="1" GridPane.rowIndex="10">
+                        <ListView id="ListViewAttribute"
+                                  fx:id="list3"
+                                  prefHeight="80.0" minHeight="20.0"/>
                     </VBox>
 
                     <HBox id="HBoxForButtons2"

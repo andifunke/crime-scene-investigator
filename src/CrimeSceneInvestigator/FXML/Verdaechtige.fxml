@@ -193,20 +193,6 @@
                                onAction="#filter"
                                GridPane.columnIndex="2" GridPane.rowIndex="5"/>
 
-                    <HBox id="HBoxAttribute"
-                          alignment="CENTER_RIGHT"
-                          GridPane.columnIndex="0" GridPane.rowIndex="6">
-                        <Label id="LabelAttribute"
-                               fx:id="labelAttr6"/>
-                    </HBox>
-                    <TextField id="TextFieldAttribute"
-                               fx:id="textAttr6"
-                               GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-                    <TextField id="TextFieldFilter"
-                               fx:id="filterAttr6"
-                               onAction="#filter"
-                               GridPane.columnIndex="2" GridPane.rowIndex="6"/>
-
                     <Label id="LabelAttribute"
                            fx:id="labelList0"
                            GridPane.columnIndex="0" GridPane.rowIndex="7"/>
@@ -215,18 +201,6 @@
                         <ListView id="ListViewAttribute"
                                   fx:id="list0"
                                   prefHeight="80.0" minHeight="20.0"/>
-                        <HBox id="HBoxForButtons">
-                            <Button id="ButtonHinzufuegen"
-                                    fx:id="goToList0"
-                                    text="anzeigen"
-                                    onAction="#goToForeign"
-                                    mnemonicParsing="false"/>
-                            <Button id="ButtonHinzufuegen"
-                                    fx:id="addList0"
-                                    text="hinzufügen"
-                                    onAction="#addForeign"
-                                    mnemonicParsing="false"/>
-                        </HBox>
                     </VBox>
 
                     <HBox id="HBoxForButtons2"

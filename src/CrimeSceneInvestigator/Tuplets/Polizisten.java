@@ -26,7 +26,7 @@ public class Polizisten extends Personen {
 			"Nationalitaet",
 			"Geburtsdatum",
 			"Todesdatum",
-			"Dienstgrad",
+			"Dienstgrad"
 	};
 	public static ObservableList<Tuplet> getOL(ResultSet readTable) throws SQLException {
 		ArrayList<Tuplet> al = new ArrayList<Tuplet>();
@@ -46,36 +46,26 @@ public class Polizisten extends Personen {
 	}
 
 	public Polizisten(String[] val) {
-		super(val);
+		super(attr, val);
 		setTable(table);
 		setAttr(attr);
 	}
 
-	public String getUpdateQuery(String[] key) {
+	public String getUpdateQuery2(String[] key) {
 		return
 				"UPDATE " + table + "\n"+
 						" SET "+
-						attr[0] + "= " + getVal0() + ", " +
-						attr[1] + "='" + getVal1() + "', " +
-						attr[2] + "='" + getVal2() + "', " +
-						attr[3] + "='" + getVal3() + "', " +
-						attr[4] + "='" + MainController.formatDateToYMD(getVal4()) + "', " +
-						attr[5] + "='" + MainController.formatDateToYMD(getVal5()) + "', " +
-						attr[6] + "='" + getVal6() + "' " +
+						attr[0] + "='" + getVal0() + "'," +
+						attr[6] + "='" + getVal6() + "'" +
 						"\n WHERE " + attr[0] + "=" + key[0] + ";";
 	}
 
-	public String getInsertQuery() {
+	public String getInsertQuery2() {
 		return
 				"INSERT INTO " + table +
 						" VALUES (" +
-						"NULL" + ", " +
-						getVal1() + ", " +
-						getVal2() + ", " +
-						getVal3() + ", " +
-						"'" + MainController.formatDateToYMD(getVal4()) + "', " +
-						"'" + MainController.formatDateToYMD(getVal5()) + "', " +
-						getVal6() + " " +
+						"'" + getVal0() + "'," +
+						"'" + getVal6() + "'" +
 						");";
 	}
 

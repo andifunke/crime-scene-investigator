@@ -58,20 +58,21 @@ public class arbeitetan extends Tuplet {
         return
               "UPDATE " + table + "\n"+
                     " SET "+
-                    attr[0] + "= " + getVal0() + ", " +
-                    attr[1] + "='" + getVal1() + "', " +
-                    attr[2] + "='" + MainController.formatDateToYMD(getVal2()) + "', " +
-                    attr[3] + "='" + MainController.formatDateToYMD(getVal3()) + "'\n" +
-                    " WHERE " + attr[0] + "=" + key[0] + ";";
+                    attr[0] + "='" + getVal0() + "'," +
+                    attr[1] + "='" + getVal1() + "'," +
+                    attr[2] + "='" + MainController.formatDateToYMD(getVal2()) + "'," +
+                    attr[3] + "='" + MainController.formatDateToYMD(getVal3()) + "'" +
+                    "\n WHERE " + attr[0] + "='" + key[0] + "'" +
+                    "\n AND "   + attr[1] + "='" + key[1] + "';";
     }
 
     public String getInsertQuery() {
         return
               "INSERT INTO " + table +
                     " VALUES (" +
-                    getVal0() + ", " +
-                    getVal1() + ", " +
-                    "'" + MainController.formatDateToYMD(getVal2()) + "', " +
+                    "'" + getVal0() + "'," +
+                    "'" + getVal1() + "'," +
+                    "'" + MainController.formatDateToYMD(getVal2()) + "'," +
                     "'" + MainController.formatDateToYMD(getVal3()) + "'" +
                     ");";
     }

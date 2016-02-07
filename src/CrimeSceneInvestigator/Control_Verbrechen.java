@@ -38,10 +38,10 @@ public class Control_Verbrechen extends MainController {
         attrName[5] = attr[5];
 
         listTable = new String[4];
-        listTable[0] = "Verdaechtige";
-        listTable[1] = "Opfer";
-        listTable[2] = "";
-        listTable[3] = "";
+        listTable[0] = "Faelle";
+        listTable[1] = "Verdaechtige";
+        listTable[2] = "Opfer";
+        listTable[3] = "Bezirke";
 
         textAttr = new TextField[7];
         textAttr[0] = textAttr0;
@@ -53,6 +53,10 @@ public class Control_Verbrechen extends MainController {
         textAttr[6] = textAttr6;
 
         textAttr[0].setPromptText("* Pflichtfeld - wird automatisch generiert");
+        textAttr[1].setPromptText("* Pflichtfeld");
+        textAttr[3].setPromptText("* Pflichtfeld");
+        textAttr[4].setPromptText("* Pflichtfeld");
+        textAttr[5].setPromptText("* Pflichtfeld");
 
         filterAttr = new TextField[7];
         filterAttr[0] = filterAttr0;
@@ -77,6 +81,9 @@ public class Control_Verbrechen extends MainController {
 
         for (int i=0; i<attr.length; i++)
             labelAttr[i].setText(attrName[i]);
+        labelAttr[3].setText("Fall ID");
+        labelAttr[4].setText("Art");
+        labelAttr[5].setText("Bezirk ID");
 
         columnAttr = new TableColumn[7];
         columnAttr[0] = columnAttr0;
@@ -99,6 +106,8 @@ public class Control_Verbrechen extends MainController {
         for (int i=0; i<listTable.length; i++)
             if (labelList[i] != null)
                 labelList[i].setText(listTable[i]);
+        labelList[1].setText("Verdächtige");
+        labelList[3].setText("Bezirk");
 
         val = new String[attr.length];
         for (int i=0; i<attr.length; i++)
@@ -123,10 +132,33 @@ public class Control_Verbrechen extends MainController {
 
     void setUpLists() {
         Filter filter = new Filter(table, attr[0], val[0], true);
-        ol0 = SQLController.selectFromTable(listTable[0], filter);
+
+        String query0 =
+              "SELECT * FROM Faelle WHERE FallID = '" + val[3] + "';";
+        ol0 = SQLController.selectFromQuery(listTable[0], query0);
         list0.setItems(ol0);
-        ol1 = SQLController.selectFromTable(listTable[1], filter);
+
+        String query1 =
+              "SELECT Personen.PersonID,Personen.Name,Geschlecht,Nationalitaet,Geburtsdatum,Todesdatum\n" +
+                    "  FROM Personen,betrifftV\n" +
+                    "  WHERE Personen.PersonID = betrifftV.PersonID\n" +
+                    "  AND betrifftV.VerbrechenID = '" + val[0] + "';";
+        ol1 = SQLController.selectFromQuery(listTable[1], query1);
         list1.setItems(ol1);
+
+        String query2 =
+              "SELECT Personen.PersonID,Personen.Name,Geschlecht,Nationalitaet,Geburtsdatum,Todesdatum\n" +
+                    "  FROM Personen,betrifftO\n" +
+                    "  WHERE Personen.PersonID = betrifftO.PersonID\n" +
+                    "  AND betrifftO.VerbrechenID = '" + val[0] + "';";
+        ol2 = SQLController.selectFromQuery(listTable[2], query2);
+        list2.setItems(ol2);
+
+        String query3 =
+              "SELECT * FROM Bezirke WHERE BezirkID = '" + val[5] + "';";
+        ol3 = SQLController.selectFromQuery(listTable[3], query3);
+        list3.setItems(ol3);
+
     }
 
     @FXML
@@ -154,8 +186,16 @@ public class Control_Verbrechen extends MainController {
             System.out.println("kein " + attr[1] + " eingetragen");
             return;
         }
-        if (val[2].equals("")) {
-            System.out.println("kein " + attr[2] + " eingetragen");
+        if (val[3].equals("")) {
+            System.out.println("kein " + attr[3] + " eingetragen");
+            return;
+        }
+        if (val[4].equals("")) {
+            System.out.println("kein " + attr[4] + " eingetragen");
+            return;
+        }
+        if (val[5].equals("")) {
+            System.out.println("kein " + attr[5] + " eingetragen");
             return;
         }
         if (isNew) {

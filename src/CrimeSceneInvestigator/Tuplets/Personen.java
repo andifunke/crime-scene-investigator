@@ -51,6 +51,11 @@ public class Personen extends Tuplet {
         setTable(table);
     }
 
+    public Personen(String[] attr, String[] val) {
+        super(attr, val);
+        setTable(table);
+    }
+
     public String toString() {
         return
               "[" + getVal0() + "] " + getVal1();
@@ -60,11 +65,11 @@ public class Personen extends Tuplet {
         return
               "UPDATE " + table + "\n"+
                     " SET "+
-                    attr[0] + "= " + getVal0() + ", " +
-                    attr[1] + "='" + getVal1() + "', " +
-                    attr[2] + "='" + getVal2() + "', " +
-                    attr[3] + "='" + getVal3() + "', " +
-                    attr[4] + "='" + MainController.formatDateToYMD(getVal4()) + "', " +
+                    attr[0] + "='" + getVal0() + "'," +
+                    attr[1] + "='" + getVal1() + "'," +
+                    attr[2] + "='" + getVal2() + "'," +
+                    attr[3] + "='" + getVal3() + "'," +
+                    attr[4] + "='" + MainController.formatDateToYMD(getVal4()) + "'," +
                     attr[5] + "='" + MainController.formatDateToYMD(getVal5()) + "'" +
                     "\n WHERE " + attr[0] + "=" + key[0] + ";";
     }
@@ -73,11 +78,11 @@ public class Personen extends Tuplet {
         return
               "INSERT INTO " + table +
                     " VALUES (" +
-                    "NULL" + ", " +
-                    getVal1() + ", " +
-                    getVal2() + ", " +
-                    getVal3() + ", " +
-                    "'" + MainController.formatDateToYMD(getVal4()) + "', " +
+                    "NULL" + "," +
+                    "'" + getVal1() + "'," +
+                    "'" + getVal2() + "'," +
+                    "'" + getVal3() + "'," +
+                    "'" + MainController.formatDateToYMD(getVal4()) + "'," +
                     "'" + MainController.formatDateToYMD(getVal5()) + "'" +
                     ");";
     }

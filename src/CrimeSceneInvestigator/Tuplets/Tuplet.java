@@ -71,6 +71,8 @@ public abstract class Tuplet {
 
     public abstract String toString();
     public abstract String getUpdateQuery(String[] key);
+    public String getUpdateQuery2(String[] key) { return ""; }
     public abstract String getInsertQuery();
+    public String getInsertQuery2() { return ""; }
 
 }
