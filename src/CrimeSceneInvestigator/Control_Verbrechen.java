@@ -14,6 +14,8 @@ import java.util.Date;
 
 public class Control_Verbrechen extends MainController {
 
+    public static Control_Verbrechen controlMe;
+
     public Control_Verbrechen() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Verbrechen.fxml"));
         fxmlLoader.setRoot(this);
@@ -23,6 +25,8 @@ public class Control_Verbrechen extends MainController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        controlMe = this;
 
         table = Verbrechen.table;
 
@@ -106,6 +110,7 @@ public class Control_Verbrechen extends MainController {
         for (int i=0; i<listTable.length; i++)
             if (labelList[i] != null)
                 labelList[i].setText(listTable[i]);
+        labelList[0].setText("Fall");
         labelList[1].setText("Verdächtige");
         labelList[3].setText("Bezirk");
 
@@ -217,6 +222,9 @@ public class Control_Verbrechen extends MainController {
             filter(new ActionEvent());
             tableView.getSelectionModel().clearAndSelect(index);
         }
+        Control_Faelle.controlMe.filter(new ActionEvent());
+        Control_Bezirke.controlMe.filter(new ActionEvent());
+        Control_Arten.controlMe.filter(new ActionEvent());
     }
 
 }

@@ -14,6 +14,8 @@ import java.util.Date;
 
 public class Control_liegtin extends MainController {
 
+    public static Control_liegtin controlMe;
+
     public Control_liegtin() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/liegtin.fxml"));
         fxmlLoader.setRoot(this);
@@ -23,6 +25,8 @@ public class Control_liegtin extends MainController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        controlMe = this;
 
         table = liegtin.table;
 
@@ -168,6 +172,7 @@ public class Control_liegtin extends MainController {
             filter(new ActionEvent());
             tableView.getSelectionModel().clearAndSelect(index);
         }
+        Control_Bezirke.controlMe.filter(new ActionEvent());
     }
 
 }

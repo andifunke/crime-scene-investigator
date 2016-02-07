@@ -14,6 +14,8 @@ import java.util.Date;
 
 public class Control_Bezirke extends MainController {
 
+    public static Control_Bezirke controlMe;
+
     public Control_Bezirke() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Bezirke.fxml"));
         fxmlLoader.setRoot(this);
@@ -23,6 +25,8 @@ public class Control_Bezirke extends MainController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        controlMe = this;
 
         table = Bezirke.table;
 

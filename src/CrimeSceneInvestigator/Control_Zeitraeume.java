@@ -14,6 +14,8 @@ import java.util.Date;
 
 public class Control_Zeitraeume extends MainController {
 
+    public static Control_Zeitraeume controlMe;
+
     public Control_Zeitraeume() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Zeitraeume.fxml"));
         fxmlLoader.setRoot(this);
@@ -23,6 +25,8 @@ public class Control_Zeitraeume extends MainController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        controlMe = this;
 
         table = Zeitraeume.table;
 
@@ -101,6 +105,8 @@ public class Control_Zeitraeume extends MainController {
         for (int i=0; i<listTable.length; i++)
             if (labelList[i] != null)
                 labelList[i].setText(listTable[i]);
+        labelList[0].setText("Behörde");
+        labelList[1].setText("Polizist");
 
         val = new String[attr.length];
         for (int i=0; i<attr.length; i++)
@@ -192,6 +198,8 @@ public class Control_Zeitraeume extends MainController {
             filter(new ActionEvent());
             tableView.getSelectionModel().clearAndSelect(index);
         }
+        Control_Behoerden.controlMe.filter(new ActionEvent());
+        Control_Polizisten.controlMe.filter(new ActionEvent());
     }
 
 }

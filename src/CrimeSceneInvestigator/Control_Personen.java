@@ -10,11 +10,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.util.Date;
 
 public class Control_Personen extends MainController {
 
-    public static Control_Personen controlPersonen;
+    public static Control_Personen controlMe;
 
     public Control_Personen() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Personen.fxml"));
@@ -26,7 +25,7 @@ public class Control_Personen extends MainController {
             throw new RuntimeException(exception);
         }
 
-        controlPersonen = this;
+        controlMe = this;
 
         table = Personen.table;
 

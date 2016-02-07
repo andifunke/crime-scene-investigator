@@ -13,6 +13,8 @@ import java.io.IOException;
 
 public class Control_Arten extends MainController {
 
+    public static Control_Arten controlMe;
+
     public Control_Arten() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Arten.fxml"));
         fxmlLoader.setRoot(this);
@@ -22,6 +24,8 @@ public class Control_Arten extends MainController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        controlMe = this;
 
         table = Arten.table;
 

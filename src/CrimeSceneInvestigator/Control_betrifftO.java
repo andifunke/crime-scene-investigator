@@ -14,6 +14,8 @@ import java.util.Date;
 
 public class Control_betrifftO extends MainController {
 
+    public static Control_betrifftO controlMe;
+
     public Control_betrifftO() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/betrifftO.fxml"));
         fxmlLoader.setRoot(this);
@@ -23,6 +25,8 @@ public class Control_betrifftO extends MainController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        controlMe = this;
 
         table = betrifftO.table;
 
@@ -183,6 +187,8 @@ public class Control_betrifftO extends MainController {
             filter(new ActionEvent());
             tableView.getSelectionModel().clearAndSelect(index);
         }
+        Control_Opfer.controlMe.filter(new ActionEvent());
+        Control_Verbrechen.controlMe.filter(new ActionEvent());
     }
 
 }

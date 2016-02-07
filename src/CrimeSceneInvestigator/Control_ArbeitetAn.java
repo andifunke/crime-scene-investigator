@@ -14,6 +14,8 @@ import java.util.Date;
 
 public class Control_arbeitetan extends MainController {
 
+    public static Control_arbeitetan controlMe;
+
     public Control_arbeitetan() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/arbeitetan.fxml"));
         fxmlLoader.setRoot(this);
@@ -23,6 +25,8 @@ public class Control_arbeitetan extends MainController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        controlMe = this;
 
         table = arbeitetan.table;
 
@@ -190,6 +194,8 @@ public class Control_arbeitetan extends MainController {
             filter(new ActionEvent());
             tableView.getSelectionModel().clearAndSelect(index);
         }
+        Control_Faelle.controlMe.filter(new ActionEvent());
+        Control_Polizisten.controlMe.filter(new ActionEvent());
     }
 
 }

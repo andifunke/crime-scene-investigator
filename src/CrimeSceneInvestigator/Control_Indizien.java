@@ -14,6 +14,8 @@ import java.util.Date;
 
 public class Control_Indizien extends MainController {
 
+    public static Control_Indizien controlMe;
+
     public Control_Indizien() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Indizien.fxml"));
         fxmlLoader.setRoot(this);
@@ -23,6 +25,8 @@ public class Control_Indizien extends MainController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        controlMe = this;
 
         table = Indizien.table;
 
@@ -202,6 +206,8 @@ public class Control_Indizien extends MainController {
             filter(new ActionEvent());
             tableView.getSelectionModel().clearAndSelect(index);
         }
+        Control_Faelle.controlMe.filter(new ActionEvent());
+        Control_Polizisten.controlMe.filter(new ActionEvent());
     }
 
 }

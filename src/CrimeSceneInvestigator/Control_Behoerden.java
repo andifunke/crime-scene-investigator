@@ -14,6 +14,8 @@ import java.util.Date;
 
 public class Control_Behoerden extends MainController {
 
+    public static Control_Behoerden controlMe;
+
     public Control_Behoerden() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Behoerden.fxml"));
         fxmlLoader.setRoot(this);
@@ -23,6 +25,8 @@ public class Control_Behoerden extends MainController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        controlMe = this;
 
         table = Behoerden.table;
 
@@ -194,6 +198,7 @@ public class Control_Behoerden extends MainController {
             filter(new ActionEvent());
             tableView.getSelectionModel().clearAndSelect(index);
         }
+        Control_Bezirke.controlMe.filter(new ActionEvent());
     }
 
 }

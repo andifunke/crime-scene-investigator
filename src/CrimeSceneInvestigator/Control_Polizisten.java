@@ -10,10 +10,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.LinkedList;
 
 public class Control_Polizisten extends MainController {
+
+    public static Control_Polizisten controlMe;
 
     String query =
           "SELECT Polizisten.PersonID,Name,Geschlecht,Nationalitaet,Geburtsdatum,Todesdatum,Polizisten.Dienstgrad\n" +
@@ -29,6 +30,8 @@ public class Control_Polizisten extends MainController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        controlMe = this;
 
         table = Polizisten.table;
 
@@ -215,7 +218,7 @@ public class Control_Polizisten extends MainController {
             filter(new ActionEvent());
             tableView.getSelectionModel().clearAndSelect(index);
         }
-        Control_Personen.controlPersonen.filter(new ActionEvent());
+        Control_Personen.controlMe.filter(new ActionEvent());
     }
 
 }

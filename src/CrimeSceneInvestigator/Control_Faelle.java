@@ -14,6 +14,8 @@ import java.util.Date;
 
 public class Control_Faelle extends MainController {
 
+    public static Control_Faelle controlMe;
+
     public Control_Faelle() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Faelle.fxml"));
         fxmlLoader.setRoot(this);
@@ -23,6 +25,8 @@ public class Control_Faelle extends MainController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        controlMe = this;
 
         table = Faelle.table;
 

@@ -24,9 +24,74 @@
     <tabs>
         <Tab text="Fälle">
             <content>
-                <SplitPane>
-                    <Control_Faelle/>
-                </SplitPane>
+                <TabPane tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Fälle">
+                            <content>
+                                <SplitPane>
+                                    <Control_Faelle/>
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                        <Tab text="bearbeitet von">
+                            <content>
+                                <SplitPane>
+                                    <Control_arbeitetan/>
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Indizien">
+                            <content>
+                                <SplitPane>
+                                    <Control_Indizien/>
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Notizen">
+                            <content>
+                                <SplitPane>
+                                    <Control_Notizen/>
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </content>
+        </Tab>
+        <Tab text="Verbrechen">
+            <content>
+                <TabPane tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Verbrechen">
+                            <content>
+                                <SplitPane>
+                                    <Control_Verbrechen/>
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Arten">
+                            <content>
+                                <SplitPane>
+                                    <Control_Arten/>
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                        <Tab text="betrifft Verdächtige">
+                            <content>
+                                <SplitPane>
+                                    <Control_betrifftV/>
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                        <Tab text="betrifft Opfer">
+                            <content>
+                                <SplitPane>
+                                    <Control_betrifftO/>
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
             </content>
         </Tab>
         <Tab text="Personen">
@@ -65,77 +130,14 @@
                 </TabPane>
             </content>
         </Tab>
-        <Tab text="Verbrechen">
-            <content>
-                <SplitPane>
-                    <Control_Verbrechen/>
-                </SplitPane>
-            </content>
-        </Tab>
-        <Tab text="Arten">
-            <content>
-                <SplitPane>
-                    <Control_Arten/>
-                </SplitPane>
-            </content>
-        </Tab>
         <Tab text="Bezirke">
-            <content>
-                <SplitPane>
-                    <Control_Bezirke/>
-                </SplitPane>
-            </content>
-        </Tab>
-        <Tab text="Behoerden">
-            <content>
-                <SplitPane>
-                    <Control_Behoerden/>
-                </SplitPane>
-            </content>
-        </Tab>
-        <Tab text="Indizien">
-            <content>
-                <SplitPane>
-                    <Control_Indizien/>
-                </SplitPane>
-            </content>
-        </Tab>
-        <Tab text="Notizen">
-            <content>
-                <SplitPane>
-                    <Control_Notizen/>
-                </SplitPane>
-            </content>
-        </Tab>
-        <Tab text="Zeiträume">
-            <content>
-                <SplitPane>
-                    <Control_Zeitraeume/>
-                </SplitPane>
-            </content>
-        </Tab>
-        <Tab text="Beziehungen">
             <content>
                 <TabPane tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                        <Tab text="arbeitet an">
+                        <Tab text="Bezirke">
                             <content>
                                 <SplitPane>
-                                    <Control_arbeitetan/>
-                                </SplitPane>
-                            </content>
-                        </Tab>
-                        <Tab text="betrifft Verdächtige">
-                            <content>
-                                <SplitPane>
-                                    <Control_betrifftV/>
-                                </SplitPane>
-                            </content>
-                        </Tab>
-                        <Tab text="betrifft Opfer">
-                            <content>
-                                <SplitPane>
-                                    <Control_betrifftO/>
+                                    <Control_Bezirke/>
                                 </SplitPane>
                             </content>
                         </Tab>
@@ -143,6 +145,28 @@
                             <content>
                                 <SplitPane>
                                     <Control_liegtin/>
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </content>
+        </Tab>
+        <Tab text="Behörden">
+            <content>
+                <TabPane tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Behörden">
+                            <content>
+                                <SplitPane>
+                                    <Control_Behoerden/>
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Arbeitszeiträume">
+                            <content>
+                                <SplitPane>
+                                    <Control_Zeitraeume/>
                                 </SplitPane>
                             </content>
                         </Tab>
