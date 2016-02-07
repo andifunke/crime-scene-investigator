@@ -1,7 +1,7 @@
 package CrimeSceneInvestigator;
 
-import CrimeSceneInvestigator.Tuplets.betrifftV;
 import CrimeSceneInvestigator.Tuplets.Tuplet;
+import CrimeSceneInvestigator.Tuplets.Opfer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +12,10 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.Date;
 
-public class Control_betrifftV extends MainController {
+public class Control_Opfer extends MainController {
 
-    public Control_betrifftV() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/betrifftV.fxml"));
+    public Control_Opfer() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Opfer.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         try {
@@ -24,18 +24,21 @@ public class Control_betrifftV extends MainController {
             throw new RuntimeException(exception);
         }
 
-        table = betrifftV.table;
+        table = Opfer.table;
 
-        attr = new String[betrifftV.attr.length];
-        System.arraycopy(betrifftV.attr, 0, attr, 0, attr.length);
+        attr = new String[Opfer.attr.length];
+        System.arraycopy(Opfer.attr, 0, attr, 0, attr.length);
 
         attrName = new String[attr.length];
-        attrName[0] = attr[0];
+        attrName[0] = "ID";
         attrName[1] = attr[1];
         attrName[2] = attr[2];
+        attrName[3] = attr[3];
+        attrName[4] = attr[4];
+        attrName[5] = attr[5];
 
         listTable = new String[4];
-        listTable[0] = "";
+        listTable[0] = "Verbrechen";
         listTable[1] = "";
         listTable[2] = "";
         listTable[3] = "";
@@ -49,8 +52,7 @@ public class Control_betrifftV extends MainController {
         textAttr[5] = textAttr5;
         textAttr[6] = textAttr6;
 
-        textAttr[0].setPromptText("* Pflichtfeld");
-        textAttr[1].setPromptText("* Pflichtfeld");
+        textAttr[0].setPromptText("* Pflichtfeld - wird automatisch generiert");
 
         filterAttr = new TextField[7];
         filterAttr[0] = filterAttr0;
@@ -119,6 +121,12 @@ public class Control_betrifftV extends MainController {
         tableView.getSelectionModel().selectFirst();
     }
 
+    void setUpLists() {
+        Filter filter = new Filter(table, attr[0], val[0], true);
+        ol0 = SQLController.selectFromTable(listTable[0], filter);
+        list0.setItems(ol0);
+    }
+
     @FXML
     void save(ActionEvent actionEvent) {
         String[] keys = new String[10];
@@ -149,7 +157,7 @@ public class Control_betrifftV extends MainController {
             return;
         }
         if (isNew) {
-            Tuplet tuplet = new betrifftV(val);
+            Tuplet tuplet = new Opfer(val);
             SQLController.insert(tuplet);
             resetFilter(new ActionEvent());
             tableView.getSelectionModel().clearSelection();

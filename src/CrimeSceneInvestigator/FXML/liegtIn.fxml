@@ -19,263 +19,120 @@
 
 <fx:root type="javafx.scene.control.SplitPane" xmlns:fx="http://javafx.com/fxml">
     <SplitPane dividerPositions="0.25" orientation="VERTICAL">
-        <items>
-            <TableView fx:id="TableFaelle"
-                       editable="true">
-                <columns>
-                    <TableColumn fx:id="ColumnFaelleFallID"
-                                 text="Fall ID"
-                                 prefWidth="70.0" minWidth="-1.0">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="fallID" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn fx:id="ColumnFaelleName"
-                                 text="val1"
-                                 prefWidth="410.0" minWidth="-1.0">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="name" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn fx:id="ColumnFaelleEroeffnungsdatum"
-                                 text="eröffnet"
-                                 prefWidth="150.0" minWidth="-1.0">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="eroeffnungsdatum" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn fx:id="ColumnFaelleEnddatum"
-                                 text="geschlossen"
-                                 prefWidth="150.0" minWidth="-1.0">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="enddatum" />
-                        </cellValueFactory>
-                    </TableColumn>
-                </columns>
-                <!--							<sortOrder>
-                                                <fx:reference source="ColumnFaelleFallID"/>
-                                            </sortOrder>-->
-            </TableView>
-            <VBox>
-                <children>
-                    <ToolBar prefHeight="40.0" minHeight="-Infinity" maxHeight="-Infinity"
-                             nodeOrientation="LEFT_TO_RIGHT" VBox.vgrow="NEVER">
-                        <items>
-                            <Button id="ButtonDefault"
-                                    text="Neu..."
-                                    onAction="#newTuplet"
-                                    prefWidth="80.0" minWidth="-Infinity" maxWidth="-Infinity"
-                                    prefHeight="25.0" minHeight="-Infinity" maxHeight="-Infinity"
-                                    mnemonicParsing="false" />
-                            <Button id="ButtonDefault"
-                                    text="Speichern..."
-                                    onAction="#saveTuplet"
-                                    prefWidth="80.0" minWidth="-Infinity" maxWidth="-Infinity"
-                                    prefHeight="25.0" minHeight="-Infinity" maxHeight="-Infinity"
-                                    mnemonicParsing="false" />
-                            <Button id="ButtonDefault"
-                                    text="Löschen..."
-                                    onAction="#deleteTuplet"
-                                    prefWidth="80.0" minWidth="-Infinity" maxWidth="-Infinity"
-                                    prefHeight="25.0" minHeight="-Infinity" maxHeight="-Infinity"
-                                    mnemonicParsing="false" />
-                        </items>
-                    </ToolBar>
-                    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" vbarPolicy="ALWAYS">
-                        <content>
-                            <GridPane id="EditorGrid"
-                                      minWidth="400.0"
-                                      alignment="CENTER">
-                                <columnConstraints>
-                                    <ColumnConstraints prefWidth="92.0" minWidth="-Infinity" maxWidth="-Infinity"
-                                                       halignment="RIGHT" hgrow="NEVER" fillWidth="false" />
-                                    <ColumnConstraints prefWidth="550.0" minWidth="10.0"
-                                                       halignment="LEFT" hgrow="SOMETIMES" />
-                                    <ColumnConstraints prefWidth="150.0" minWidth="-Infinity" maxWidth="-Infinity"
-                                                       halignment="CENTER" hgrow="NEVER" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                    <RowConstraints vgrow="NEVER" />
-                                    <RowConstraints vgrow="NEVER" />
-                                    <RowConstraints vgrow="NEVER" />
-                                    <RowConstraints vgrow="NEVER" />
-                                    <RowConstraints vgrow="NEVER" />
-                                    <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
-                                    <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
-                                    <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
-                                    <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
-                                    <RowConstraints vgrow="NEVER" />
-                                </rowConstraints>
-                                <children>
+        <TableView fx:id="tableView"
+                   editable="true">
+            <columns>
+                <TableColumn fx:id="columnAttr0"
+                             prefWidth="100.0" minWidth="-1.0">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="val0"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="columnAttr1"
+                             prefWidth="100.0" minWidth="-1.0">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="val1"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+        <VBox>
+            <ToolBar prefHeight="40.0" minHeight="-Infinity" maxHeight="-Infinity"
+                     nodeOrientation="LEFT_TO_RIGHT" VBox.vgrow="NEVER">
+                <Button id="ButtonDefault"
+                        text="Neu..."
+                        onAction="#neu"
+                        prefWidth="80.0" minWidth="-Infinity" maxWidth="-Infinity"
+                        prefHeight="25.0" minHeight="-Infinity" maxHeight="-Infinity"
+                        mnemonicParsing="false"/>
+                <Button id="ButtonDefault"
+                        text="Speichern..."
+                        onAction="#save"
+                        prefWidth="80.0" minWidth="-Infinity" maxWidth="-Infinity"
+                        prefHeight="25.0" minHeight="-Infinity" maxHeight="-Infinity"
+                        mnemonicParsing="false"/>
+                <Button id="ButtonDefault"
+                        text="Löschen..."
+                        onAction="#delete"
+                        prefWidth="80.0" minWidth="-Infinity" maxWidth="-Infinity"
+                        prefHeight="25.0" minHeight="-Infinity" maxHeight="-Infinity"
+                        mnemonicParsing="false"/>
+            </ToolBar>
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" vbarPolicy="ALWAYS">
+                <GridPane id="EditorGrid"
+                          minWidth="400.0"
+                          alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints prefWidth="92.0" minWidth="-Infinity" maxWidth="-Infinity"
+                                           halignment="RIGHT" hgrow="NEVER" fillWidth="false"/>
+                        <ColumnConstraints prefWidth="550.0" minWidth="10.0"
+                                           halignment="LEFT" hgrow="SOMETIMES"/>
+                        <ColumnConstraints prefWidth="150.0" minWidth="-Infinity" maxWidth="-Infinity"
+                                           halignment="CENTER" hgrow="NEVER"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints vgrow="NEVER"/>
+                        <RowConstraints vgrow="NEVER"/>
+                        <RowConstraints vgrow="NEVER"/>
+                        <RowConstraints vgrow="NEVER"/>
+                        <RowConstraints vgrow="NEVER"/>
+                        <RowConstraints vgrow="NEVER"/>
+                        <RowConstraints vgrow="NEVER"/>
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES"/>
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES"/>
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES"/>
+                        <RowConstraints valignment="TOP" vgrow="SOMETIMES"/>
+                        <RowConstraints vgrow="NEVER"/>
+                    </rowConstraints>
 
-                                    <!-- Zeile 0 -->
-                                    <Label id="LabelFilter"
-                                           text="Filter"
-                                           alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER"
-                                           GridPane.columnIndex="2" GridPane.rowIndex="0" />
-                                    <!-- Zeile 1 -->
-                                    <Label id="LabelAttribute"
-                                           text="ID"
-                                           GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                                    <TextField id="TextFieldAttribute"
-                                               fx:id="FaelleFallID"
-                                               GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField id="TextFieldFilter"
-                                               fx:id="FilterFaelleFallID"
-                                               GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                    <HBox id="HBoxLabel"
+                          alignment="CENTER_RIGHT"
+                          GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label id="LabelAttribute"
+                               fx:id="labelAttr0"/>
+                    </HBox>
+                    <TextField id="TextFieldAttribute"
+                               fx:id="textAttr0"
+                               GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    <TextField id="TextFieldFilter"
+                               fx:id="filterAttr0"
+                               onAction="#filter"
+                               GridPane.columnIndex="2" GridPane.rowIndex="0"/>
 
-                                    <!-- Zeile 2 -->
-                                    <Label id="LabelAttribute"
-                                           text="val1"
-                                           GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                                    <TextField id="TextFieldAttribute"
-                                               fx:id="FaelleName"
-                                               GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField id="TextFieldFilter"
-                                               fx:id="FilterFaelleName"
-                                               GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                    <HBox id="HBoxAttribute"
+                          alignment="CENTER_RIGHT"
+                          GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Label id="LabelAttribute"
+                               fx:id="labelAttr1"/>
+                    </HBox>
+                    <TextField id="TextFieldAttribute"
+                               fx:id="textAttr1"
+                               GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    <TextField id="TextFieldFilter"
+                               fx:id="filterAttr1"
+                               onAction="#filter"
+                               GridPane.columnIndex="2" GridPane.rowIndex="1"/>
 
-                                    <!-- Zeile 3 -->
-                                    <Label id="LabelAttribute"
-                                           text="eröffnet"
-                                           GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                                    <DatePicker id="DatePickerAttribute"
-                                                fx:id="FaelleEroeffnungsdatum"
-                                                GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField id="TextFieldFilter"
-                                               fx:id="FilterFaelleEroeffnungsdatum"
-                                               GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                    <HBox id="HBoxForButtons2"
+                          alignment="TOP_CENTER"
+                          GridPane.columnIndex="2" GridPane.rowIndex="7">
+                        <Button id="ButtonFilter"
+                                fx:id="filterButton"
+                                onAction="#filter"
+                                text="Filter"
+                                prefWidth="70.0"
+                                alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER"/>
+                        <Button id="ButtonFilter"
+                                fx:id="resetButton"
+                                onAction="#resetFilter"
+                                text="Reset"
+                                prefWidth="70.0"
+                                alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER"/>
+                    </HBox>
 
-                                    <!-- Zeile 4 -->
-                                    <Label id="LabelAttribute"
-                                           text="geschlossen"
-                                           GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                                    <DatePicker id="DatePickerAttribute"
-                                                fx:id="FaelleEnddatum"
-                                                GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField id="TextFieldFilter"
-                                               fx:id="FilterFaelleEnddatum"
-                                               GridPane.columnIndex="2" GridPane.rowIndex="4" />
-
-                                    <!-- Zeile 5 -->
-                                    <Label id="LabelAttribute"
-                                           text="Verbrechen"
-                                           GridPane.columnIndex="0" GridPane.rowIndex="5" />
-                                    <VBox id="VBoxAttribute"
-                                          GridPane.columnIndex="1" GridPane.rowIndex="5">
-                                        <children>
-                                            <ListView id="ListViewAttribute"
-                                                      fx:id="FaelleVerbrechen"
-                                                      prefHeight="90.0" minHeight="20.0" />
-                                            <HBox id="HBoxForButtons">
-                                                <Button id="ButtonHinzufuegen"
-                                                        text="anzeigen"
-                                                        onAction="#goToVerbrechen"
-                                                        mnemonicParsing="false" />
-                                                <Button id="ButtonHinzufuegen"
-                                                        text="hinzufügen"
-                                                        onAction="#newVerbrechen"
-                                                        mnemonicParsing="false" />
-                                            </HBox>
-                                        </children>
-                                    </VBox>
-                                    <TextField id="TextFieldFilter"
-                                               fx:id="FilterFaelleVerbrechen"
-                                               GridPane.columnIndex="2" GridPane.rowIndex="5" />
-
-                                    <!-- Zeile 6 -->
-                                    <Label id="LabelAttribute"
-                                           text="Notizen"
-                                           GridPane.columnIndex="0" GridPane.rowIndex="6" />
-                                    <VBox id="VBoxAttribute"
-                                          GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                        <children>
-                                            <ListView id="ListViewAttribute"
-                                                      fx:id="FaelleNotizen"
-                                                      prefHeight="90.0" minHeight="20.0" />
-                                            <HBox id="HBoxForButtons">
-                                                <Button id="ButtonHinzufuegen"
-                                                        text="anzeigen"
-                                                        onAction="#goToVerbrechen"
-                                                        mnemonicParsing="false" />
-                                                <Button id="ButtonHinzufuegen"
-                                                        text="hinzufügen"
-                                                        onAction="#newVerbrechen"
-                                                        mnemonicParsing="false" />
-                                            </HBox>
-                                        </children>
-                                    </VBox>
-                                    <TextField id="TextFieldFilter"
-                                               fx:id="FilterFaelleNotizen"
-                                               GridPane.columnIndex="2" GridPane.rowIndex="6" />
-
-                                    <!-- Zeile 7 -->
-                                    <Label id="LabelAttribute"
-                                           text="Indizien"
-                                           GridPane.columnIndex="0" GridPane.rowIndex="7" />
-                                    <VBox id="VBoxAttribute"
-                                          GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                        <children>
-                                            <ListView id="ListViewAttribute"
-                                                      fx:id="FaelleIndizien"
-                                                      prefHeight="90.0" minHeight="20.0" />
-                                            <HBox id="HBoxForButtons">
-                                                <Button id="ButtonHinzufuegen"
-                                                        text="anzeigen"
-                                                        onAction="#goToVerbrechen"
-                                                        mnemonicParsing="false" />
-                                                <Button id="ButtonHinzufuegen"
-                                                        text="hinzufügen"
-                                                        onAction="#newVerbrechen"
-                                                        mnemonicParsing="false" />
-                                            </HBox>
-                                        </children>
-                                    </VBox>
-                                    <TextField id="TextFieldFilter"
-                                               fx:id="FilterFaelleIndizien"
-                                               GridPane.columnIndex="2" GridPane.rowIndex="7" />
-
-                                    <!-- Zeile 8 -->
-                                    <Label id="LabelAttribute" text="Polizisten"
-                                           GridPane.columnIndex="0" GridPane.rowIndex="8" />
-                                    <VBox id="VBoxAttribute"
-                                          GridPane.columnIndex="1" GridPane.rowIndex="8">
-                                        <children>
-                                            <ListView id="ListViewAttribute"
-                                                      fx:id="FaellePolizisten"
-                                                      prefHeight="90.0" minHeight="20.0" />
-                                            <HBox id="HBoxForButtons">
-                                                <Button id="ButtonHinzufuegen"
-                                                        text="anzeigen"
-                                                        onAction="#goToVerbrechen"
-                                                        mnemonicParsing="false" />
-                                                <Button id="ButtonHinzufuegen"
-                                                        text="hinzufügen"
-                                                        onAction="#newVerbrechen"
-                                                        mnemonicParsing="false" />
-                                            </HBox>
-                                        </children>
-                                    </VBox>
-                                    <TextField id="TextFieldFilter"
-                                               fx:id="FilterFaellePolizisten"
-                                               GridPane.columnIndex="2" GridPane.rowIndex="8" />
-
-                                    <!-- Zeile 9 -->
-                                    <HBox id="HBoxForButtons"
-                                          nodeOrientation="RIGHT_TO_LEFT"
-                                          GridPane.columnIndex="1" GridPane.rowIndex="9">
-                                        <Button id="ButtonHinzufuegen"
-                                                text="Fall schließen"
-                                                onAction="#FallSchliessen"
-                                                mnemonicParsing="false" />
-                                    </HBox>
-                                </children>
-                            </GridPane>
-                        </content>
-                    </ScrollPane>
-                    <!-- Status Line -->
-                </children>
-            </VBox>
-        </items>
+                </GridPane>
+            </ScrollPane>
+            <!-- Status Line -->
+        </VBox>
     </SplitPane>
 </fx:root>

@@ -119,6 +119,9 @@ public class MainController extends SplitPane {
 
     @FXML
     void neu(ActionEvent actionEvent) {
+        neuDefault();
+    }
+    void neuDefault() {
         isNew = true;
         tableView.getSelectionModel().clearSelection();
         reset();

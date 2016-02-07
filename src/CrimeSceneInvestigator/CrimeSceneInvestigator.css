@@ -1,7 +1,7 @@
 #EditorGrid {
     -fx-vgap: 10;
     -fx-hgap: 10;
-    -fx-padding: 0 10 10 10;
+    -fx-padding: 10 10 10 10;
 }
 
 #LabelAttribute {

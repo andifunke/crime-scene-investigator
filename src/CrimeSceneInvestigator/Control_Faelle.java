@@ -97,7 +97,8 @@ public class Control_Faelle extends MainController {
         labelList[3] = labelList3;
 
         for (int i=0; i<listTable.length; i++)
-            labelList[i].setText(listTable[i]);
+            if (labelList[i] != null)
+                labelList[i].setText(listTable[i]);
 
         val = new String[attr.length];
         for (int i=0; i<attr.length; i++)
@@ -129,20 +130,18 @@ public class Control_Faelle extends MainController {
         ol2 = SQLController.selectFromTable(listTable[2], filter);
         list2.setItems(ol2);
         String query =
-                    "SELECT Polizisten.PersonID,Dienstgrad,Name,Geschlecht,Nationalitaet,Geburtsdatum,Todesdatum\n" +
+                    "SELECT Polizisten.PersonID,Name,Geschlecht,Nationalitaet,Geburtsdatum,Todesdatum,Dienstgrad\n" +
                     "  FROM Polizisten,Personen,arbeitetan\n" +
                     "  WHERE Polizisten.PersonID = Personen.PersonID\n" +
                     "  AND Polizisten.PersonID = arbeitetan.PersonID\n" +
                     "  AND arbeitetan.FallID = " + val[0] + ";";
-        //ol3 = SQLController.selectFromQuery(list3table, query);
-            //list3.setItems(ol3);
+        ol3 = SQLController.selectFromQuery(listTable[3], query);
+        list3.setItems(ol3);
     }
 
     @FXML
     void neu(ActionEvent actionEvent) {
-        isNew = true;
-        tableView.getSelectionModel().clearSelection();
-        reset();
+        neuDefault();
         val[2] = formatter.format(new Date());
         textAttr2.setText(val[2]);
     }

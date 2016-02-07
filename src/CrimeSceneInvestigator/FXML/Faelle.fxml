@@ -23,25 +23,25 @@
                    editable="true">
             <columns>
                 <TableColumn fx:id="columnAttr0"
-                             prefWidth="70.0" minWidth="-1.0">
+                             prefWidth="100.0" minWidth="-1.0">
                     <cellValueFactory>
                         <PropertyValueFactory property="val0"/>
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn fx:id="columnAttr1"
-                             prefWidth="410.0" minWidth="-1.0">
+                             prefWidth="100.0" minWidth="-1.0">
                     <cellValueFactory>
                         <PropertyValueFactory property="val1"/>
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn fx:id="columnAttr2"
-                             prefWidth="150.0" minWidth="-1.0">
+                             prefWidth="100.0" minWidth="-1.0">
                     <cellValueFactory>
                         <PropertyValueFactory property="val2"/>
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn fx:id="columnAttr3"
-                             prefWidth="150.0" minWidth="-1.0">
+                             prefWidth="100.0" minWidth="-1.0">
                     <cellValueFactory>
                         <PropertyValueFactory property="val3"/>
                     </cellValueFactory>
@@ -88,6 +88,8 @@
                         <RowConstraints vgrow="NEVER"/>
                         <RowConstraints vgrow="NEVER"/>
                         <RowConstraints vgrow="NEVER"/>
+                        <RowConstraints vgrow="NEVER"/>
+                        <RowConstraints vgrow="NEVER"/>
                         <RowConstraints valignment="TOP" vgrow="SOMETIMES"/>
                         <RowConstraints valignment="TOP" vgrow="SOMETIMES"/>
                         <RowConstraints valignment="TOP" vgrow="SOMETIMES"/>
@@ -95,79 +97,67 @@
                         <RowConstraints vgrow="NEVER"/>
                     </rowConstraints>
 
-                    <!-- Zeile 0 -->
-                    <!-- Zeile 1 -->
                     <HBox id="HBoxLabel"
                           alignment="CENTER_RIGHT"
-                          GridPane.columnIndex="0" GridPane.rowIndex="1">
+                          GridPane.columnIndex="0" GridPane.rowIndex="0">
                         <Label id="LabelAttribute"
                                fx:id="labelAttr0"/>
-                        <Label id="Asterisk"
-                               text=" *"/>
                     </HBox>
                     <TextField id="TextFieldAttribute"
                                fx:id="textAttr0"
-                               GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                               GridPane.columnIndex="1" GridPane.rowIndex="0"/>
                     <TextField id="TextFieldFilter"
                                fx:id="filterAttr0"
                                onAction="#filter"
+                               GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+
+                    <HBox id="HBoxAttribute"
+                          alignment="CENTER_RIGHT"
+                          GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Label id="LabelAttribute"
+                               fx:id="labelAttr1"/>
+                    </HBox>
+                    <TextField id="TextFieldAttribute"
+                               fx:id="textAttr1"
+                               GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    <TextField id="TextFieldFilter"
+                               fx:id="filterAttr1"
+                               onAction="#filter"
                                GridPane.columnIndex="2" GridPane.rowIndex="1"/>
 
-                    <!-- Zeile 2 -->
                     <HBox id="HBoxAttribute"
                           alignment="CENTER_RIGHT"
                           GridPane.columnIndex="0" GridPane.rowIndex="2">
                         <Label id="LabelAttribute"
-                               fx:id="labelAttr1"/>
-                        <Label id="Asterisk"
-                               text=" *"/>
-                    </HBox>
-                    <TextField id="TextFieldAttribute"
-                               fx:id="textAttr1"
-                               GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                    <TextField id="TextFieldFilter"
-                               fx:id="filterAttr1"
-                               onAction="#filter"
-                               GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-
-                    <!-- Zeile 3 -->
-                    <HBox id="HBoxAttribute"
-                          alignment="CENTER_RIGHT"
-                          GridPane.columnIndex="0" GridPane.rowIndex="3">
-                        <Label id="LabelAttribute"
                                fx:id="labelAttr2"/>
-                        <Label id="Asterisk"
-                               text=" *"/>
                     </HBox>
                     <TextField id="TextFieldAttribute"
                                fx:id="textAttr2"
-                               GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                               GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                     <TextField id="TextFieldFilter"
                                fx:id="filterAttr2"
                                onAction="#filter"
-                               GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                               GridPane.columnIndex="2" GridPane.rowIndex="2"/>
 
-                    <!-- Zeile 4 -->
                     <HBox id="HBoxAttribute"
                           alignment="CENTER_RIGHT"
-                          GridPane.columnIndex="0" GridPane.rowIndex="4">
+                          GridPane.columnIndex="0" GridPane.rowIndex="3">
                         <Label id="LabelAttribute"
                                fx:id="labelAttr3"/>
                     </HBox>
                     <TextField id="TextFieldAttribute"
                                fx:id="textAttr3"
-                               GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                               GridPane.columnIndex="1" GridPane.rowIndex="3"/>
                     <TextField id="TextFieldFilter"
                                fx:id="filterAttr3"
                                onAction="#filter"
-                               GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+                               GridPane.columnIndex="2" GridPane.rowIndex="3"/>
 
-                    <!-- Zeile 5 -->
                     <Label id="LabelAttribute"
                            fx:id="labelList0"
-                           GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                           GridPane.columnIndex="0" GridPane.rowIndex="7"/>
                     <VBox id="VBoxAttribute"
-                          GridPane.columnIndex="1" GridPane.rowIndex="5">
+                          GridPane.columnIndex="1" GridPane.rowIndex="7">
                         <ListView id="ListViewAttribute"
                                   fx:id="list0"
                                   prefHeight="80.0" minHeight="20.0"/>
@@ -184,29 +174,12 @@
                                     mnemonicParsing="false"/>
                         </HBox>
                     </VBox>
-                    <HBox id="HBoxForButtons2"
-                          alignment="TOP_CENTER"
-                          GridPane.columnIndex="2" GridPane.rowIndex="5">
-                        <Button id="ButtonFilter"
-                                fx:id="filterButton"
-                                onAction="#filter"
-                                text="Filter"
-                                prefWidth="70.0"
-                                alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER"/>
-                        <Button id="ButtonFilter"
-                                fx:id="resetButton"
-                                onAction="#resetFilter"
-                                text="Reset"
-                                prefWidth="70.0"
-                                alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER"/>
-                    </HBox>
 
-                    <!-- Zeile 6 -->
                     <Label id="LabelAttribute"
                            fx:id="labelList1"
-                           GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+                           GridPane.columnIndex="0" GridPane.rowIndex="8"/>
                     <VBox id="VBoxAttribute"
-                          GridPane.columnIndex="1" GridPane.rowIndex="6">
+                          GridPane.columnIndex="1" GridPane.rowIndex="8">
                         <ListView id="ListViewAttribute"
                                   fx:id="list1"
                                   prefHeight="80.0" minHeight="20.0"/>
@@ -224,12 +197,11 @@
                         </HBox>
                     </VBox>
 
-                    <!-- Zeile 7 -->
                     <Label id="LabelAttribute"
                            fx:id="labelList2"
-                           GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+                           GridPane.columnIndex="0" GridPane.rowIndex="9"/>
                     <VBox id="VBoxAttribute"
-                          GridPane.columnIndex="1" GridPane.rowIndex="7">
+                          GridPane.columnIndex="1" GridPane.rowIndex="9">
                         <ListView id="ListViewAttribute"
                                   fx:id="list2"
                                   prefHeight="80.0" minHeight="20.0"/>
@@ -247,14 +219,13 @@
                         </HBox>
                     </VBox>
 
-                    <!-- Zeile 8 -->
                     <Label id="LabelAttribute"
                            fx:id="labelList3"
-                           GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+                           GridPane.columnIndex="0" GridPane.rowIndex="10"/>
                     <VBox id="VBoxAttribute"
-                          GridPane.columnIndex="1" GridPane.rowIndex="8">
+                          GridPane.columnIndex="1" GridPane.rowIndex="10">
                         <ListView id="ListViewAttribute"
-                                  fx:id="listList3"
+                                  fx:id="list3"
                                   prefHeight="80.0" minHeight="20.0"/>
                         <HBox id="HBoxForButtons">
                             <Button id="ButtonHinzufuegen"
@@ -269,18 +240,24 @@
                                     mnemonicParsing="false"/>
                         </HBox>
                     </VBox>
-                    <HBox id="HBoxForButtons"
-                          nodeOrientation="RIGHT_TO_LEFT"
-                          alignment="BOTTOM_CENTER"
-                          GridPane.columnIndex="2" GridPane.rowIndex="8">
-                        <Button id="ButtonDefault"
-                                text="Fall schließen"
-                                onAction="#FallSchliessen"
-                                prefWidth="90.0"
-                                mnemonicParsing="false"/>
+
+                    <HBox id="HBoxForButtons2"
+                          alignment="TOP_CENTER"
+                          GridPane.columnIndex="2" GridPane.rowIndex="7">
+                        <Button id="ButtonFilter"
+                                fx:id="filterButton"
+                                onAction="#filter"
+                                text="Filter"
+                                prefWidth="70.0"
+                                alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER"/>
+                        <Button id="ButtonFilter"
+                                fx:id="resetButton"
+                                onAction="#resetFilter"
+                                text="Reset"
+                                prefWidth="70.0"
+                                alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER"/>
                     </HBox>
 
-                    <!-- Zeile 9 -->
                 </GridPane>
             </ScrollPane>
             <!-- Status Line -->

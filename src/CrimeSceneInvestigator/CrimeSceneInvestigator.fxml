@@ -16,8 +16,11 @@
 
 <?import CrimeSceneInvestigator.Control_betrifftV?>
 <?import CrimeSceneInvestigator.Control_liegtin?>
+<?import CrimeSceneInvestigator.Control_Polizisten?>
+<?import CrimeSceneInvestigator.Control_Verdaechtige?>
+<?import CrimeSceneInvestigator.Control_Opfer?>
 <TabPane fx:controller="CrimeSceneInvestigator.MainController"
-        prefHeight="950.0" prefWidth="800.0"
+         prefHeight="950.0" prefWidth="800.0"
          tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 	<tabs>
 		<Tab text="Fälle">
@@ -29,9 +32,38 @@
         </Tab>
         <Tab text="Personen">
             <content>
-                <SplitPane>
-                    <Control_Personen />
-                </SplitPane>
+                <TabPane tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="alle Personen">
+                            <content>
+                                <SplitPane>
+                                    <Control_Personen />
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Polizisten">
+                            <content>
+                                <SplitPane>
+                                    <Control_Polizisten />
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Verdächtige">
+                            <content>
+                                <SplitPane>
+                                    <Control_Verdaechtige />
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Opfer">
+                            <content>
+                                <SplitPane>
+                                    <Control_Opfer />
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
             </content>
         </Tab>
         <Tab text="Verbrechen">
