@@ -2,19 +2,25 @@ package CrimeSceneInvestigator;
 
 import CrimeSceneInvestigator.Tuplets.Verbrechen;
 import CrimeSceneInvestigator.Tuplets.Tuplet;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.LinkedList;
 
 public class Control_Verbrechen extends MainController {
 
     public static Control_Verbrechen controlMe;
+
+    @FXML
+    TextField filterList3 = new TextField();
 
     public Control_Verbrechen() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Verbrechen.fxml"));
@@ -73,6 +79,8 @@ public class Control_Verbrechen extends MainController {
 
         for (int i=0; i<attr.length; i++)
             filterAttr[i].setPromptText("nach '" + attrName[i] + "' filtern");
+
+        filterList3.setPromptText("nach Bezirk filtern");
 
         labelAttr = new Label[7];
         labelAttr[0] = labelAttr0;
@@ -226,5 +234,50 @@ public class Control_Verbrechen extends MainController {
         Control_Bezirke.controlMe.filter(new ActionEvent());
         Control_Arten.controlMe.filter(new ActionEvent());
     }
+
+    @FXML
+    void filter(ActionEvent actionEvent) {
+        LinkedList<Filter> filterList = new LinkedList<>();
+
+        String[] filters = new String[attr.length];
+        for (int i=0; i<attr.length; i++) {
+            filters[i] = filterAttr[i].getText().trim();
+        }
+        for (int i=0; i<attr.length; i++) {
+            if (!filters[i].equals("")) {
+                boolean strict = false;
+                if (attr[i].matches("ID")) {
+                    strict = strictIdFilterPolicy;
+                }
+                filterList.add(new Filter(table, attr[i], filters[i], strict));
+            }
+        }
+        String bezirkeFilter = filterList3.getText().trim();
+        if (!bezirkeFilter.equals("")) {
+            String bezirkQuery = "SELECT * FROM Bezirke WHERE Name LIKE '%" + bezirkeFilter + "%';";
+            ObservableList<Tuplet> bez = SQLController.selectFromQuery("Bezirke", bezirkQuery);
+            String bezID = bez.get(0).getVal0();
+            filterList.add(new Filter(table, attr[5], bezID, true));
+        }
+        if (!filterList.isEmpty()) {
+            refreshTable(filterList);
+        }
+        else {
+            refreshTable();
+        }
+        tableView.getSelectionModel().clearSelection();
+        tableView.getSelectionModel().selectFirst();
+    }
+
+    @FXML
+    void resetFilter(ActionEvent actionEvent) {
+        for (int i=0; i<attr.length; i++)
+            filterAttr[i].clear();
+        filterList3.clear();
+        filter(new ActionEvent());
+    }
+
+
+
 
 }
