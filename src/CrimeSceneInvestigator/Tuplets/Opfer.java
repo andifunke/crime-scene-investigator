@@ -1,12 +1,5 @@
 package CrimeSceneInvestigator.Tuplets;
 
-import CrimeSceneInvestigator.MainController;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 /**
  CREATE TABLE Opfer (
  PersonID         INTEGER PRIMARY KEY,

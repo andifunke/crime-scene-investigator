@@ -10,7 +10,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.util.Date;
 
 public class Control_Bezirke extends MainController {
 

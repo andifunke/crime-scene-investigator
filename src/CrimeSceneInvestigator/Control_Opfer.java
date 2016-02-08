@@ -1,7 +1,7 @@
 package CrimeSceneInvestigator;
 
-import CrimeSceneInvestigator.Tuplets.Tuplet;
 import CrimeSceneInvestigator.Tuplets.Opfer;
+import CrimeSceneInvestigator.Tuplets.Tuplet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

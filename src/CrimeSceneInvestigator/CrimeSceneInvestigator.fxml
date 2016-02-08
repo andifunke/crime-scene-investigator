@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import CrimeSceneInvestigator.*?>
 <?import javafx.scene.control.*?>
 <?import java.net.URL?>
-<?import CrimeSceneInvestigator.Control_Faelle?>
-<?import CrimeSceneInvestigator.Control_Personen?>
-<?import CrimeSceneInvestigator.Control_Verbrechen?>
-<?import CrimeSceneInvestigator.Control_Bezirke?>
-<?import CrimeSceneInvestigator.Control_Arten?>
-<?import CrimeSceneInvestigator.Control_Behoerden?>
-<?import CrimeSceneInvestigator.Control_Indizien?>
-<?import CrimeSceneInvestigator.Control_Notizen?>
-<?import CrimeSceneInvestigator.Control_Zeitraeume?>
-<?import CrimeSceneInvestigator.Control_arbeitetan?>
-<?import CrimeSceneInvestigator.Control_betrifftO?>
-<?import CrimeSceneInvestigator.Control_betrifftV?>
-<?import CrimeSceneInvestigator.Control_liegtin?>
-<?import CrimeSceneInvestigator.Control_Polizisten?>
-<?import CrimeSceneInvestigator.Control_Verdaechtige?>
-<?import CrimeSceneInvestigator.Control_Opfer?>
 <TabPane fx:controller="CrimeSceneInvestigator.MainController"
          prefHeight="950.0" prefWidth="800.0"
          tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">

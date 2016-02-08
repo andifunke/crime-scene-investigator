@@ -2,6 +2,7 @@ package CrimeSceneInvestigator;
 
 import CrimeSceneInvestigator.Tuplets.Indizien;
 import CrimeSceneInvestigator.Tuplets.Tuplet;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,19 +14,22 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Control_Indizien extends MainController {
 
     public static Control_Indizien controlMe;
 
-    //ImageView imageView;
-    //Image image;
     @FXML
     VBox imgBox;
     Image img;
@@ -33,8 +37,9 @@ public class Control_Indizien extends MainController {
     InputStream IS;
     String imgURL;
     Button addImg;
-    String imgPath="img/";
+    String imgPath="./img/";
     Label fehlerLabel;
+    FileChooser fileChooser;
 
     public Control_Indizien() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Indizien.fxml"));
@@ -152,19 +157,10 @@ public class Control_Indizien extends MainController {
             }
         });
         tableView.getSelectionModel().selectFirst();
-
-
     }
 
     void loadPicture() {
         imgURL = "kein-bild.gif";
-/*        if (textAttr[2].getText().equals("")) {
-            val[2] = imgURL;
-            System.out.println("kein Bild");
-        }
-        else {
-            val[2] = textAttr[2].getText();
-        }*/
         try {
             img = new Image(getClass().getResourceAsStream(imgPath+imgURL));
             imgView = new ImageView(img);
@@ -177,14 +173,48 @@ public class Control_Indizien extends MainController {
     catch (Exception e){
         System.out.println("kann Bild nicht laden");
     }
+        fileChooser = new FileChooser();
+        configureFileChooser(fileChooser);
+
         addImg = new Button("hinzufügen");
         addImg.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                File file = fileChooser.showOpenDialog(CrimeSceneInvestigator.openStage);
+                if (file != null) {
+                    openFile(file);
+                }
             }
         });
-//        imgBox.getChildren().add(addImg);
-//        imgBox.getChildren().add(textAttr[2]);
+        imgBox.getChildren().add(addImg);
+        //        imgBox.getChildren().add(textAttr[2]);
+    }
+
+    private static void configureFileChooser(
+          final FileChooser fileChooser) {
+        fileChooser.setTitle("View Pictures");
+        fileChooser.setInitialDirectory(
+              new File(System.getProperty("user.home"))
+        );
+        fileChooser.getExtensionFilters().addAll(
+              new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"),
+              new FileChooser.ExtensionFilter("All Files", "*.*")
+        );
+    }
+
+    private void openFile(File inputfile) {
+        try {
+            BufferedImage bi = ImageIO.read(inputfile);
+            textAttr[2].setText(inputfile.getName());
+            val[2] = inputfile.getName();
+            File outputfile = new File(imgPath+inputfile.getName());
+            ImageIO.write(bi, "png", outputfile);
+        } catch (IOException ex) {
+            Logger.getLogger(
+                  Control_Indizien.class.getName()).log(
+                  Level.SEVERE, null, ex
+            );
+        }
     }
 
     void setUpPicture() {
@@ -197,12 +227,13 @@ public class Control_Indizien extends MainController {
                 val[2] = textAttr[2].getText();
             }
             val[2] = textAttr[2].getText();
-            img = new Image(getClass().getResourceAsStream(imgPath+val[2]));
+            File file = new File(imgPath+val[2]);
+            BufferedImage bi = ImageIO.read(file);
+            img = SwingFXUtils.toFXImage(bi, null);
             imgView.setImage(img);
         }
         catch (Exception e){
             System.out.println("kann Bild nicht laden");
-            val[2] = imgURL;
             try {
                 img = new Image(getClass().getResourceAsStream(imgPath+imgURL));
                 imgView.setImage(img);
@@ -211,10 +242,7 @@ public class Control_Indizien extends MainController {
                 System.out.println("kann Default-Bild nicht laden");
             }
         }
-
     }
-
-
 
     void setUpLists() {
         Filter filter = new Filter(table, attr[0], val[0], true);

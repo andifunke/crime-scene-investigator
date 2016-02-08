@@ -1,7 +1,7 @@
 package CrimeSceneInvestigator;
 
-import CrimeSceneInvestigator.Tuplets.betrifftV;
 import CrimeSceneInvestigator.Tuplets.Tuplet;
+import CrimeSceneInvestigator.Tuplets.betrifftV;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.util.Date;
 
 public class Control_betrifftV extends MainController {
 

@@ -1,7 +1,7 @@
 package CrimeSceneInvestigator;
 
-import CrimeSceneInvestigator.Tuplets.Verbrechen;
 import CrimeSceneInvestigator.Tuplets.Tuplet;
+import CrimeSceneInvestigator.Tuplets.Verbrechen;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,10 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.LinkedList;
 
 public class Control_Verbrechen extends MainController {

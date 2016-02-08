@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 
@@ -201,4 +202,6 @@ public class MainController extends SplitPane {
             return splitdate[2]+"-"+splitdate[1]+"-"+splitdate[0];
         }
         return date;
-    }}
+    }
+
+}
