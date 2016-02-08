@@ -1,11 +1,11 @@
 package CrimeSceneInvestigator.Tuplets;
 
 /**
- CREATE TABLE Verdaechtige (
- PersonID         INTEGER PRIMARY KEY,
- FOREIGN KEY      (PersonID)
- REFERENCES      Personen (PersonID)
- );
+ * CREATE TABLE Verdaechtige (
+ * PersonID         INTEGER PRIMARY KEY,
+ * FOREIGN KEY      (PersonID)
+ * REFERENCES      Personen (PersonID)
+ * );
  */
 
 public class Verdaechtige extends Personen {
@@ -20,8 +20,8 @@ public class Verdaechtige extends Personen {
 
 	public String getUpdateQuery2(String[] key) {
 		return
-				"UPDATE " + table + "\n"+
-						" SET "+
+				"UPDATE " + table + "\n" +
+						" SET " +
 						attr[0] + "='" + getVal0() + "'" +
 						"\n WHERE " + attr[0] + "=" + key[0] + ";";
 	}

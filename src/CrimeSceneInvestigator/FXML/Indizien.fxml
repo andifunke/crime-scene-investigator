@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
-<fx:root type="javafx.scene.control.SplitPane" xmlns:fx="http://javafx.com/fxml">
+<fx:root xmlns:fx="http://javafx.com/fxml" type="javafx.scene.control.SplitPane">
     <SplitPane dividerPositions="0.25" orientation="VERTICAL">
         <TableView fx:id="tableView"
                    editable="true">
@@ -140,7 +140,7 @@
                         </HBox>-->
                         <TextField id="TextFieldAttribute"
                                    fx:id="textAttr2"
-                                   />
+                        />
                     </VBox>
                     <TextField id="TextFieldFilter"
                                fx:id="filterAttr2"
@@ -188,7 +188,7 @@
                                fx:id="filterAttr5"
                                onAction="#filter"
                                GridPane.columnIndex="2" GridPane.rowIndex="5"/>
-                                    <!-- Zeile 5 -->
+                    <!-- Zeile 5 -->
 
                     <Label id="LabelAttribute"
                            fx:id="labelList0"

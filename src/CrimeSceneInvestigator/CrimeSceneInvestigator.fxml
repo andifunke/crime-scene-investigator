@@ -3,9 +3,9 @@
 <?import CrimeSceneInvestigator.*?>
 <?import javafx.scene.control.*?>
 <?import java.net.URL?>
-<TabPane fx:controller="CrimeSceneInvestigator.MainController"
-         prefHeight="950.0" prefWidth="800.0"
-         tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="CrimeSceneInvestigator.MainController" prefHeight="950.0"
+         prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8">
     <tabs>
         <Tab text="Fälle">
             <content>

@@ -9,21 +9,21 @@ import javafx.stage.Stage;
 public class CrimeSceneInvestigator extends Application {
 
 
-    static Stage openStage;
+	static Stage openStage;
 
-    @Override
-    public void start(final Stage primaryStage) throws Exception{
+	public static void main(String[] args) {
+		launch(args);
+	}
 
-        SQLController.connect();
-        Parent root = FXMLLoader.load(getClass().getResource("CrimeSceneInvestigator.fxml"));
-        primaryStage.setTitle("Crime Scene Investigator");
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        openStage = primaryStage;
-        primaryStage.show();
-    }
+	@Override
+	public void start(final Stage primaryStage) throws Exception {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+		SQLController.connect();
+		Parent root = FXMLLoader.load(getClass().getResource("CrimeSceneInvestigator.fxml"));
+		primaryStage.setTitle("Crime Scene Investigator");
+		Scene scene = new Scene(root);
+		primaryStage.setScene(scene);
+		openStage = primaryStage;
+		primaryStage.show();
+	}
 }

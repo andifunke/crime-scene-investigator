@@ -9,12 +9,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- CREATE TABLE Polizisten(
- PersonID         INTEGER PRIMARY KEY,
- Dienstgrad       VARCHAR(256)  not null,
- FOREIGN KEY      (PersonID)
- REFERENCES      Personen (PersonID)
- );
+ * CREATE TABLE Polizisten(
+ * PersonID         INTEGER PRIMARY KEY,
+ * Dienstgrad       VARCHAR(256)  not null,
+ * FOREIGN KEY      (PersonID)
+ * REFERENCES      Personen (PersonID)
+ * );
  */
 
 public class Polizisten extends Personen {
@@ -29,6 +29,13 @@ public class Polizisten extends Personen {
 			"Todesdatum",
 			"Dienstgrad"
 	};
+
+	public Polizisten(String[] val) {
+		super(attr, val);
+		setTable(table);
+		setAttr(attr);
+	}
+
 	public static ObservableList<Tuplet> getOL(ResultSet readTable) throws SQLException {
 		ArrayList<Tuplet> al = new ArrayList<Tuplet>();
 		while (readTable.next()) {
@@ -46,16 +53,10 @@ public class Polizisten extends Personen {
 		return FXCollections.observableArrayList(al);
 	}
 
-	public Polizisten(String[] val) {
-		super(attr, val);
-		setTable(table);
-		setAttr(attr);
-	}
-
 	public String getUpdateQuery2(String[] key) {
 		return
-				"UPDATE " + table + "\n"+
-						" SET "+
+				"UPDATE " + table + "\n" +
+						" SET " +
 						attr[0] + "='" + getVal0() + "'," +
 						attr[6] + "='" + getVal6() + "'" +
 						"\n WHERE " + attr[0] + "=" + key[0] + ";";

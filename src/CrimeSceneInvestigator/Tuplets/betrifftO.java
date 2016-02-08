@@ -8,63 +8,64 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- CREATE TABLE betrifftO (
- VerbrechenID     INT           not null,
- PersonID         INT           not null,
- PRIMARY KEY      (VerbrechenID, PersonID),
- FOREIGN KEY      (VerbrechenID)
- REFERENCES      Verbrechen (VerbrechenID),
- FOREIGN KEY      (PersonID)
- REFERENCES      Opfer (PersonID)
- );
+ * CREATE TABLE betrifftO (
+ * VerbrechenID     INT           not null,
+ * PersonID         INT           not null,
+ * PRIMARY KEY      (VerbrechenID, PersonID),
+ * FOREIGN KEY      (VerbrechenID)
+ * REFERENCES      Verbrechen (VerbrechenID),
+ * FOREIGN KEY      (PersonID)
+ * REFERENCES      Opfer (PersonID)
+ * );
  */
 
 public class betrifftO extends Tuplet {
 
-    public static final String table = "betrifftO";
-    public static final String[] attr = {
-          "VerbrechenID",
-          "PersonID",
-    };
-    public static ObservableList<Tuplet> getOL(ResultSet readTable) throws SQLException {
-        ArrayList<Tuplet> al = new ArrayList<Tuplet>();
-        while (readTable.next()) {
-            String[] values = {
-                  readTable.getString(attr[0]),
-                  readTable.getString(attr[1]),
-            };
-            al.add(new betrifftO(values)); // TODO: CHANGE HERE
-        }
-        return FXCollections.observableArrayList(al);
-    }
+	public static final String table = "betrifftO";
+	public static final String[] attr = {
+			"VerbrechenID",
+			"PersonID",
+	};
 
-    public betrifftO(String[] val) {
-        super(attr, val);
-        setTable(table);
-    }
+	public betrifftO(String[] val) {
+		super(attr, val);
+		setTable(table);
+	}
 
-    public String toString() {
-        return
-              "[" + getVal0() + "] " + getVal1();
-    }
+	public static ObservableList<Tuplet> getOL(ResultSet readTable) throws SQLException {
+		ArrayList<Tuplet> al = new ArrayList<Tuplet>();
+		while (readTable.next()) {
+			String[] values = {
+					readTable.getString(attr[0]),
+					readTable.getString(attr[1]),
+			};
+			al.add(new betrifftO(values)); // TODO: CHANGE HERE
+		}
+		return FXCollections.observableArrayList(al);
+	}
 
-    public String getUpdateQuery(String[] key) {
-        return
-              "UPDATE " + table + "\n"+
-                    " SET "+
-                    attr[0] + "='" + getVal0() + "'," +
-                    attr[1] + "='" + getVal1() + "'" +
-                    "\n WHERE " + attr[0] + "='" + key[0] + "'" +
-                    "\n AND "   + attr[1] + "='" + key[1] + "';";
-    }
+	public String toString() {
+		return
+				"[" + getVal0() + "] " + getVal1();
+	}
 
-    public String getInsertQuery() {
-        return
-              "INSERT INTO " + table +
-                    " VALUES (" +
-                    "'" + getVal0() + "'," +
-                    "'" + getVal1() + "'" +
-                    ");";
-    }
+	public String getUpdateQuery(String[] key) {
+		return
+				"UPDATE " + table + "\n" +
+						" SET " +
+						attr[0] + "='" + getVal0() + "'," +
+						attr[1] + "='" + getVal1() + "'" +
+						"\n WHERE " + attr[0] + "='" + key[0] + "'" +
+						"\n AND " + attr[1] + "='" + key[1] + "';";
+	}
+
+	public String getInsertQuery() {
+		return
+				"INSERT INTO " + table +
+						" VALUES (" +
+						"'" + getVal0() + "'," +
+						"'" + getVal1() + "'" +
+						");";
+	}
 
 }

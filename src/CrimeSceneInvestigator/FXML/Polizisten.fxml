@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
-<fx:root type="javafx.scene.control.SplitPane" xmlns:fx="http://javafx.com/fxml">
+<fx:root xmlns:fx="http://javafx.com/fxml" type="javafx.scene.control.SplitPane">
     <SplitPane dividerPositions="0.25" orientation="VERTICAL">
         <TableView fx:id="tableView"
                    editable="true">
