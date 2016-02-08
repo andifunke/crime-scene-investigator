@@ -3,18 +3,38 @@ package CrimeSceneInvestigator;
 import CrimeSceneInvestigator.Tuplets.Indizien;
 import CrimeSceneInvestigator.Tuplets.Tuplet;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 
 public class Control_Indizien extends MainController {
 
     public static Control_Indizien controlMe;
+
+    //ImageView imageView;
+    //Image image;
+    @FXML
+    VBox imgBox;
+    Image img;
+    ImageView imgView;
+    InputStream IS;
+    String imgURL;
+    Button addImg;
+    String imgPath="img/";
+    Label fehlerLabel;
 
     public Control_Indizien() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Indizien.fxml"));
@@ -71,7 +91,8 @@ public class Control_Indizien extends MainController {
         filterAttr[6] = filterAttr6;
 
         for (int i=0; i<attr.length; i++)
-            filterAttr[i].setPromptText("nach '" + attrName[i] + "' filtern");
+            if (filterAttr[i] != null)
+                filterAttr[i].setPromptText("nach '" + attrName[i] + "' filtern");
 
         labelAttr = new Label[7];
         labelAttr[0] = labelAttr0;
@@ -113,6 +134,8 @@ public class Control_Indizien extends MainController {
         for (int i=0; i<attr.length; i++)
             val[i] = "";
 
+        loadPicture();
+
         olTable = SQLController.selectFromTable(table);
         tableView.setItems(olTable);
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -122,13 +145,76 @@ public class Control_Indizien extends MainController {
                     val[i] = newValue.getValue(i);
                 setUpFields();
                 setUpLists();
+                setUpPicture();
             }
             else {
                 reset();
             }
         });
         tableView.getSelectionModel().selectFirst();
+
+
     }
+
+    void loadPicture() {
+        imgURL = "kein-bild.gif";
+/*        if (textAttr[2].getText().equals("")) {
+            val[2] = imgURL;
+            System.out.println("kein Bild");
+        }
+        else {
+            val[2] = textAttr[2].getText();
+        }*/
+        try {
+            img = new Image(getClass().getResourceAsStream(imgPath+imgURL));
+            imgView = new ImageView(img);
+            imgView.setFitHeight(400);
+            imgView.setFitWidth(400);
+            imgView.setPreserveRatio(true);
+            imgView.setSmooth(true);
+            imgBox.getChildren().add(imgView);
+        }
+    catch (Exception e){
+        System.out.println("kann Bild nicht laden");
+    }
+        addImg = new Button("hinzufügen");
+        addImg.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+            }
+        });
+//        imgBox.getChildren().add(addImg);
+//        imgBox.getChildren().add(textAttr[2]);
+    }
+
+    void setUpPicture() {
+        try {
+            if (textAttr[2].getText().equals("")) {
+                val[2] = imgURL;
+                System.out.println("kein Bild");
+            }
+            else {
+                val[2] = textAttr[2].getText();
+            }
+            val[2] = textAttr[2].getText();
+            img = new Image(getClass().getResourceAsStream(imgPath+val[2]));
+            imgView.setImage(img);
+        }
+        catch (Exception e){
+            System.out.println("kann Bild nicht laden");
+            val[2] = imgURL;
+            try {
+                img = new Image(getClass().getResourceAsStream(imgPath+imgURL));
+                imgView.setImage(img);
+            }
+            catch (Exception e2) {
+                System.out.println("kann Default-Bild nicht laden");
+            }
+        }
+
+    }
+
+
 
     void setUpLists() {
         Filter filter = new Filter(table, attr[0], val[0], true);
@@ -208,6 +294,11 @@ public class Control_Indizien extends MainController {
         }
         Control_Faelle.controlMe.filter(new ActionEvent());
         Control_Polizisten.controlMe.filter(new ActionEvent());
+    }
+
+    @FXML
+    void openImage() {
+
     }
 
 }

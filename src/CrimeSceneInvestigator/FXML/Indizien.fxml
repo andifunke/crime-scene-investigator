@@ -16,7 +16,8 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.control.DatePicker?>
-
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <fx:root type="javafx.scene.control.SplitPane" xmlns:fx="http://javafx.com/fxml">
     <SplitPane dividerPositions="0.25" orientation="VERTICAL">
         <TableView fx:id="tableView"
@@ -97,7 +98,7 @@
                     <rowConstraints>
                         <RowConstraints vgrow="NEVER"/>
                         <RowConstraints vgrow="NEVER"/>
-                        <RowConstraints vgrow="NEVER"/>
+                        <RowConstraints valignment="TOP" vgrow="NEVER"/>
                         <RowConstraints vgrow="NEVER"/>
                         <RowConstraints vgrow="NEVER"/>
                         <RowConstraints vgrow="NEVER"/>
@@ -138,14 +139,24 @@
                                GridPane.columnIndex="2" GridPane.rowIndex="1"/>
 
                     <HBox id="HBoxAttribute"
-                          alignment="CENTER_RIGHT"
+                          alignment="TOP_RIGHT"
                           GridPane.columnIndex="0" GridPane.rowIndex="2">
                         <Label id="LabelAttribute"
                                fx:id="labelAttr2"/>
                     </HBox>
-                    <TextField id="TextFieldAttribute"
-                               fx:id="textAttr2"
-                               GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                    <VBox id="VBoxAttribute"
+                          fx:id="imgBox"
+                          GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <!--<HBox id="HBoxForButtons">
+                            <Button id="ButtonHinzufuegen"
+                                    text="hinzufügen"
+                                    onAction="#openImage"
+                                    mnemonicParsing="false"/>
+                        </HBox>-->
+                        <TextField id="TextFieldAttribute"
+                                   fx:id="textAttr2"
+                                   />
+                    </VBox>
                     <TextField id="TextFieldFilter"
                                fx:id="filterAttr2"
                                onAction="#filter"
@@ -192,6 +203,7 @@
                                fx:id="filterAttr5"
                                onAction="#filter"
                                GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+                                    <!-- Zeile 5 -->
 
                     <Label id="LabelAttribute"
                            fx:id="labelList0"

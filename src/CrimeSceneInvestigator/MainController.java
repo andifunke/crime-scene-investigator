@@ -19,8 +19,7 @@ public class MainController extends SplitPane {
     boolean isNew = false;
     final String split = ",|;";
 
-    @FXML
-    TableView<Tuplet> tableView;
+    @FXML TableView<Tuplet> tableView;
     ObservableList<Tuplet> olTable;
 
     @FXML TextField textAttr0;
@@ -94,11 +93,13 @@ public class MainController extends SplitPane {
         olTable.clear();
         olTable.addAll(SQLController.selectFromTable(table));
         tableView.refresh();
+        setUpPicture();
     }
     void refreshTable(LinkedList<Filter> filterList) {
         olTable.clear();
         olTable.addAll(SQLController.selectFromTable(table, filterList));
         tableView.refresh();
+        setUpPicture();
     }
 
     @FXML
@@ -107,11 +108,17 @@ public class MainController extends SplitPane {
             val[i] = "";
         setUpFields();
         setUpLists();
+        setUpPicture();
+    }
+
+    void setUpPicture() {
+
     }
 
     void setUpFields() {
         for (int i = 0; i < attr.length; i++)
-            textAttr[i].setText(val[i]);
+            if (textAttr[i] != null)
+                textAttr[i].setText(val[i]);
     }
 
     void setUpLists() {

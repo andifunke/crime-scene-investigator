@@ -12,7 +12,7 @@ class SQLController {
 
     private static final SQLController sqlController = new SQLController();
     private static Connection connection;
-    private static final String DB_PATH = "res/crime.db";
+    private static final String DB_PATH = "./crime.db";
 
     static {
         try {

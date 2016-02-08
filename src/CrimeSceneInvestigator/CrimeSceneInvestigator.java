@@ -8,8 +8,6 @@ import javafx.stage.Stage;
 
 public class CrimeSceneInvestigator extends Application {
 
-    public final String dbSetupFile = "X:\\Dropbox\\BC\\Meine Dokumente\\Studium\\Informatik\\2015-10 (WS)\\Datenbanksysteme\\Abschlussprojekt 4\\dbs4_sql.txt";
-
     @Override
     public void start(Stage primaryStage) throws Exception{
 
