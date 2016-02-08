@@ -11,7 +11,8 @@ import java.util.LinkedList;
 class SQLController {
 
 	private static final SQLController sqlController = new SQLController();
-	private static final String DB_PATH = "./crime.db";
+	private static final String dbPath = System.getProperty("user.dir")+System.getProperty("file.separator")+System.getProperty("file.separator");
+	private static final String DB_PATH = dbPath+"crime.db";
 	private static Connection connection;
 
 	static {

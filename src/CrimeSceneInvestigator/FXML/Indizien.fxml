@@ -83,7 +83,7 @@
                     <rowConstraints>
                         <RowConstraints vgrow="NEVER"/>
                         <RowConstraints vgrow="NEVER"/>
-                        <RowConstraints valignment="TOP" vgrow="SOMETIMES"/>
+                        <RowConstraints valignment="TOP" vgrow="ALWAYS"/>
                         <RowConstraints vgrow="NEVER"/>
                         <RowConstraints vgrow="NEVER"/>
                         <RowConstraints vgrow="NEVER"/>
@@ -130,17 +130,19 @@
                                fx:id="labelAttr2"/>
                     </HBox>
                     <VBox id="VBoxAttribute"
-                          fx:id="imgBox"
+                          fx:id="imgSuperBox"
+                          alignment="TOP_LEFT" maxHeight="Infinity"
                           GridPane.columnIndex="1" GridPane.rowIndex="2">
-                        <!--<HBox id="HBoxForButtons">
-                            <Button id="ButtonHinzufuegen"
-                                    text="hinzufügen"
-                                    onAction="#openImage"
-                                    mnemonicParsing="false"/>
-                        </HBox>-->
                         <TextField id="TextFieldAttribute"
                                    fx:id="textAttr2"
                         />
+                        <VBox fx:id="imgBox"
+                              minHeight="10.0" maxHeight="Infinity" prefWidth="400.0"
+                              alignment="CENTER">
+                            <children>
+
+                            </children>
+                        </VBox>
                     </VBox>
                     <TextField id="TextFieldFilter"
                                fx:id="filterAttr2"
