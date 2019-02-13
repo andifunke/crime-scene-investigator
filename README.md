@@ -2,6 +2,7 @@
 
 
 JavaFX based toy GUI-application to model a crime investigation database system.
+Home assignment for the database system course (02/2016).
 
 
 ### Voraussetzungen
@@ -13,8 +14,8 @@ selben Verzeichnis befinden wie das JAR-File.
 ### Änderungen v0.1
 
 - Die externe JDBC-Bibliothek ist nun bereits im JAR-Archiv enthalten.<br>
-For a most recent SQLite JDBC Driver refer to
-[https://github.com/xerial/sqlite-jdbc](https://github.com/xerial/sqlite-jdbc).
+(For a most recent SQLite JDBC Driver refer to
+[https://github.com/xerial/sqlite-jdbc](https://github.com/xerial/sqlite-jdbc).)
 
 
 ### Ausführung
@@ -23,7 +24,7 @@ For a most recent SQLite JDBC Driver refer to
 - Doppelklick auf csi.jar
 
 ##### Linux:
-- von der Konsole: java -jar csi.jar
+- `$ java -jar csi.jar`<br>
 (bei Start über Doppelklick ist es möglich, dass der Pfad zur Datenbank nicht korrekt interpretiert
   wird.)
 
